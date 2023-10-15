@@ -12,9 +12,16 @@ var selectedTile
 
 var mouseInUI: bool = false
 
+var homeBlock
+
+# how many tiles a building of type index takes up
+# 0: turret, 1: HQ
+var buildingSizeN = [3, 5]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	homeBlock = get_node("MapBlock")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,23 +48,65 @@ func _input(event):
 			
 		if waitingForBuildLocation:
 			if selectedTile == null:
-				print("No location selected. Cancelling.")
+				print("No location selected. Cancelling.\n")
 				waitingForBuildLocation = false
 			else:
-				print("Make turret at: ")
-				print(selectedTile, "\n")
+				var tiles = GetSquare(selectedTile, buildingSizeN[buildType])
+				if tiles == null:
+					print("No space to put turret there!\n")
+					waitingForBuildLocation = false
+				else:
+					# check if any of the tiles are located
+					for row in tiles:
+						for tile in row:
+							if tile.occupied == true:
+								print("Space already occupied!\n")
+								waitingForBuildLocation = false
+								return
+					
+					# area is available for placing building
+					if buildType == 0:
+						var newTurret = turretScene.instantiate()
+						selectedTile.add_child(newTurret)
+						
+						for row in tiles:
+							for tile in row:
+								tile.occupied = true
+						
+						print("Spawned Turret at ", selectedTile)
+						waitingForBuildLocation = false
+						return
+					
+					
 
 
 # returns a list of tiles in a N x N square centered at center tile
 # if not possible, returns null
-func Get_Square(center, N):
+func GetSquare(center, N):
 	var output = []
-	var start = center
+	var col = center.col - int(N/2)
+	var row = center.row - int(N/2)
+	var topLeft
 	
-	# go to top left corner
-	for i in range(N/2):
-		pass
+	if col < 0:
+		return null
+	if row < 0:
+		return null
+	
+	topLeft = homeBlock.blockTiles[row][col]
+	
+	for j in range(N):
+		var firstTileOfRow = topLeft
+		var oneRow = []
 		
+		for i in range(N):
+			oneRow.append(firstTileOfRow)
+			firstTileOfRow = firstTileOfRow.rightTile
+		
+		output.append(oneRow)
+		topLeft = topLeft.lowerTile
+	
+	return output
 	
 
 

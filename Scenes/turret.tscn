@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="2_d7vnd"]
 
 [node name="Turret" type="Node2D"]
+z_index = 10
+scale = Vector2(2.4, 2.4)
 
 [node name="TurretBodySprite" type="Sprite2D" parent="."]
 texture_filter = 1

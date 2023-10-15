@@ -2,8 +2,8 @@ extends Node2D
 
 class_name MapBlock
 
-@export var boardWidth = 30
-@export var boardHeight = 30
+@export var boardWidth = 50
+@export var boardHeight = 50
 
 # Size of a square tile's one side's length in pixels
 var initialTilesize = 32
@@ -15,6 +15,11 @@ var tileScene
 var blockTiles = []
 
 var camera
+
+var leftBlock
+var rightBlock
+var upperBlock
+var lowerBlock
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

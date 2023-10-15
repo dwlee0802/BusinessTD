@@ -6,6 +6,8 @@ class_name Tile
 @export var col: int = 0
 @export var row: int = 0
 
+var occupied: bool = false
+
 var upperTile
 var lowerTile
 var rightTile

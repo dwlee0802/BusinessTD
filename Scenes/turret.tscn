@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://co0iu8csjmd8h"]
+
+[ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="1_o0ic3"]
+[ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="2_d7vnd"]
+
+[node name="Turret" type="Node2D"]
+
+[node name="TurretBodySprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_o0ic3")
+
+[node name="TurretBarrelSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_d7vnd")

@@ -15,15 +15,20 @@ var dist: int = 1000000
 
 var game
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	game = get_parent().get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
+
+func _on_mouse_entered():
+	game.mouseOnTile = self
+
 
 func _to_string():
 	var output 
@@ -32,3 +37,4 @@ func _to_string():
 	output += str(row) + ", " + str(col) + "\n"
 	
 	return output
+

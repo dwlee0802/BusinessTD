@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=5 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
 [ext_resource type="PackedScene" uid="uid://oigaet4tkyjp" path="res://Scenes/map_block.tscn" id="2_d8xa2"]
+[ext_resource type="Script" path="res://Scenes/BuildButton.gd" id="3_fhnyi"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 328)
 script = ExtResource("2_3q2bq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
@@ -30,9 +32,9 @@ layout_mode = 0
 offset_right = 120.0
 offset_bottom = 70.0
 text = "Build"
+script = ExtResource("3_fhnyi")
 
 [node name="BuildOptionsMenu" type="Control" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -52,3 +54,9 @@ offset_bottom = 50.0
 text = "Turret"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
+
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton" to="." method="_on_build_turret_option_pressed" binds= [0]]

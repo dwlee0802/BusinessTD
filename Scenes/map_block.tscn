@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oigaet4tkyjp"]
+
+[ext_resource type="Script" path="res://Scenes/map_block.gd" id="1_e4uyr"]
+
+[node name="MapBlock" type="Node2D"]
+script = ExtResource("1_e4uyr")

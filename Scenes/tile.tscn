@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://belw4w7jwyefs"]
+
+[ext_resource type="Script" path="res://Scenes/tile.gd" id="1_vwmq0"]
+[ext_resource type="Texture2D" uid="uid://dpo8d7pkjqn4k" path="res://Art/tile.png" id="2_we066"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6rkh"]
+size = Vector2(32, 32)
+
+[node name="Tile" type="RigidBody2D"]
+mass = 0.01
+freeze = true
+script = ExtResource("1_vwmq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f6rkh")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_we066")

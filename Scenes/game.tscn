@@ -104,6 +104,16 @@ offset_bottom = 69.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Funds: 0"
 
+[node name="AbortButton" type="Button" parent="Camera/CanvasLayer/InGameUI"]
+modulate = Color(1, 0.45098, 0.388235, 1)
+layout_mode = 0
+offset_left = 1042.0
+offset_top = 18.0
+offset_right = 1142.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 20
+text = "Abort"
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_entered_ui"]

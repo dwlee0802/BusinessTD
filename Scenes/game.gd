@@ -26,7 +26,7 @@ var playerStructures = []
 var buildingSizeN = [3, 7, 5]
 
 # upfront cost of buildings
-var buildingCosts = [1200, 2000, 1000]
+var buildingCosts = [1000, 2000, 800]
 
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
@@ -35,9 +35,9 @@ var spawnCount: float = 1
 var gameStarted: bool = false
 var gamePaused: bool = true
 
-var operationFunds: float = 5000
+var operationFunds: float = 5000 
 
-var difficultyScale: float = 1.05
+var difficultyScale: float = 1.04
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

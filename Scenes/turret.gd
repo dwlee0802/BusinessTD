@@ -3,6 +3,9 @@ extends CharacterBody2D
 var hitPoints: int = 500
 var maxHitPoints: int = 500
 
+# 0: turret, 1: HQ, 2: Drill
+var type: int = 0
+
 var targets = []
 
 var fireRate: float = 0.25

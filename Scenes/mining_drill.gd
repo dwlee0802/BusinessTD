@@ -3,6 +3,8 @@ extends CharacterBody2D
 var hitPoints: int = 250
 var maxHitPoints: int = 250
 
+var type: int = 2
+
 var healthBar
 var healthBarSize: int = 125
 

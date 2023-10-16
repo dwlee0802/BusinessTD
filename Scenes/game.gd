@@ -36,11 +36,10 @@ var gameStarted: bool = false
 var gamePaused: bool = true
 
 var operationFunds: float = 5000
-
-var highestFundsPoint: float = 5000
+var highestValuePoint: float = 5000
 
 # takes into account the cash in value of buildings
-var totalValue
+var totalValue: float = 5000
 
 var difficultyScale: float = 1.04
 
@@ -58,7 +57,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	get_node("Camera/CanvasLayer/InGameUI/MoneyLabel").text = "Funds: " + str(int(operationFunds))
+	
+	if not playerStructures.is_empty():
+		var assets = 0
+		for item in playerStructures:
+			assets += buildingCosts[item.type] * 0.8
+			
+		totalValue = operationFunds + assets
+		
+	if totalValue > highestValuePoint:
+		highestValuePoint = totalValue
+		
+	get_node("Camera/CanvasLayer/InGameUI/MostFundsLabel").text = "Highest Value: " + str(int(highestValuePoint))
+	get_node("Camera/CanvasLayer/InGameUI/MoneyLabel").text = "Current Funds: " + str(int(operationFunds))
+	get_node("Camera/CanvasLayer/InGameUI/Total Value").text = "Current Value: " + str(int(totalValue))
 	
 	if not playerStructures.is_empty() and gameStarted == true:
 		gameStarted = true
@@ -144,6 +156,7 @@ func _input(event):
 						
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton").visible = false
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton").visible = true
+						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton").visible = true
 						
 						operationFunds -= buildingCosts[buildType]
 						playerStructures.append(newHQ)
@@ -224,6 +237,20 @@ func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 func GameOver():
 	get_node("Camera/CanvasLayer/InGameUI/GameOverLabel").visible = true
 	gameStarted = false
+	
+	
+# when the current operation can't be profitable anymore, the player can abort mission
+# all remaining buildings will have some of their value returned
+func AbortOperation():
+	print("Abort operation!")
+	
+	for item in playerStructures:
+		operationFunds += buildingCosts[item.type] * 0.8
+	
+	for item in playerStructures:
+		item.queue_free()
+		
+	GameOver()
 	
 
 func _on_build_turret_option_pressed(extra_arg_0):

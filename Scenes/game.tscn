@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=6 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
 [ext_resource type="PackedScene" uid="uid://oigaet4tkyjp" path="res://Scenes/map_block.tscn" id="2_d8xa2"]
 [ext_resource type="Script" path="res://Scenes/BuildButton.gd" id="3_fhnyi"]
+[ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -62,6 +63,7 @@ offset_bottom = 50.0
 text = "Turret"
 
 [node name="MiningDrillButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
+visible = false
 layout_mode = 0
 offset_left = 266.0
 offset_right = 386.0
@@ -95,17 +97,33 @@ text = "Paused"
 fit_content = true
 scroll_active = false
 
+[node name="Total Value" type="RichTextLabel" parent="Camera/CanvasLayer/InGameUI"]
+offset_left = 14.0
+offset_top = 97.0
+offset_right = 314.0
+offset_bottom = 147.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Total Value: 0"
+
+[node name="MostFundsLabel" type="RichTextLabel" parent="Camera/CanvasLayer/InGameUI"]
+offset_left = 13.0
+offset_top = 21.0
+offset_right = 313.0
+offset_bottom = 71.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Highest reached: 0"
+
 [node name="MoneyLabel" type="RichTextLabel" parent="Camera/CanvasLayer/InGameUI"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 19.0
-offset_right = 213.0
-offset_bottom = 69.0
+offset_top = 60.0
+offset_right = 313.0
+offset_bottom = 110.0
 theme_override_font_sizes/normal_font_size = 25
-text = "Funds: 0"
+text = "Current Funds: 0"
 
 [node name="AbortButton" type="Button" parent="Camera/CanvasLayer/InGameUI"]
-modulate = Color(1, 0.45098, 0.388235, 1)
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 1042.0
 offset_top = 18.0
@@ -113,6 +131,37 @@ offset_right = 1142.0
 offset_bottom = 58.0
 theme_override_font_sizes/font_size = 20
 text = "Abort"
+script = ExtResource("4_r0jn5")
+
+[node name="Buttons" type="Control" parent="Camera/CanvasLayer/InGameUI/AbortButton"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ConfirmButton" type="Button" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = -567.0
+offset_top = 291.0
+offset_right = -496.0
+offset_bottom = 322.0
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
+offset_left = -436.0
+offset_top = 291.0
+offset_right = -365.0
+offset_bottom = 322.0
+text = "Cancel"
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
+offset_left = -572.0
+offset_top = 241.0
+offset_right = -361.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 25
+text = "Abort Operation?"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
@@ -127,3 +176,11 @@ text = "Abort"
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton" to="." method="_on_build_turret_option_pressed" binds= [2]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/AbortButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/AbortButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/ConfirmButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/ConfirmButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/ConfirmButton" to="Camera/CanvasLayer/InGameUI/AbortButton" method="_on_confirm_button_pressed"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="Camera/CanvasLayer/InGameUI/AbortButton" method="_on_cancel_button_pressed"]

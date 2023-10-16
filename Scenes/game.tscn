@@ -16,6 +16,20 @@ script = ExtResource("2_3q2bq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
 
+[node name="GameOverLabel" type="Label" parent="Camera/CanvasLayer"]
+visible = false
+modulate = Color(0.886275, 0, 0, 1)
+texture_filter = 1
+offset_left = 370.0
+offset_top = 294.0
+offset_right = 801.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 35
+text = "Operation Terminated"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="InGameUI" type="Control" parent="Camera/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -43,9 +57,10 @@ offset_bottom = 40.0
 
 [node name="SelectOptionLabel" type="RichTextLabel" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
 layout_mode = 0
-offset_top = -45.0
-offset_right = 200.0
-offset_bottom = -5.0
+offset_left = 1.0
+offset_top = -30.0
+offset_right = 201.0
+offset_bottom = 10.0
 text = "Select Option"
 
 [node name="HQButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
@@ -70,21 +85,6 @@ offset_left = 266.0
 offset_right = 386.0
 offset_bottom = 50.0
 text = "Mining Drill"
-
-[node name="GameOverLabel" type="Label" parent="Camera/CanvasLayer/InGameUI"]
-visible = false
-modulate = Color(0.886275, 0, 0, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 370.0
-offset_top = 294.0
-offset_right = 801.0
-offset_bottom = 352.0
-theme_override_font_sizes/font_size = 35
-text = "Operation Terminated"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
 
 [node name="GamePausedLabel" type="RichTextLabel" parent="Camera/CanvasLayer/InGameUI"]
 visible = false

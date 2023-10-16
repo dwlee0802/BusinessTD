@@ -248,9 +248,10 @@ func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 
 
 func GameOver():
-	get_node("Camera/CanvasLayer/InGameUI/GameOverLabel").visible = true
+	get_node("Camera/CanvasLayer/GameOverLabel").visible = true
 	gameStarted = false
 	emit_signal("game_ended")
+	get_node("Camera/CanvasLayer/InGameUI").visible = false
 	
 	
 # when the current operation can't be profitable anymore, the player can abort mission

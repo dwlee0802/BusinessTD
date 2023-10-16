@@ -22,7 +22,7 @@ var isHQ: bool = false
 
 var placedTile
 
-var upkeep = [3, 5]
+var upkeep = [3, 5, 2]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

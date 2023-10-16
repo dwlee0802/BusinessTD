@@ -5,7 +5,7 @@ var maxHitPoints: int = 100
 
 var attackTarget
 
-@export var speed: int = 800
+@export var speed: int = 300
 
 var healthBar
 

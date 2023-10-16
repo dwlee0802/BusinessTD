@@ -62,6 +62,7 @@ offset_bottom = 50.0
 text = "Turret"
 
 [node name="MiningDrillButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
+layout_mode = 0
 offset_left = 266.0
 offset_right = 386.0
 offset_bottom = 50.0

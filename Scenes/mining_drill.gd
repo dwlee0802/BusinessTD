@@ -6,6 +6,7 @@ var maxHitPoints: int = 250
 var healthBar
 var healthBarSize: int = 125
 
+var placedTile
 
 var game
 
@@ -18,7 +19,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hitPoints <= 0:
-		pass
+		var tiles = game.GetSquare(placedTile, 5)
+		for tile in tiles:
+			for item in tile:
+				item.occupied = false
+		
 		queue_free()
 		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:

@@ -27,12 +27,14 @@ var buildingSizeN = [3, 7, 5]
 
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
-var spawnCount: float = 5
+var spawnCount: float = 1
 
 var gameStarted: bool = false
 var gamePaused: bool = true
 
 var operationFunds: float = -3000
+
+var difficultyScale: float = 1.05
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,7 +60,7 @@ func _process(delta):
 			# randomly spawn enemies at the edge of the map
 			for i in range(int(spawnCount)):
 				SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random())
-			spawnCount *= 1.1
+			spawnCount *= difficultyScale
 			spawnRateHolder = 0
 	
 
@@ -102,6 +104,7 @@ func _input(event):
 						var newTurret = turretScene.instantiate()
 						add_child(newTurret)
 						newTurret.position = selectedTile.position
+						newTurret.placedTile = selectedTile
 						
 						for row in tiles:
 							for tile in row:
@@ -117,6 +120,7 @@ func _input(event):
 						newHQ.isHQ = true
 						add_child(newHQ)
 						newHQ.position = selectedTile.position
+						newHQ.placedTile = selectedTile
 						
 						operationFunds -= 2000
 						
@@ -140,6 +144,7 @@ func _input(event):
 							var newDrill = miningDrillScene.instantiate()
 							add_child(newDrill)
 							newDrill.position = selectedTile.position
+							newDrill.placedTile = selectedTile
 							
 							for row in tiles:
 								for tile in row:

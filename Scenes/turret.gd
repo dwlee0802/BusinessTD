@@ -15,6 +15,8 @@ var game
 
 var isHQ: bool = false
 
+var placedTile
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
@@ -33,7 +35,19 @@ func _process(delta):
 			print("Game Over!")
 			game.GameOver()
 			
+		var tiles
+		
+		if isHQ:
+			tiles = game.GetSquare(placedTile, 7)
+		else:
+			tiles = game.GetSquare(placedTile, 3)
+			
+		for tile in tiles:
+			for item in tile:
+				item.occupied = false
+			
 		queue_free()
+		
 		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140

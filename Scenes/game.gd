@@ -25,6 +25,9 @@ var playerStructures = []
 # 0: turret, 1: HQ, 2: Mining Drill
 var buildingSizeN = [3, 7, 5]
 
+# upfront cost of buildings
+var buildingCosts = [1200, 2000, 1000]
+
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
 var spawnCount: float = 1
@@ -32,7 +35,7 @@ var spawnCount: float = 1
 var gameStarted: bool = false
 var gamePaused: bool = true
 
-var operationFunds: float = -3000
+var operationFunds: float = 5000
 
 var difficultyScale: float = 1.05
 
@@ -112,6 +115,9 @@ func _input(event):
 						
 						print("Spawned Turret at ", selectedTile)
 						playerStructures.append(newTurret)
+						
+						operationFunds -= buildingCosts[buildType]
+						
 						waitingForBuildLocation = false
 						return
 						
@@ -134,6 +140,7 @@ func _input(event):
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton").visible = false
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton").visible = true
 						
+						operationFunds -= buildingCosts[buildType]
 						playerStructures.append(newHQ)
 						gameStarted = true
 						
@@ -153,6 +160,7 @@ func _input(event):
 							print("Spawned Mining Drill at ", selectedTile)
 							
 							playerStructures.append(newDrill)
+							operationFunds -= buildingCosts[buildType]
 							return
 						else:
 							print("Not a mineral deposit!\n")

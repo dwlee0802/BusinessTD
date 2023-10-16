@@ -29,7 +29,7 @@ func _process(delta):
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
 	
-	game.operationFunds += 10 * delta
+	game.operationFunds += 20 * delta
 	
 	
 func hit(damage):

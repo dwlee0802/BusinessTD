@@ -175,11 +175,19 @@ script = ExtResource("5_tkslb")
 [node name="Title" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
 layout_mode = 0
 offset_left = 733.0
-offset_top = 513.0
+offset_top = 506.0
 offset_right = 873.0
-offset_bottom = 544.0
+offset_bottom = 537.0
 theme_override_font_sizes/font_size = 20
 text = "Building Menu"
+
+[node name="Name" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+offset_left = 733.0
+offset_top = 531.0
+offset_right = 873.0
+offset_bottom = 562.0
+theme_override_font_sizes/font_size = 20
+text = "Name here"
 
 [node name="SellButton" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
 modulate = Color(1, 0, 0, 1)

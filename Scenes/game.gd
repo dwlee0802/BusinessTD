@@ -133,6 +133,7 @@ func _input(event):
 						add_child(newTurret)
 						newTurret.position = selectedTile.position
 						newTurret.placedTile = selectedTile
+						newTurret.type = 0
 						
 						for row in tiles:
 							for tile in row:
@@ -149,6 +150,7 @@ func _input(event):
 					elif buildType == 1:
 						var newHQ = hqScene.instantiate()
 						newHQ.isHQ = true
+						newHQ.type = 1
 						add_child(newHQ)
 						newHQ.position = selectedTile.position
 						newHQ.placedTile = selectedTile
@@ -178,6 +180,7 @@ func _input(event):
 							add_child(newDrill)
 							newDrill.position = selectedTile.position
 							newDrill.placedTile = selectedTile
+							newDrill.type = 2
 							
 							for row in tiles:
 								for tile in row:

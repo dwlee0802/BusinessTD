@@ -6,6 +6,8 @@ var maxHitPoints: int = 500
 # 0: turret, 1: HQ, 2: Drill
 var type: int = 0
 
+var level: int = 1
+
 var targets = []
 
 var fireRate: float = 0.25
@@ -19,6 +21,8 @@ var game
 var isHQ: bool = false
 
 var placedTile
+
+var upkeep = [3, 5]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -95,7 +99,6 @@ func _physics_process(delta):
 func hit(damage):
 	print("hit!")
 	hitPoints -= damage
-#	healthBar.scale.x = 75 * hitPoints / maxHitPoints
 	game.MakeDamagePopup(position, damage, Color.ORANGE)
 	
 	

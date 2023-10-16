@@ -26,7 +26,7 @@ var playerStructures = []
 var buildingSizeN = [3, 7, 5]
 
 # upfront cost of buildings
-var buildingCosts = [1000, 2000, 800]
+var buildingCosts = [800, 1500, 500]
 
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
@@ -35,7 +35,12 @@ var spawnCount: float = 1
 var gameStarted: bool = false
 var gamePaused: bool = true
 
-var operationFunds: float = 5000 
+var operationFunds: float = 5000
+
+var highestFundsPoint: float = 5000
+
+# takes into account the cash in value of buildings
+var totalValue
 
 var difficultyScale: float = 1.04
 

@@ -46,10 +46,18 @@ offset_right = 200.0
 offset_bottom = -5.0
 text = "Select Option"
 
-[node name="TurretButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
+[node name="HQButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
 layout_mode = 0
-offset_left = 132.0
-offset_right = 232.0
+offset_left = 133.0
+offset_right = 233.0
+offset_bottom = 50.0
+text = "HQ"
+
+[node name="TurretButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
+visible = false
+layout_mode = 0
+offset_left = 133.0
+offset_right = 233.0
 offset_bottom = 50.0
 text = "Turret"
 
@@ -57,6 +65,9 @@ text = "Turret"
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton" to="." method="_on_build_turret_option_pressed" binds= [1]]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton" to="." method="_on_build_turret_option_pressed" binds= [0]]

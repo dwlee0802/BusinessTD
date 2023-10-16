@@ -2,6 +2,8 @@ extends Node2D
 
 
 var turretScene = preload("res://Scenes/turret.tscn")
+var hqScene = preload("res://Scenes/HQ.tscn")
+var enemyScene = preload("res://Scenes/enemyUnit.tscn")
 
 var waitingForBuildLocation: bool = false
 var buildType
@@ -13,6 +15,9 @@ var selectedTile
 var mouseInUI: bool = false
 
 var homeBlock
+var edgeTiles = []
+
+var playerStructures = []
 
 # how many tiles a building of type index takes up
 # 0: turret, 1: HQ
@@ -22,11 +27,21 @@ var buildingSizeN = [3, 5]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	homeBlock = get_node("MapBlock")
+	
+	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
+	
+	for i in range(1, homeBlock.boardWidth):
+		edgeTiles.append(homeBlock.blockTiles[1][i])
+		edgeTiles.append(homeBlock.blockTiles[-1][i])
+		edgeTiles.append(homeBlock.blockTiles[i][1])
+		edgeTiles.append(homeBlock.blockTiles[i][-1])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if not playerStructures.is_empty():
+		# randomly spawn enemies at the edge of the map
+		SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random())
 
 
 func _input(event):
@@ -67,7 +82,8 @@ func _input(event):
 					# area is available for placing building
 					if buildType == 0:
 						var newTurret = turretScene.instantiate()
-						selectedTile.add_child(newTurret)
+						add_child(newTurret)
+						newTurret.position = selectedTile.position
 						
 						for row in tiles:
 							for tile in row:
@@ -75,6 +91,25 @@ func _input(event):
 						
 						print("Spawned Turret at ", selectedTile)
 						waitingForBuildLocation = false
+						return
+						
+					elif buildType == 1:
+						var newHQ = hqScene.instantiate()
+						add_child(newHQ)
+						newHQ.position = selectedTile.position
+						
+						for row in tiles:
+							for tile in row:
+								tile.occupied = true
+						
+						print("Spawned HQ at ", selectedTile)
+						waitingForBuildLocation = false
+						
+						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton").visible = false
+						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton").visible = true
+						
+						playerStructures.append(newHQ)
+						
 						return
 					
 					
@@ -109,6 +144,12 @@ func GetSquare(center, N):
 	return output
 	
 
+func SpawnEnemy(where, attackWhat):
+	var newUnit = enemyScene.instantiate()
+	newUnit.position = where
+	newUnit.attackTarget = attackWhat
+	add_child(newUnit)
+	
 
 func _on_build_turret_option_pressed(extra_arg_0):
 	print("Waiting for turret build location!\n")

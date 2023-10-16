@@ -1,33 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://co0iu8csjmd8h"]
+[gd_scene load_steps=6 format=3 uid="uid://dfceplhywewkw"]
 
-[ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="1_o0ic3"]
-[ext_resource type="Script" path="res://Scenes/turret.gd" id="1_s5d8n"]
-[ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="2_d7vnd"]
+[ext_resource type="Script" path="res://Scenes/turret.gd" id="1_njw0n"]
+[ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="2_5wjaa"]
+[ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="3_1kfn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
-size = Vector2(32.0833, 32.5)
+size = Vector2(120, 119)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ghj4"]
-radius = 248.211
+radius = 373.334
 
 [node name="BodyCollider" type="CharacterBody2D"]
 collision_mask = 0
-script = ExtResource("1_s5d8n")
+script = ExtResource("1_njw0n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.208334, 0)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_e8nbd")
 debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
-[node name="TurretBodySprite" type="Sprite2D" parent="."]
+[node name="HQBodySprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.4, 2.4)
-texture = ExtResource("1_o0ic3")
+texture = ExtResource("2_5wjaa")
 
 [node name="TurretBarrelSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.4, 2.4)
-texture = ExtResource("2_d7vnd")
+texture = ExtResource("3_1kfn8")
 
 [node name="AttackRangeCollider" type="CharacterBody2D" parent="."]
 scale = Vector2(2.4, 2.4)

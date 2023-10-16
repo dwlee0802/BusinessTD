@@ -165,6 +165,7 @@ theme_override_font_sizes/font_size = 25
 text = "Abort Operation?"
 
 [node name="UnitMenu" type="Button" parent="Camera/CanvasLayer/InGameUI"]
+visible = false
 layout_mode = 0
 offset_left = 84.0
 offset_top = -37.0

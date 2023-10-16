@@ -15,6 +15,7 @@ var game
 func _ready():
 	healthBar = get_node("Healthbar")
 	game = get_parent()
+	game.game_ended.connect(GameEnded)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,3 +44,7 @@ func ReceiveHit(amount):
 	hitPoints -= amount
 #	healthBar.scale.x = 32 * hitPoints / maxHitPoints
 	game.MakeDamagePopup(position, amount)
+	
+
+func GameEnded():
+	queue_free()

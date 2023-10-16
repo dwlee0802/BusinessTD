@@ -37,6 +37,8 @@ var spawnCount: float = 1
 var gameStarted: bool = false
 var gamePaused: bool = true
 
+signal game_ended
+
 var operationFunds: float = 5000
 var highestValuePoint: float = 5000
 
@@ -248,6 +250,7 @@ func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 func GameOver():
 	get_node("Camera/CanvasLayer/InGameUI/GameOverLabel").visible = true
 	gameStarted = false
+	emit_signal("game_ended")
 	
 	
 # when the current operation can't be profitable anymore, the player can abort mission

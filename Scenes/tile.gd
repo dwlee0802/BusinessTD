@@ -8,6 +8,9 @@ class_name Tile
 
 var occupied: bool = false
 
+var isDeposit: bool = false
+var richness: float = 1
+
 var upperTile
 var lowerTile
 var rightTile
@@ -21,6 +24,8 @@ var game
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game = get_parent().get_parent()
+	if isDeposit:
+		get_node("Sprite2D").modulate = Color.SLATE_BLUE
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

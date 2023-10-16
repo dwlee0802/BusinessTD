@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="5_lwoue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
-size = Vector2(120, 119)
+size = Vector2(201, 199)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0avfn"]
 radius = 600.0
@@ -17,13 +17,13 @@ collision_mask = 0
 script = ExtResource("1_njw0n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_e8nbd")
 debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
 [node name="HQBodySprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2.4, 2.4)
+scale = Vector2(4, 4)
 texture = ExtResource("2_5wjaa")
 
 [node name="TurretBarrelSprite" type="Sprite2D" parent="."]
@@ -39,7 +39,7 @@ script = ExtResource("4_sn4ns")
 
 [node name="Healthbar" type="Sprite2D" parent="."]
 modulate = Color(0.698039, 0, 0, 1)
-position = Vector2(-36, 65)
-scale = Vector2(75, 4)
+position = Vector2(-99, 109)
+scale = Vector2(200, 4)
 texture = ExtResource("5_lwoue")
 centered = false

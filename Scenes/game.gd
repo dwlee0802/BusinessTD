@@ -5,6 +5,7 @@ var turretScene = preload("res://Scenes/turret.tscn")
 var hqScene = preload("res://Scenes/HQ.tscn")
 var enemyScene = preload("res://Scenes/enemyUnit.tscn")
 var damagePopupScene = preload("res://Scenes/damage_popup.tscn")
+var miningDrillScene = preload("res://Scenes/mining_drill.tscn")
 
 var waitingForBuildLocation: bool = false
 var buildType
@@ -21,13 +22,17 @@ var edgeTiles = []
 var playerStructures = []
 
 # how many tiles a building of type index takes up
-# 0: turret, 1: HQ
-var buildingSizeN = [3, 5]
+# 0: turret, 1: HQ, 2: Mining Drill
+var buildingSizeN = [3, 7, 5]
 
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
-var spawnCount: float = 1
+var spawnCount: float = 5
 
+var gameStarted: bool = false
+var gamePaused: bool = true
+
+var operationFunds: float = -3000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,7 +48,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not playerStructures.is_empty():
+	get_node("Camera/CanvasLayer/InGameUI/MoneyLabel").text = "Funds: " + str(int(operationFunds))
+	
+	if not playerStructures.is_empty() and gameStarted == true:
+		gameStarted = true
 		spawnRateHolder += delta
 		
 		if spawnRateHolder > spawnRate:
@@ -52,7 +60,7 @@ func _process(delta):
 				SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random())
 			spawnCount *= 1.1
 			spawnRateHolder = 0
-
+	
 
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT and mouseInUI == false:
@@ -100,13 +108,17 @@ func _input(event):
 								tile.occupied = true
 						
 						print("Spawned Turret at ", selectedTile)
+						playerStructures.append(newTurret)
 						waitingForBuildLocation = false
 						return
 						
 					elif buildType == 1:
 						var newHQ = hqScene.instantiate()
+						newHQ.isHQ = true
 						add_child(newHQ)
 						newHQ.position = selectedTile.position
+						
+						operationFunds -= 2000
 						
 						for row in tiles:
 							for tile in row:
@@ -119,8 +131,30 @@ func _input(event):
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton").visible = true
 						
 						playerStructures.append(newHQ)
+						gameStarted = true
 						
 						return
+					
+					elif buildType == 2:
+						if selectedTile.isDeposit:
+							var newDrill = miningDrillScene.instantiate()
+							add_child(newDrill)
+							newDrill.position = selectedTile.position
+							
+							for row in tiles:
+								for tile in row:
+									tile.occupied = true
+									
+							print("Spawned Mining Drill at ", selectedTile)
+							
+							playerStructures.append(newDrill)
+							return
+						else:
+							print("Not a mineral deposit!\n")
+						
+						waitingForBuildLocation = false
+							
+						
 					
 					
 
@@ -161,15 +195,27 @@ func SpawnEnemy(where, attackWhat):
 	add_child(newUnit)
 	
 	
-func MakeDamagePopup(where, amount):
+func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 	var newPopup =damagePopupScene.instantiate()
 	newPopup.position = where
 	newPopup.text = str(amount)
+	newPopup.modulate = color
 	add_child(newPopup)
 
 
+func GameOver():
+	get_node("Camera/CanvasLayer/InGameUI/GameOverLabel").visible = true
+	gameStarted = false
+	
+
 func _on_build_turret_option_pressed(extra_arg_0):
-	print("Waiting for turret build location!\n")
+	var str = "turret"
+	if extra_arg_0 == 1:
+		str = "HQ"
+	if extra_arg_0 == 2:
+		str = "mining drill"
+		
+	print("Waiting for ", str, " build location!\n")
 	buildType = extra_arg_0
 	waitingForBuildLocation = true
 

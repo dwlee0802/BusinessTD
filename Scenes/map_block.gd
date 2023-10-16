@@ -5,6 +5,8 @@ class_name MapBlock
 @export var boardWidth = 100
 @export var boardHeight = 100
 
+var depositSpawnRate: float = 0.001
+
 # Size of a square tile's one side's length in pixels
 var initialTilesize = 32
 
@@ -36,6 +38,12 @@ func GenerateGameboard():
 		var currentRow = []
 		for j in range(boardWidth):
 			var newTile = tileScene.instantiate()
+			
+			# roll to see if this tile is a mineral deposit
+			if randf() < depositSpawnRate:
+				newTile.isDeposit = true
+				newTile.richness = (1 + randf())/2
+				
 			newTile.position = Vector2(j * TILESIZE, i * TILESIZE)
 			newTile.row = i
 			newTile.col = j
@@ -51,6 +59,7 @@ func GenerateGameboard():
 			if i - 1 >= 0:
 				newTile.upperTile = blockTiles[i - 1][j]
 				newTile.upperTile.lowerTile = newTile
+				
 		
 		blockTiles.append(currentRow)
 

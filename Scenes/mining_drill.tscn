@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8lmter23dug1"]
+
+[ext_resource type="Texture2D" uid="uid://05jc8uyl7as7" path="res://Art/mining_drill.png" id="1_beqj3"]
+[ext_resource type="Script" path="res://Scenes/mining_drill.gd" id="1_h1akn"]
+[ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="2_mspe3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxxvi"]
+size = Vector2(128, 128)
+
+[node name="MiningDrill" type="CharacterBody2D"]
+script = ExtResource("1_h1akn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_beqj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yxxvi")
+
+[node name="Healthbar" type="Sprite2D" parent="."]
+modulate = Color(0.698039, 0, 0, 1)
+position = Vector2(-62, 70)
+scale = Vector2(125, 4)
+texture = ExtResource("2_mspe3")
+centered = false

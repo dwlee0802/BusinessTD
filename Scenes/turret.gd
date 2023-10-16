@@ -9,20 +9,40 @@ var fireRate: float = 0.25
 var fireRateHolder: float = 0
 
 var healthBar
+var healthBarSize: int = 75
 
 var game
+
+var isHQ: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
 	game = get_parent()
+	
+	if isHQ:
+		maxHitPoints = 1500
+		hitPoints = maxHitPoints
+		healthBarSize = 200
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hitPoints <= 0:
-		pass
+		if isHQ:
+			print("Game Over!")
+			game.GameOver()
+			
 		queue_free()
+		
+	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
+		healthBar.scale.x -= delta * 140
+	
+	if isHQ:
+		game.operationFunds += -5 * delta
+	else:
+		game.operationFunds += -3 * delta
+		
 	
 	
 func _physics_process(delta):
@@ -58,5 +78,5 @@ func _physics_process(delta):
 func hit(damage):
 	print("hit!")
 	hitPoints -= damage
-	healthBar.scale.x = 75 * hitPoints / maxHitPoints
-	game.MakeDamagePopup(position, damage)
+#	healthBar.scale.x = 75 * hitPoints / maxHitPoints
+	game.MakeDamagePopup(position, damage, Color.ORANGE)

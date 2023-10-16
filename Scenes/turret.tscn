@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://co0iu8csjmd8h"]
+[gd_scene load_steps=8 format=3 uid="uid://co0iu8csjmd8h"]
 
 [ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="1_o0ic3"]
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_s5d8n"]
 [ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="2_d7vnd"]
+[ext_resource type="Script" path="res://Scenes/attackRange.gd" id="4_6shgm"]
+[ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="5_2kkv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
 size = Vector2(32.0833, 32.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5ghj4"]
-radius = 248.211
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbq8q"]
+radius = 600.0
 
-[node name="BodyCollider" type="CharacterBody2D"]
+[node name="Turret" type="CharacterBody2D"]
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_s5d8n")
 
@@ -29,10 +32,15 @@ texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("2_d7vnd")
 
-[node name="AttackRangeCollider" type="CharacterBody2D" parent="."]
-scale = Vector2(2.4, 2.4)
-collision_layer = 0
-collision_mask = 2
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_gbq8q")
+target_position = Vector2(0, 0)
+collision_mask = 10
+script = ExtResource("4_6shgm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangeCollider"]
-shape = SubResource("CircleShape2D_5ghj4")
+[node name="Healthbar" type="Sprite2D" parent="."]
+modulate = Color(0.698039, 0, 0, 1)
+position = Vector2(-37, 43)
+scale = Vector2(75, 4)
+texture = ExtResource("5_2kkv7")
+centered = false

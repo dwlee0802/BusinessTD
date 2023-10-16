@@ -4,6 +4,7 @@ extends Node2D
 var turretScene = preload("res://Scenes/turret.tscn")
 var hqScene = preload("res://Scenes/HQ.tscn")
 var enemyScene = preload("res://Scenes/enemyUnit.tscn")
+var damagePopupScene = preload("res://Scenes/damage_popup.tscn")
 
 var waitingForBuildLocation: bool = false
 var buildType
@@ -23,6 +24,10 @@ var playerStructures = []
 # 0: turret, 1: HQ
 var buildingSizeN = [3, 5]
 
+var spawnRate: float = 2
+var spawnRateHolder: float = 1
+var spawnCount: float = 1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,12 +41,17 @@ func _ready():
 		edgeTiles.append(homeBlock.blockTiles[i][1])
 		edgeTiles.append(homeBlock.blockTiles[i][-1])
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not playerStructures.is_empty():
-		# randomly spawn enemies at the edge of the map
-		SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random())
+		spawnRateHolder += delta
+		
+		if spawnRateHolder > spawnRate:
+			# randomly spawn enemies at the edge of the map
+			for i in range(int(spawnCount)):
+				SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random())
+			spawnCount *= 1.1
+			spawnRateHolder = 0
 
 
 func _input(event):
@@ -150,6 +160,13 @@ func SpawnEnemy(where, attackWhat):
 	newUnit.attackTarget = attackWhat
 	add_child(newUnit)
 	
+	
+func MakeDamagePopup(where, amount):
+	var newPopup =damagePopupScene.instantiate()
+	newPopup.position = where
+	newPopup.text = str(amount)
+	add_child(newPopup)
+
 
 func _on_build_turret_option_pressed(extra_arg_0):
 	print("Waiting for turret build location!\n")

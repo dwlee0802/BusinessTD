@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca5ot2cm7pgeo"]
+
+[ext_resource type="Script" path="res://DamagePopup.gd" id="1_tf7xn"]
+
+[node name="DamagePopup" type="RichTextLabel"]
+modulate = Color(0.278431, 0.0392157, 0, 1)
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[b]100[/b]"
+script = ExtResource("1_tf7xn")

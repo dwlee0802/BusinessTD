@@ -1,23 +1,62 @@
 extends CharacterBody2D
 
-var hitPoints: int = 1
+var hitPoints: int = 500
+var maxHitPoints: int = 500
 
 var targets = []
 
+var fireRate: float = 0.25
+var fireRateHolder: float = 0
+
+var healthBar
+
+var game
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	healthBar = get_node("Healthbar")
+	game = get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hitPoints <= 0:
-		self.visible = false
-
-
+		pass
+		queue_free()
+	
+	
 func _physics_process(delta):
-	pass
+	# choose the closest target
+	targets = get_node("ShapeCast2D").GetColliders()
 	
+	if len(targets) == 0:
+		return
+		
+	var currentTarget
+	var currentDist = 10000
 	
-func hit():
+	for item in targets:
+		if item == null:
+			continue
+		var thisDist
+		thisDist = global_position.distance_to(item.global_position)
+		if thisDist < currentDist:
+			currentTarget = item
+			currentDist = thisDist
+	
+	# turn turret towards target
+	if currentTarget != null:
+		get_node("TurretBarrelSprite").rotation = global_position.angle_to_point(currentTarget.position)
+	
+		# attack target
+		fireRateHolder += delta
+		if fireRateHolder > fireRate:
+			currentTarget.ReceiveHit(randi_range(20, 40))
+			fireRateHolder = 0
+
+
+func hit(damage):
 	print("hit!")
+	hitPoints -= damage
+	healthBar.scale.x = 75 * hitPoints / maxHitPoints
+	game.MakeDamagePopup(position, damage)

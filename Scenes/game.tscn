@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=7 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
 [ext_resource type="PackedScene" uid="uid://oigaet4tkyjp" path="res://Scenes/map_block.tscn" id="2_d8xa2"]
 [ext_resource type="Script" path="res://Scenes/BuildButton.gd" id="3_fhnyi"]
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
+[ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -163,6 +164,65 @@ offset_bottom = 279.0
 theme_override_font_sizes/font_size = 25
 text = "Abort Operation?"
 
+[node name="UnitMenu" type="Button" parent="Camera/CanvasLayer/InGameUI"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -62.0
+offset_right = 82.0
+offset_bottom = -54.0
+script = ExtResource("5_tkslb")
+
+[node name="Title" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+layout_mode = 0
+offset_left = 733.0
+offset_top = 513.0
+offset_right = 873.0
+offset_bottom = 544.0
+theme_override_font_sizes/font_size = 20
+text = "Building Menu"
+
+[node name="SellButton" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 731.0
+offset_top = 562.0
+offset_right = 881.0
+offset_bottom = 612.0
+text = "Sell"
+
+[node name="UpgradeButton" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+modulate = Color(0.266667, 0.701961, 0.862745, 1)
+offset_left = 898.0
+offset_top = 561.0
+offset_right = 1048.0
+offset_bottom = 611.0
+text = "Upgrade"
+
+[node name="CurrentLevel" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 623.0
+offset_right = 831.0
+offset_bottom = 649.0
+theme_override_font_sizes/font_size = 16
+text = "Current Lv: 1"
+
+[node name="DamageRange" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+offset_left = 732.0
+offset_top = 647.0
+offset_right = 855.0
+offset_bottom = 673.0
+theme_override_font_sizes/font_size = 16
+text = "Damage: 20 - 40"
+
+[node name="Upkeep" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+offset_left = 732.0
+offset_top = 671.0
+offset_right = 900.0
+offset_bottom = 697.0
+theme_override_font_sizes/font_size = 16
+text = "Upkeep: 1 per minute"
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_entered_ui"]
@@ -184,3 +244,7 @@ text = "Abort Operation?"
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="Camera/CanvasLayer/InGameUI/AbortButton" method="_on_cancel_button_pressed"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/UpgradeButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/UpgradeButton" to="." method="_on_mouse_exited_ui"]

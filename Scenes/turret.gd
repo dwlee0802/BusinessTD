@@ -97,3 +97,15 @@ func hit(damage):
 	hitPoints -= damage
 #	healthBar.scale.x = 75 * hitPoints / maxHitPoints
 	game.MakeDamagePopup(position, damage, Color.ORANGE)
+	
+	
+func _to_string():
+	var output = ""
+	if isHQ:
+		output += "HQ at "
+	else:
+		output += "Turret at "
+	
+	output += str(placedTile)
+	
+	return output

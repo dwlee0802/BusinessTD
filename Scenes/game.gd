@@ -14,6 +14,8 @@ var mouseOnTile
 
 var selectedTile
 
+var selectedUnit
+
 var mouseInUI: bool = false
 
 var homeBlock
@@ -61,7 +63,8 @@ func _process(delta):
 	if not playerStructures.is_empty():
 		var assets = 0
 		for item in playerStructures:
-			assets += buildingCosts[item.type] * 0.8
+			if item != null:
+				assets += buildingCosts[item.type] * 0.8
 			
 		totalValue = operationFunds + assets
 		
@@ -90,14 +93,19 @@ func _input(event):
 		var space = get_viewport().world_2d.direct_space_state
 		var param = PhysicsPointQueryParameters2D.new()
 		param.position = get_global_mouse_position()
+		param.collision_mask = 5
 		var result = space.intersect_point(param)
 		
-		
-		if result:
+		if len(result) == 1:
 			selectedTile = result[0].collider
 			print(selectedTile)
+			selectedUnit = null
+		elif len(result) == 2:
+			selectedTile = result[0].collider
+			selectedUnit = result[1].collider
 		else:
 			selectedTile = null
+			selectedUnit = null
 			print("Nothing Selected!\n")
 			
 			

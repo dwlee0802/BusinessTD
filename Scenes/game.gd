@@ -32,7 +32,7 @@ var buildingCosts = [800, 1500, 500]
 
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
-var spawnCount: float = 1
+var spawnCount: float = 10
 
 var gameStarted: bool = false
 var gamePaused: bool = true
@@ -45,7 +45,7 @@ var highestValuePoint: float = 5000
 # takes into account the cash in value of buildings
 var totalValue: float = 5000
 
-var difficultyScale: float = 1.04
+var difficultyScale: float = 1.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

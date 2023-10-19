@@ -8,9 +8,13 @@ var type: int = 2
 var healthBar
 var healthBarSize: int = 125
 
+var profitGenerationPeriod: int = 1
+var profitHolder: float = 1
+
 var placedTile
 
 var game
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,10 +35,16 @@ func _process(delta):
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
 	
-	game.operationFunds += 20 * delta
+	profitHolder -= delta
 	
+	if profitHolder <= 0:
+		game.operationFunds += 20
+		profitHolder = profitGenerationPeriod
+		game.MakeDamagePopup(position, 20, Color.YELLOW)
+	
+		
 	
 func hit(damage):
 	print("drill took ", damage, " damage. Remaining HQ: ", hitPoints)
-	hitPoints -= damage
-	game.MakeDamagePopup(position, damage, Color.ORANGE)
+	hitPoints -= 100
+	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)

@@ -2,10 +2,10 @@ extends Node2D
 
 class_name MapBlock
 
-@export var boardWidth = 100
-@export var boardHeight = 100
+@export var boardWidth = 200
+@export var boardHeight = 200
 
-var depositSpawnRate: float = 0.015
+var depositSpawnRate: float = 0.005
 
 # Size of a square tile's one side's length in pixels
 var initialTilesize = 32

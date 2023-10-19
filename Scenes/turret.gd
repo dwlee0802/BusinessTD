@@ -76,13 +76,15 @@ func _physics_process(delta):
 	var currentTarget
 	var currentDist = 10000
 	
-	for item in targets:
-		if item == null:
+	for i in range(len(targets)):
+		if i > 10:
+			break
+		if targets[i] == null:
 			continue
 		var thisDist
-		thisDist = global_position.distance_to(item.global_position)
+		thisDist = global_position.distance_to(targets[i].global_position)
 		if thisDist < currentDist:
-			currentTarget = item
+			currentTarget = targets[i]
 			currentDist = thisDist
 	
 	# turn turret towards target
@@ -98,8 +100,8 @@ func _physics_process(delta):
 
 func hit(damage):
 	print("hit!")
-	hitPoints -= damage
-	game.MakeDamagePopup(position, damage, Color.ORANGE)
+	hitPoints -= 100
+	game.MakeDamagePopup(position, damage, Color.LAVENDER_BLUSH)
 	
 	
 func _to_string():

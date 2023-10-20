@@ -28,9 +28,9 @@ func _process(delta):
 			buttons.append(get_node("AttackSpeedMenu/High"))
 			for i in range(3):
 				if game.selectedUnit.fireRateMode == i:
-					buttons[i].button_pressed = true
+					buttons[i].disabled = true
 				else:
-					buttons[i].button_pressed = false
+					buttons[i].disabled = false
 					
 			if game.selectedUnit.type == 0:
 				name = "Turret at "

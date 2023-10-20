@@ -249,6 +249,7 @@ offset_left = 48.0
 offset_top = 24.0
 offset_right = 93.0
 offset_bottom = 55.0
+disabled = true
 toggle_mode = true
 button_pressed = true
 text = "Base"

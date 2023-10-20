@@ -6,6 +6,7 @@ var maxHitPoints: int = 1
 var attackTarget
 
 @export var speed: int = 100
+@export var speedModifier: float = 1
 
 var healthBar
 
@@ -29,7 +30,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if attackTarget != null:
-		velocity = Vector2(speed,0).rotated(position.angle_to_point(attackTarget.position))
+		velocity = Vector2(speed * speedModifier,0).rotated(position.angle_to_point(attackTarget.position))
 		
 		var collision = move_and_collide(velocity * delta)
 		if collision:
@@ -38,7 +39,20 @@ func _physics_process(delta):
 			queue_free()
 	else:
 		attackTarget = game.playerStructures.pick_random()
-			
+	
+	
+	# slow down if tile is such tile
+	var space = get_viewport().world_2d.direct_space_state
+	var param = PhysicsPointQueryParameters2D.new()
+	param.position = position
+	param.collision_mask = 4
+	var result = space.intersect_point(param)
+	
+	if result[0].collider.isSlowDown == true:
+		speedModifier = 0.5
+	else:
+		speedModifier = 1
+	
 			
 func ReceiveHit(amount):
 	hitPoints -= amount

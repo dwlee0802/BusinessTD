@@ -11,6 +11,8 @@ var occupied: bool = false
 var isDeposit: bool = false
 var richness: float = 1
 
+var isSlowDown: bool = false
+
 var upperTile
 var lowerTile
 var rightTile
@@ -26,16 +28,9 @@ func _ready():
 	game = get_parent().get_parent()
 	if isDeposit:
 		get_node("Sprite2D").modulate = Color.SLATE_BLUE
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_mouse_entered():
-	game.mouseOnTile = self
-
+	elif isSlowDown:
+		get_node("Sprite2D").modulate = Color.SLATE_GRAY
+	
 
 func _to_string():
 	var output 

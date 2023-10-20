@@ -6,6 +6,7 @@ class_name MapBlock
 @export var boardHeight = 200
 
 var depositSpawnRate: float = 0.005
+var slowdownSpawnRate: float = 0.02
 
 # Size of a square tile's one side's length in pixels
 var initialTilesize = 32
@@ -47,6 +48,10 @@ func GenerateGameboard():
 			newTile.position = Vector2(j * TILESIZE, i * TILESIZE)
 			newTile.row = i
 			newTile.col = j
+			
+			if randf() < slowdownSpawnRate:
+				newTile.isSlowDown = true
+				
 			add_child(newTile)
 			currentRow.append(newTile)
 			

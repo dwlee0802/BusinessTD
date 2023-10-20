@@ -171,6 +171,7 @@ theme_override_font_sizes/font_size = 25
 text = "Abort Operation?"
 
 [node name="UnitMenu" type="Label" parent="Camera/CanvasLayer/InGameUI"]
+layout_mode = 0
 offset_left = 833.0
 offset_top = 500.0
 offset_right = 973.0
@@ -253,6 +254,7 @@ text = "Base"
 
 [node name="High" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
 modulate = Color(1, 0, 0, 1)
+layout_mode = 0
 offset_left = 96.0
 offset_top = 24.0
 offset_right = 141.0
@@ -262,6 +264,7 @@ text = "High"
 
 [node name="Low" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
 modulate = Color(0.67451, 1, 1, 1)
+layout_mode = 0
 offset_top = 24.0
 offset_right = 45.0
 offset_bottom = 55.0

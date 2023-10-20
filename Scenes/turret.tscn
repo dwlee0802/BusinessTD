@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://co0iu8csjmd8h"]
+[gd_scene load_steps=9 format=3 uid="uid://co0iu8csjmd8h"]
 
 [ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="1_o0ic3"]
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_s5d8n"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
 size = Vector2(76, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccikx"]
+size = Vector2(580, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gbq8q"]
 radius = 600.0
@@ -30,6 +33,21 @@ texture = ExtResource("1_o0ic3")
 texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("2_d7vnd")
+
+[node name="APShapeCast" type="ShapeCast2D" parent="TurretBarrelSprite"]
+position = Vector2(127.083, 0)
+scale = Vector2(0.4248, 1.31233)
+shape = SubResource("RectangleShape2D_ccikx")
+target_position = Vector2(0, 0)
+collision_mask = 10
+script = ExtResource("4_6shgm")
+
+[node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite/APShapeCast"]
+visible = false
+modulate = Color(1, 1, 1, 0.188235)
+position = Vector2(15.6937, 0)
+scale = Vector2(541.431, 7.62004)
+texture = ExtResource("5_2kkv7")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_gbq8q")

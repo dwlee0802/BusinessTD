@@ -5,7 +5,7 @@ var maxHitPoints: int = 1
 
 var attackTarget
 
-@export var speed: int = 50
+@export var speed: int = 100
 
 var healthBar
 
@@ -43,7 +43,7 @@ func _physics_process(delta):
 func ReceiveHit(amount):
 	hitPoints -= amount
 #	healthBar.scale.x = 32 * hitPoints / maxHitPoints
-#	game.MakeDamagePopup(position, amount, Color.RED)
+	game.MakeDamagePopup(position, amount, Color.RED)
 	
 
 func GameEnded():

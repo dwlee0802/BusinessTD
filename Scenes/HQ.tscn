@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfceplhywewkw"]
+[gd_scene load_steps=9 format=3 uid="uid://dfceplhywewkw"]
 
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_njw0n"]
 [ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="2_5wjaa"]
@@ -9,7 +9,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
 size = Vector2(201, 199)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0avfn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7pca"]
+size = Vector2(200, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5605"]
 radius = 600.0
 
 [node name="HQ" type="CharacterBody2D"]
@@ -17,7 +20,6 @@ collision_mask = 0
 script = ExtResource("1_njw0n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_e8nbd")
 debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
@@ -31,11 +33,19 @@ texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("3_1kfn8")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-shape = SubResource("CircleShape2D_0avfn")
+[node name="APShapeCast" type="ShapeCast2D" parent="TurretBarrelSprite"]
+position = Vector2(143.75, 0)
+scale = Vector2(1.01952, 3.14959)
+shape = SubResource("RectangleShape2D_e7pca")
 target_position = Vector2(0, 0)
 collision_mask = 10
 script = ExtResource("4_sn4ns")
+
+[node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite/APShapeCast"]
+modulate = Color(1, 1, 1, 0.188235)
+rotation = -0.000442344
+scale = Vector2(203.477, 3.23246)
+texture = ExtResource("5_lwoue")
 
 [node name="Healthbar" type="Sprite2D" parent="."]
 modulate = Color(0.698039, 0, 0, 1)
@@ -43,3 +53,9 @@ position = Vector2(-99, 109)
 scale = Vector2(200, 4)
 texture = ExtResource("5_lwoue")
 centered = false
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_c5605")
+target_position = Vector2(0, 0)
+collision_mask = 10
+script = ExtResource("4_sn4ns")

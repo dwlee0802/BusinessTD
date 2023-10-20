@@ -33,8 +33,10 @@ uppercase = true
 [node name="InGameUI" type="Control" parent="Camera/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -2.0
+offset_top = 7.0
+offset_right = 38.0
+offset_bottom = 47.0
 
 [node name="BuildMenu" type="Control" parent="Camera/CanvasLayer/InGameUI"]
 anchors_preset = 0
@@ -168,78 +170,109 @@ offset_bottom = 279.0
 theme_override_font_sizes/font_size = 25
 text = "Abort Operation?"
 
-[node name="UnitMenu" type="Button" parent="Camera/CanvasLayer/InGameUI"]
-visible = false
-layout_mode = 0
-offset_left = 84.0
-offset_top = -37.0
-offset_right = 92.0
-offset_bottom = -29.0
-script = ExtResource("5_tkslb")
-
-[node name="Title" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
-layout_mode = 0
-offset_left = 740.0
-offset_top = 506.0
-offset_right = 880.0
-offset_bottom = 537.0
+[node name="UnitMenu" type="Label" parent="Camera/CanvasLayer/InGameUI"]
+offset_left = 833.0
+offset_top = 500.0
+offset_right = 973.0
+offset_bottom = 531.0
 theme_override_font_sizes/font_size = 20
 text = "Building Menu"
+script = ExtResource("5_tkslb")
 
 [node name="Name" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
 layout_mode = 0
-offset_left = 740.0
-offset_top = 531.0
-offset_right = 880.0
-offset_bottom = 562.0
+offset_top = 25.0
+offset_right = 140.0
+offset_bottom = 56.0
 theme_override_font_sizes/font_size = 20
 text = "Name here"
 
 [node name="SellButton" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 742.0
-offset_top = 618.0
-offset_right = 892.0
-offset_bottom = 678.0
+offset_left = 245.0
+offset_top = 7.0
+offset_right = 295.0
+offset_bottom = 57.0
 text = "Sell"
-
-[node name="UpgradeButton" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
-modulate = Color(0.266667, 0.701961, 0.862745, 1)
-layout_mode = 0
-offset_left = 903.0
-offset_top = 617.0
-offset_right = 1053.0
-offset_bottom = 677.0
-text = "Upgrade
-Cost: 400"
-
-[node name="CurrentLevel" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
-layout_mode = 0
-offset_left = 929.0
-offset_top = 586.0
-offset_right = 1028.0
-offset_bottom = 612.0
-theme_override_font_sizes/font_size = 16
-text = "Current Lv: 1"
-
-[node name="DamageRange" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
-layout_mode = 0
-offset_left = 740.0
-offset_top = 587.0
-offset_right = 863.0
-offset_bottom = 613.0
-theme_override_font_sizes/font_size = 16
-text = "Damage: 20 - 40"
 
 [node name="Upkeep" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
 layout_mode = 0
-offset_left = 740.0
-offset_top = 561.0
-offset_right = 908.0
-offset_bottom = 587.0
+offset_top = 48.0
+offset_right = 168.0
+offset_bottom = 74.0
 theme_override_font_sizes/font_size = 16
 text = "Upkeep: 1 per minute"
+
+[node name="AmmoChoiceMenu" type="Control" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+anchors_preset = 0
+offset_top = 68.0
+offset_right = 40.0
+offset_bottom = 108.0
+
+[node name="OptionButton" type="OptionButton" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 150.0
+offset_bottom = 57.0
+action_mode = 1
+keep_pressed_outside = true
+item_count = 4
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Regular"
+popup/item_0/id = 0
+popup/item_1/text = "AP"
+popup/item_1/id = 1
+popup/item_2/text = "Incendiary"
+popup/item_2/id = 2
+popup/item_3/text = "Incendiary AP"
+popup/item_3/id = 3
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Ammo Type"
+
+[node name="AttackSpeedMenu" type="Control" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+anchors_preset = 0
+offset_left = 157.0
+offset_top = 69.0
+offset_right = 197.0
+offset_bottom = 109.0
+
+[node name="Base" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 93.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "Base"
+
+[node name="High" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 96.0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "High"
+
+[node name="Low" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
+modulate = Color(0.67451, 1, 1, 1)
+offset_top = 24.0
+offset_right = 45.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "Low"
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
+layout_mode = 0
+offset_right = 114.0
+offset_bottom = 26.0
+text = "Attack Speed"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
@@ -264,5 +297,15 @@ text = "Upkeep: 1 per minute"
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="Camera/CanvasLayer/InGameUI/AbortButton" method="_on_cancel_button_pressed"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_mouse_exited_ui"]
-[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/UpgradeButton" to="." method="_on_mouse_entered_ui"]
-[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/UpgradeButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="item_selected" from="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_attack_speed_button_pressed" binds= [1]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/High" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/High" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/High" to="." method="_on_attack_speed_button_pressed" binds= [2]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_attack_speed_button_pressed" binds= [0]]

@@ -45,7 +45,7 @@ var highestValuePoint: float = 5000
 # takes into account the cash in value of buildings
 var totalValue: float = 5000
 
-var difficultyScale: float = 1.1
+var difficultyScale: float = 1.01
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -285,3 +285,10 @@ func _on_mouse_entered_ui():
 	
 func _on_mouse_exited_ui():
 	mouseInUI = false
+
+func _on_attack_speed_button_pressed(extra_arg_0):
+	selectedUnit.ChangeFireRate(extra_arg_0)
+
+
+func _on_option_button_item_selected(index):
+	selectedUnit.ChangeAmmoType(index)

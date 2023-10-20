@@ -6,12 +6,16 @@ var maxHitPoints: int = 500
 # 0: turret, 1: HQ, 2: Drill
 var type: int = 0
 
-var level: int = 1
+var attackMode
+var ammoType
 
 var targets = []
 
+# time in seconds between each shots
 var fireRate: float = 0.25
 var fireRateHolder: float = 0
+var fireRateModifier: float = 1
+var fireRateMode: int = 1
 
 var healthBar
 var healthBarSize: int = 75
@@ -103,6 +107,38 @@ func hit(damage):
 	hitPoints -= 100
 	game.MakeDamagePopup(position, damage, Color.LAVENDER_BLUSH)
 	
+	
+func ChangeFireRate(type):
+	fireRateMode = type
+	
+	# low
+	if type == 0:
+		fireRateModifier *= 0.75
+	# base
+	if type == 1:
+		fireRateModifier *= 1
+	# high
+	if type == 2:
+		fireRateModifier *= 0.75
+		
+	print("changed fire rate to ", type)
+		
+func ChangeAmmoType(type):
+	ammoType = type
+	
+	# regular
+	if type == 0:
+		print("changed ammo to regular")
+	# AP
+	if type == 1:
+		print("changed ammo to AP")
+	# Incendiary
+	if type == 2:
+		print("changed ammo to Incendiary")
+	# Incendiary AP
+	if type == 2:
+		print("changed ammo to Incendiary AP")
+		
 	
 func _to_string():
 	var output = ""

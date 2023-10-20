@@ -12,7 +12,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if game.selectedUnit != null:
-		ammoChoiceMenu.selected = game.selectedUnit.ammoType
 		visible = true
 		var name
 		if game.selectedUnit.type == 2:
@@ -21,6 +20,18 @@ func _process(delta):
 				get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
 				get_node("Upkeep").text = "Upkeep: 2"
 		else:
+			ammoChoiceMenu.selected = game.selectedUnit.ammoType
+			
+			var buttons = []
+			buttons.append(get_node("AttackSpeedMenu/Low"))
+			buttons.append(get_node("AttackSpeedMenu/Base"))
+			buttons.append(get_node("AttackSpeedMenu/High"))
+			for i in range(3):
+				if game.selectedUnit.fireRateMode == i:
+					buttons[i].button_pressed = true
+				else:
+					buttons[i].button_pressed = false
+					
 			if game.selectedUnit.type == 0:
 				name = "Turret at "
 				get_node("SellButton").visible = true

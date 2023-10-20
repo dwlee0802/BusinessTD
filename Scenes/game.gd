@@ -42,6 +42,9 @@ signal game_ended
 var operationFunds: float = 5000
 var highestValuePoint: float = 5000
 
+var operationTime: float = 0
+var operationTimeUI
+
 # takes into account the cash in value of buildings
 var totalValue: float = 5000
 
@@ -50,7 +53,7 @@ var difficultyScale: float = 1.01
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	homeBlock = get_node("MapBlock")
-	
+	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	
 	for i in range(1, homeBlock.boardWidth):
@@ -63,6 +66,8 @@ func _ready():
 func _process(delta):
 	
 	if not playerStructures.is_empty():
+		operationTime += delta
+		operationTimeUI.text = str(int(operationTime)) + ":" + str(int(operationTime * 100) % 100)
 		var assets = 0
 		for item in playerStructures:
 			if item != null:

@@ -250,6 +250,7 @@ offset_top = 24.0
 offset_right = 93.0
 offset_bottom = 55.0
 toggle_mode = true
+button_pressed = true
 text = "Base"
 
 [node name="High" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu"]
@@ -276,6 +277,13 @@ layout_mode = 0
 offset_right = 114.0
 offset_bottom = 26.0
 text = "Attack Speed"
+
+[node name="OperationTimeUI" type="Label" parent="Camera/CanvasLayer/InGameUI"]
+layout_mode = 0
+offset_left = 539.0
+offset_right = 580.0
+offset_bottom = 26.0
+text = "00:00"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 

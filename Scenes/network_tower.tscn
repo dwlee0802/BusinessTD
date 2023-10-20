@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://do8osn2fwfcie"]
+
+[ext_resource type="Script" path="res://Scenes/network_tower.gd" id="1_cbbve"]
+[ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="1_n5qn0"]
+[ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="2_0x82i"]
+[ext_resource type="Script" path="res://Scenes/attackRange.gd" id="3_kklyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtlyj"]
+size = Vector2(70, 70.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbtwl"]
+radius = 800.0
+
+[node name="Network Tower" type="CharacterBody2D"]
+collision_layer = 17
+collision_mask = 0
+script = ExtResource("1_cbbve")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("1_n5qn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_jtlyj")
+debug_color = Color(0.972549, 0, 0.447059, 0.419608)
+
+[node name="Healthbar" type="Sprite2D" parent="."]
+modulate = Color(0.698039, 0, 0, 1)
+position = Vector2(-35, 40)
+scale = Vector2(70, 3.734)
+texture = ExtResource("2_0x82i")
+centered = false
+
+[node name="ConnectionShapeCast" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_bbtwl")
+target_position = Vector2(0, 0)
+collision_mask = 16
+script = ExtResource("3_kklyg")
+
+[node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_bbtwl")
+target_position = Vector2(0, 0)
+script = ExtResource("3_kklyg")

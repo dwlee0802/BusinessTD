@@ -5,8 +5,11 @@
 [node name="DamagePopup" type="RichTextLabel"]
 modulate = Color(0.278431, 0.0392157, 0, 1)
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 68.0
+offset_bottom = 50.0
+pivot_offset = Vector2(30, 25)
+theme_override_font_sizes/bold_font_size = 36
 bbcode_enabled = true
 text = "[b]100[/b]"
+fit_content = true
 script = ExtResource("1_bqnwc")

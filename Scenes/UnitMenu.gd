@@ -14,11 +14,20 @@ func _process(delta):
 	if game.selectedUnit != null:
 		visible = true
 		var name
-		if game.selectedUnit.type == 2:
-				name = "Mining Drill at "
-				get_node("SellButton").visible = true
-				get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
-				get_node("Upkeep").text = "Upkeep: 2"
+		if game.selectedUnit.type == 3:
+			name = "Network Tower at "
+			get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
+			get_node("SellButton").visible = true
+			get_node("Upkeep").text = "Upkeep: 2"
+			get_node("AmmoChoiceMenu").visible = false
+			get_node("AttackSpeedMenu").visible = false
+		elif game.selectedUnit.type == 2:
+			name = "Mining Drill at "
+			get_node("SellButton").visible = true
+			get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
+			get_node("Upkeep").text = "Upkeep: 2"
+			get_node("AmmoChoiceMenu").visible = false
+			get_node("AttackSpeedMenu").visible = false
 		else:
 			ammoChoiceMenu.selected = game.selectedUnit.ammoType
 			

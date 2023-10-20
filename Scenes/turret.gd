@@ -122,7 +122,7 @@ func _physics_process(delta):
 func hit(damage):
 	print("hit!")
 #	hitPoints -= 100
-	game.MakeDamagePopup(position, damage, Color.LAVENDER_BLUSH)
+	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
 	
 	
 func ChangeFireRate(ammotype):

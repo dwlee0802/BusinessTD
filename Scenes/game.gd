@@ -6,6 +6,7 @@ var hqScene = preload("res://Scenes/HQ.tscn")
 var enemyScene = preload("res://Scenes/enemyUnit.tscn")
 var damagePopupScene = preload("res://Scenes/damage_popup.tscn")
 var miningDrillScene = preload("res://Scenes/mining_drill.tscn")
+var networkTowerScene = preload("res://Scenes/network_tower.tscn")
 
 var waitingForBuildLocation: bool = false
 var buildType
@@ -25,10 +26,10 @@ var playerStructures = []
 
 # how many tiles a building of type index takes up
 # 0: turret, 1: HQ, 2: Mining Drill
-var buildingSizeN = [3, 7, 5]
+var buildingSizeN = [3, 7, 5, 3]
 
 # upfront cost of buildings
-var buildingCosts = [800, 1500, 500]
+var buildingCosts = [800, 1500, 500, 300]
 
 var spawnRate: float = 2
 var spawnRateHolder: float = 1
@@ -174,6 +175,7 @@ func _input(event):
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton").visible = false
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton").visible = true
 						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton").visible = true
+						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/NetworkTowerButton").visible = true
 						
 						operationFunds -= buildingCosts[buildType]
 						playerStructures.append(newHQ)
@@ -202,6 +204,22 @@ func _input(event):
 							print("Not a mineral deposit!\n")
 						
 						waitingForBuildLocation = false
+						
+					elif buildType == 3:
+						var newTower = networkTowerScene.instantiate()
+						add_child(newTower)
+						newTower.position = selectedTile.position
+						newTower.placedTile = selectedTile
+						newTower.type = 3
+						
+						for row in tiles:
+							for tile in row:
+								tile.occupied = true
+								
+						playerStructures.append(newTower)
+						operationFunds -= buildingCosts[buildType]
+						waitingForBuildLocation = false
+						print("Spawned Network Tower at ", selectedTile)
 							
 						
 					
@@ -247,7 +265,7 @@ func SpawnEnemy(where, attackWhat):
 func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 	var newPopup =damagePopupScene.instantiate()
 	newPopup.position = where
-	newPopup.text = str(amount)
+	newPopup.text = "[font_size={25}]" + str(amount) + "[/font_size]"
 	newPopup.modulate = color
 	add_child(newPopup)
 
@@ -280,7 +298,9 @@ func _on_build_turret_option_pressed(extra_arg_0):
 	if extra_arg_0 == 1:
 		str = "HQ"
 	if extra_arg_0 == 2:
-		str = "mining drill"
+		str = "Mining drill"
+	if extra_arg_0 == 3:
+		str = "Network Tower"
 		
 	print("Waiting for ", str, " build location!\n")
 	buildType = extra_arg_0

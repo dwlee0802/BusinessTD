@@ -68,7 +68,7 @@ text = "Select Option"
 [node name="HQButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
 layout_mode = 0
 offset_left = 133.0
-offset_right = 253.0
+offset_right = 273.0
 offset_bottom = 50.0
 text = "HQ"
 
@@ -76,17 +76,24 @@ text = "HQ"
 visible = false
 layout_mode = 0
 offset_left = 133.0
-offset_right = 253.0
+offset_right = 273.0
 offset_bottom = 50.0
 text = "Turret"
 
 [node name="MiningDrillButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
 visible = false
 layout_mode = 0
-offset_left = 266.0
-offset_right = 386.0
+offset_left = 279.0
+offset_right = 419.0
 offset_bottom = 50.0
 text = "Mining Drill"
+
+[node name="NetworkTowerButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
+visible = false
+offset_left = 425.0
+offset_right = 565.0
+offset_bottom = 50.0
+text = "Network Tower"
 
 [node name="GamePausedLabel" type="RichTextLabel" parent="Camera/CanvasLayer/InGameUI"]
 visible = false
@@ -299,6 +306,9 @@ text = "00:00"
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton" to="." method="_on_build_turret_option_pressed" binds= [2]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/NetworkTowerButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/NetworkTowerButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/NetworkTowerButton" to="." method="_on_build_turret_option_pressed" binds= [3]]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/AbortButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/AbortButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/ConfirmButton" to="." method="_on_mouse_entered_ui"]

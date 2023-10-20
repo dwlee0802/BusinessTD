@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfceplhywewkw"]
+[gd_scene load_steps=10 format=3 uid="uid://bvovhrmjw1nod"]
 
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_njw0n"]
 [ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="2_5wjaa"]
@@ -13,6 +13,9 @@ size = Vector2(201, 199)
 size = Vector2(200, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5605"]
+radius = 600.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u1shi"]
 radius = 600.0
 
 [node name="HQ" type="CharacterBody2D"]
@@ -57,6 +60,12 @@ centered = false
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_c5605")
+target_position = Vector2(0, 0)
+collision_mask = 10
+script = ExtResource("4_sn4ns")
+
+[node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_u1shi")
 target_position = Vector2(0, 0)
 collision_mask = 10
 script = ExtResource("4_sn4ns")

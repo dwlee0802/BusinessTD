@@ -8,7 +8,7 @@ var type: int = 2
 var healthBar
 var healthBarSize: int = 125
 
-var profitGenerationPeriod: int = 1
+var profitGenerationPeriod: float = 0.5
 var profitHolder: float = 1
 
 var placedTile
@@ -40,7 +40,7 @@ func _process(delta):
 	if profitHolder <= 0:
 		game.operationFunds += 20
 		profitHolder = profitGenerationPeriod
-		game.MakeDamagePopup(position, 20, Color.YELLOW)
+		game.MakeDamagePopup(position, 20, Color.LAWN_GREEN)
 	
 		
 	

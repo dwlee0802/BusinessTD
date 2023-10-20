@@ -260,10 +260,12 @@ func AbortOperation():
 	print("Abort operation!")
 	
 	for item in playerStructures:
-		operationFunds += buildingCosts[item.type] * 0.8
+		if item != null:
+			operationFunds += buildingCosts[item.type] * 0.8
 	
 	for item in playerStructures:
-		item.queue_free()
+		if item != null:
+			item.queue_free()
 		
 	GameOver()
 	
@@ -283,8 +285,10 @@ func _on_build_turret_option_pressed(extra_arg_0):
 func _on_mouse_entered_ui():
 	mouseInUI = true
 	
+	
 func _on_mouse_exited_ui():
 	mouseInUI = false
+
 
 func _on_attack_speed_button_pressed(extra_arg_0):
 	selectedUnit.ChangeFireRate(extra_arg_0)
@@ -292,3 +296,8 @@ func _on_attack_speed_button_pressed(extra_arg_0):
 
 func _on_option_button_item_selected(index):
 	selectedUnit.ChangeAmmoType(index)
+
+
+func _on_sell_button_pressed():
+	operationFunds += buildingCosts[selectedUnit.type] * 0.8
+	selectedUnit.hitPoints = 0

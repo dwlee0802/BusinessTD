@@ -297,6 +297,7 @@ text = "Attack Speed"
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/AbortButton/Buttons/CancelButton" to="Camera/CanvasLayer/InGameUI/AbortButton" method="_on_cancel_button_pressed"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UnitMenu/SellButton" to="." method="_on_sell_button_pressed"]
 [connection signal="item_selected" from="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_exited_ui"]

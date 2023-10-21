@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://rvx8g52qm2a6"]
+
+[ext_resource type="Script" path="res://Scenes/explosion_effect.gd" id="1_0qmjk"]
+[ext_resource type="Texture2D" uid="uid://dsfu0fmbrr278" path="res://Art/EnemyParticle.png" id="1_ldmr4"]
+
+[sub_resource type="Curve" id="Curve_el8e4"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(0.994506, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_o3owo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.456044, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_mbtvm"]
+offsets = PackedFloat32Array(0.231788, 0.384106, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="ExplosionEffect" type="Node2D"]
+script = ExtResource("1_0qmjk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+lifetime = 0.3
+explosiveness = 1.0
+randomness = 0.2
+texture = ExtResource("1_ldmr4")
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angle_max = 25.0
+angle_curve = SubResource("Curve_el8e4")
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_o3owo")
+color_ramp = SubResource("Gradient_mbtvm")
+hue_variation_min = 0.06
+hue_variation_max = 0.52
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true

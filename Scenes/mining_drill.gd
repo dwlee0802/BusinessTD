@@ -38,7 +38,7 @@ func _process(delta):
 	profitHolder -= delta
 	
 	if profitHolder <= 0:
-		game.operationFunds += 20
+		game.operationFunds += 100
 		profitHolder = profitGenerationPeriod
 		game.MakeDamagePopup(position, 20, Color.LAWN_GREEN)
 	

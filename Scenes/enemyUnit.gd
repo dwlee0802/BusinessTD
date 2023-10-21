@@ -8,6 +8,8 @@ var attackTarget
 @export var speed: int = 100
 @export var speedModifier: float = 1
 
+var enemyDeathEffect = preload("res://Scenes/explosion_effect.tscn")
+
 var healthBar
 
 var game
@@ -22,6 +24,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hitPoints < 0:
+		var eff = enemyDeathEffect.instantiate()
+		eff.global_position = position
+		game.add_child(eff)
 		queue_free()
 	
 	if healthBar.scale.x > 32 * hitPoints / maxHitPoints:
@@ -36,6 +41,7 @@ func _physics_process(delta):
 		if collision:
 			collision.get_collider().hit(hitPoints)
 			
+			enemyDeathEffect.instantiate()
 			queue_free()
 	else:
 		attackTarget = game.playerStructures.pick_random()

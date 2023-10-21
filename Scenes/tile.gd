@@ -31,7 +31,7 @@ func _ready():
 	elif isSlowDown:
 		get_node("Sprite2D").modulate = Color.SLATE_GRAY
 	else:
-		get_node("Sprite2D").modulate = Color.PERU
+		get_node("Sprite2D").modulate = Color.ANTIQUE_WHITE
 	
 
 func _to_string():

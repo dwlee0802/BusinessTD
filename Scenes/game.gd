@@ -263,7 +263,6 @@ func SpawnEnemy(where, attackWhat):
 func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 	var newPopup =damagePopupScene.instantiate()
 	newPopup.position = where
-	newPopup.text = "[font_size={25}]" + str(amount) + "[/font_size]"
 	newPopup.modulate = color
 	add_child(newPopup)
 

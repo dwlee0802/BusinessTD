@@ -42,11 +42,11 @@ target_position = Vector2(0, 0)
 collision_mask = 10
 script = ExtResource("4_6shgm")
 
-[node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite/APShapeCast"]
+[node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite"]
 visible = false
 modulate = Color(1, 1, 1, 0.188235)
-position = Vector2(15.6937, 0)
-scale = Vector2(541.431, 7.62004)
+position = Vector2(133.75, 0)
+scale = Vector2(230, 10)
 texture = ExtResource("5_2kkv7")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]

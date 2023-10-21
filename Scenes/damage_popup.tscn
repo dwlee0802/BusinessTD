@@ -13,3 +13,5 @@ bbcode_enabled = true
 text = "[b]100[/b]"
 fit_content = true
 script = ExtResource("1_bqnwc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

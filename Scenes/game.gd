@@ -9,6 +9,7 @@ var miningDrillScene = preload("res://Scenes/mining_drill.tscn")
 var networkTowerScene = preload("res://Scenes/network_tower.tscn")
 
 var waitingForBuildLocation: bool = false
+var waitingForTowerConnectionTarget: bool = false
 var buildType
 
 var mouseOnTile
@@ -65,7 +66,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	if not playerStructures.is_empty():
 		operationTime += delta
 		operationTimeUI.text = str(int(operationTime)) + ":" + str(int(operationTime * 100) % 100)
@@ -111,6 +111,7 @@ func _input(event):
 		elif len(result) == 2:
 			selectedTile = result[0].collider
 			selectedUnit = result[1].collider
+			get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
 		else:
 			selectedTile = null
 			selectedUnit = null
@@ -221,11 +222,8 @@ func _input(event):
 						waitingForBuildLocation = false
 						print("Spawned Network Tower at ", selectedTile)
 							
-						
-					
-					
-
-
+							
+							
 # returns a list of tiles in a N x N square centered at center tile
 # if not possible, returns null
 func GetSquare(center, N):
@@ -317,12 +315,17 @@ func _on_mouse_exited_ui():
 
 func _on_attack_speed_button_pressed(extra_arg_0):
 	selectedUnit.ChangeFireRate(extra_arg_0)
+	get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
 
 
 func _on_option_button_item_selected(index):
 	selectedUnit.ChangeAmmoType(index)
+	get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
+	mouseInUI = false
 
 
 func _on_sell_button_pressed():
 	operationFunds += buildingCosts[selectedUnit.type] * 0.8
 	selectedUnit.hitPoints = 0
+	selectedUnit = null
+	mouseInUI = false

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var placedTile
 
-var type
+var type: int = 3
 
 var hitPoints: int = 250
 

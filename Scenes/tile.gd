@@ -27,9 +27,11 @@ var game
 func _ready():
 	game = get_parent().get_parent()
 	if isDeposit:
-		get_node("Sprite2D").modulate = Color.SLATE_BLUE
+		get_node("Sprite2D").modulate = Color.PURPLE
 	elif isSlowDown:
 		get_node("Sprite2D").modulate = Color.SLATE_GRAY
+	else:
+		get_node("Sprite2D").modulate = Color.PERU
 	
 
 func _to_string():

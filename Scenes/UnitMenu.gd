@@ -4,52 +4,97 @@ var game
 
 var ammoChoiceMenu
 
+var nameUI
+var sellButton
+var upkeepUI
+var attackSpeedMenu
+var networkButton
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game = get_parent().get_parent().get_parent().get_parent()
-	ammoChoiceMenu = get_node("AmmoChoiceMenu/OptionButton")
+	ammoChoiceMenu = get_node("AmmoChoiceMenu")
+	nameUI = get_node("Name")
+	sellButton = get_node("SellButton")
+	upkeepUI = get_node("Upkeep")
+	attackSpeedMenu = get_node("AttackSpeedMenu")
+	networkButton = get_node("NetworkConnectionButton")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
-	if game.selectedUnit != null:
-		visible = true
-		var name
-		if game.selectedUnit.type == 3:
-			name = "Network Tower at "
-			get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
-			get_node("SellButton").visible = true
-			get_node("Upkeep").text = "Upkeep: 2"
-			get_node("AmmoChoiceMenu").visible = false
-			get_node("AttackSpeedMenu").visible = false
-		elif game.selectedUnit.type == 2:
-			name = "Mining Drill at "
-			get_node("SellButton").visible = true
-			get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
-			get_node("Upkeep").text = "Upkeep: 2"
-			get_node("AmmoChoiceMenu").visible = false
-			get_node("AttackSpeedMenu").visible = false
-		else:
-			ammoChoiceMenu.selected = game.selectedUnit.ammoType
-			
-			var buttons = []
-			buttons.append(get_node("AttackSpeedMenu/Low"))
-			buttons.append(get_node("AttackSpeedMenu/Base"))
-			buttons.append(get_node("AttackSpeedMenu/High"))
-			for i in range(3):
-				if game.selectedUnit.fireRateMode == i:
-					buttons[i].disabled = true
-				else:
-					buttons[i].disabled = false
-					
-			if game.selectedUnit.type == 0:
-				name = "Turret at "
-				get_node("SellButton").visible = true
-				get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
-				get_node("Upkeep").text = "Upkeep: " + str(game.selectedUnit.fireRateMode - 1 + game.selectedUnit.upkeep[game.selectedUnit.type])
-			elif game.selectedUnit.type == 1:
-				name = "HQ at "
-				get_node("SellButton").visible = false
-				get_node("Name").text = name + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
-				get_node("Upkeep").text = "Upkeep: " + str(game.selectedUnit.fireRateMode - 1 + game.selectedUnit.upkeep[game.selectedUnit.type])
-	else:
+	if game.selectedUnit == null:
 		visible = false
+
+		
+func ShowUnit(unit = game.selectedUnit):
+	visible = true
+	
+	var selectedUnit = unit
+	var unitName = ""
+	networkButton.visible = false
+	sellButton.visible = false
+	upkeepUI.visible = false
+	ammoChoiceMenu.visible = false
+	attackSpeedMenu.visible = false
+	
+	# turret
+	if selectedUnit.type == 0:
+		ammoChoiceMenu.get_node("OptionButton").selected = selectedUnit.ammoType
+		ammoChoiceMenu.visible = true
+		attackSpeedMenu.visible = true
+		sellButton.visible = true
+		upkeepUI.visible = true
+		upkeepUI.text = "Upkeep: " + str(selectedUnit.upkeep[selectedUnit.type]) + " per second"
+		
+		unitName = "Turret at " + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
+		var buttons = []
+		buttons.append(get_node("AttackSpeedMenu/Low"))
+		buttons.append(get_node("AttackSpeedMenu/Base"))
+		buttons.append(get_node("AttackSpeedMenu/High"))
+		
+		for i in range(3):
+			if game.selectedUnit.fireRateMode == i:
+				buttons[i].disabled = true
+			else:
+				buttons[i].disabled = false
+	
+	# HQ
+	elif selectedUnit.type == 1:
+		unitName = "HQ at " + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
+		ammoChoiceMenu.get_node("OptionButton").selected = selectedUnit.ammoType
+		ammoChoiceMenu.visible = true
+		attackSpeedMenu.visible = true
+		sellButton.visible = false
+		upkeepUI.visible = true
+		upkeepUI.text = "Upkeep: " + str(selectedUnit.upkeep[selectedUnit.type]) + " per second"
+		
+		var buttons = []
+		buttons.append(get_node("AttackSpeedMenu/Low"))
+		buttons.append(get_node("AttackSpeedMenu/Base"))
+		buttons.append(get_node("AttackSpeedMenu/High"))
+		
+		for i in range(3):
+			if game.selectedUnit.fireRateMode == i:
+				buttons[i].disabled = true
+			else:
+				buttons[i].disabled = false
+	
+	# Drill
+	elif selectedUnit.type == 2:
+		sellButton.visible = true
+		upkeepUI.visible = true
+		unitName = "Mining Drill at " + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
+		upkeepUI.text = "Upkeep: 2 per second"
+	
+	# network tower
+	elif selectedUnit.type == 3:
+		sellButton.visible = true
+		upkeepUI.visible = true
+		unitName = "Network Tower at " + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
+		upkeepUI.text = "Upkeep: 2 per second"
+		networkButton.visible = true
+		
+	else:
+		print("ERROR! Wrong building type.")
+	
+	nameUI.text = unitName

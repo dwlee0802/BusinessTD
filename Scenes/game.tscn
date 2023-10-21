@@ -90,6 +90,7 @@ text = "Mining Drill"
 
 [node name="NetworkTowerButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu"]
 visible = false
+layout_mode = 0
 offset_left = 425.0
 offset_right = 565.0
 offset_bottom = 50.0
@@ -286,6 +287,14 @@ offset_right = 114.0
 offset_bottom = 26.0
 text = "Attack Speed"
 
+[node name="NetworkConnectionButton" type="Button" parent="Camera/CanvasLayer/InGameUI/UnitMenu"]
+visible = false
+layout_mode = 0
+offset_top = 75.0
+offset_right = 72.0
+offset_bottom = 106.0
+text = "Connect"
+
 [node name="OperationTimeUI" type="Label" parent="Camera/CanvasLayer/InGameUI"]
 layout_mode = 0
 offset_left = 539.0
@@ -332,3 +341,5 @@ text = "00:00"
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_attack_speed_button_pressed" binds= [0]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/NetworkConnectionButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/NetworkConnectionButton" to="." method="_on_mouse_exited_ui"]

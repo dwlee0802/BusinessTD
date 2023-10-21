@@ -22,14 +22,14 @@ radius = 600.0
 collision_mask = 0
 script = ExtResource("1_njw0n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_e8nbd")
-debug_color = Color(0.972549, 0, 0.447059, 0.419608)
-
 [node name="HQBodySprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_5wjaa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e8nbd")
+debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
 [node name="TurretBarrelSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -44,11 +44,13 @@ target_position = Vector2(0, 0)
 collision_mask = 10
 script = ExtResource("4_sn4ns")
 
-[node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite/APShapeCast"]
+[node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite"]
 visible = false
 modulate = Color(1, 1, 1, 0.188235)
-rotation = -0.000442344
-scale = Vector2(203.477, 3.23246)
+position = Vector2(143.75, 0)
+rotation = -0.00136653
+scale = Vector2(207.449, 10.1809)
+skew = 0.00122333
 texture = ExtResource("5_lwoue")
 
 [node name="Healthbar" type="Sprite2D" parent="."]
@@ -59,12 +61,14 @@ texture = ExtResource("5_lwoue")
 centered = false
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_c5605")
 target_position = Vector2(0, 0)
 collision_mask = 10
 script = ExtResource("4_sn4ns")
 
 [node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_u1shi")
 target_position = Vector2(0, 0)
 collision_mask = 10

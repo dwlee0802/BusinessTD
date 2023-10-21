@@ -62,6 +62,9 @@ func _process(delta):
 		for tile in tiles:
 			for item in tile:
 				item.occupied = false
+		
+		if game.selectedUnit == self:
+			game.selectedUnit = null
 			
 		queue_free()
 		
@@ -144,7 +147,7 @@ func ChangeFireRate(ammotype):
 func ChangeAmmoType(ammotype):
 	ammoType = ammotype
 	
-	get_node("TurretBarrelSprite/APShapeCast/APAreaSprite").visible = false
+	get_node("TurretBarrelSprite/APAreaSprite").visible = false
 	
 	# regular
 	if ammoType == 0:
@@ -152,7 +155,7 @@ func ChangeAmmoType(ammotype):
 	# AP
 	if ammoType == 1:
 		print("changed ammo to AP")
-		get_node("TurretBarrelSprite/APShapeCast/APAreaSprite").visible = true
+		get_node("TurretBarrelSprite/APAreaSprite").visible = true
 	# Incendiary
 	if ammoType == 2:
 		print("changed ammo to Incendiary")

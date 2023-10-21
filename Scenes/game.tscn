@@ -16,6 +16,20 @@ script = ExtResource("2_3q2bq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
 
+[node name="GameOverLabel" type="Label" parent="Camera/CanvasLayer"]
+visible = false
+modulate = Color(0.886275, 0, 0, 1)
+texture_filter = 1
+offset_left = 370.0
+offset_top = 294.0
+offset_right = 801.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 35
+text = "Operation Terminated"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="InGameUI" type="Control" parent="Camera/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -298,23 +312,9 @@ offset_right = 580.0
 offset_bottom = 26.0
 text = "00:00"
 
-[node name="GameOverLabel" type="Label" parent="Camera/CanvasLayer/InGameUI"]
-visible = false
-modulate = Color(0.886275, 0, 0, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 372.0
-offset_top = 287.0
-offset_right = 803.0
-offset_bottom = 345.0
-theme_override_font_sizes/font_size = 35
-text = "Operation Terminated"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
 [node name="Background2" type="Panel" parent="Camera/CanvasLayer/InGameUI"]
 z_index = -10
+layout_mode = 0
 offset_left = 529.0
 offset_top = -2.0
 offset_right = 589.0
@@ -322,6 +322,7 @@ offset_bottom = 28.0
 
 [node name="Background" type="Panel" parent="Camera/CanvasLayer/InGameUI"]
 z_index = -10
+layout_mode = 0
 offset_left = 5.0
 offset_top = 15.0
 offset_right = 45.0

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var hitPoints: int = 1
-var maxHitPoints: int = 1
+var hitPoints: int = 100
+var maxHitPoints: int = 100
 
 var attackTarget
 

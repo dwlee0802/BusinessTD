@@ -30,6 +30,8 @@ var upkeep = [3, 5, 2]
 var upkeepLow = [3, 5, 2]
 var upkeepHigh = [3, 5, 2]
 
+static var repairCost: int = 3
+
 var upkeepHolder: float = 0
 
 const piercingShotRange = 100
@@ -97,7 +99,10 @@ func _process(delta):
 			game.selectedUnit = null
 			
 		queue_free()
-		
+	
+	if hitPoints < maxHitPoints:
+		hitPoints += 5 * delta
+		game.operationFunds -= delta * repairCost * 5
 		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
@@ -152,19 +157,19 @@ func _physics_process(delta):
 		
 			# attack target
 			if ammoType == 0:
-				currentTarget.ReceiveHit(randi_range(20, 40))
+				currentTarget.ReceiveHit(randi_range(50, 150))
 			elif ammoType == 1:
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
 				for item in hitstuff:
 					if item != null:
-						item.ReceiveHit(randi_range(20, 40))
+						item.ReceiveHit(randi_range(50, 150))
 						
 			fireRateHolder = 0
 
 
 func hit(damage):
 	print("hit!")
-#	hitPoints -= 100
+	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
 	
 	

@@ -13,6 +13,12 @@ var profitHolder: float = 1
 
 var placedTile
 
+static var repairCost: int = 3
+static var upkeep: int = 3
+var upkeepHolder: float = 0
+
+var revenueAmount: int = 100
+
 var game
 
 var isSupplied: bool = false
@@ -36,6 +42,10 @@ func _process(delta):
 		
 		queue_free()
 		
+	if hitPoints < maxHitPoints:
+		hitPoints += 5 * delta
+		game.operationFunds -= delta * repairCost * 5
+		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
 	
@@ -44,16 +54,17 @@ func _process(delta):
 	else:
 		sprite.modulate = Color.DIM_GRAY
 	
-	profitHolder -= delta
-	
-	if profitHolder <= 0:
-		game.operationFunds += 100
-		profitHolder = profitGenerationPeriod
-		game.MakeDamagePopup(position, 20, Color.LAWN_GREEN)
+	if isSupplied:
+		profitHolder -= delta
+		
+		if profitHolder <= 0:
+			game.operationFunds += revenueAmount
+			profitHolder = profitGenerationPeriod
+			game.MakeDamagePopup(position, 20, Color.LAWN_GREEN)
 	
 		
 	
 func hit(damage):
 	print("drill took ", damage, " damage. Remaining HQ: ", hitPoints)
-	hitPoints -= 100
+	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)

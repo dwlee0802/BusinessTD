@@ -5,6 +5,11 @@ var placedTile
 var type: int = 3
 
 var hitPoints: int = 250
+var maxHitPoints: int = 250
+
+static var repairCost: int = 3
+static var upkeep: int = 3
+var upkeepHolder: float = 0
 
 var game
 
@@ -14,6 +19,9 @@ var connectionRange
 var connectionArea
 var supplyRange
 var supplyArea
+
+var healthBar
+var healthBarSize = 70
 
 var spriteNode
 
@@ -26,6 +34,8 @@ func _ready():
 	supplyRange = get_node("SupplyRange")
 	supplyArea = get_node("SupplyArea")
 	spriteNode = get_node("Sprite2D")
+	healthBar = get_node("Healthbar")
+
 
 func _process(delta):
 	if game.waitingForBuildLocation == true and game.buildType == type:
@@ -53,10 +63,17 @@ func _process(delta):
 			
 		queue_free()
 		
+	if hitPoints < maxHitPoints:
+		hitPoints += 5 * delta
+		game.operationFunds -= delta * repairCost * 5
+		
+	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
+		healthBar.scale.x -= delta * 140
+		
 	
 func hit(damage):
 	print("hit!")
-#	hitPoints -= 100
+	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
 
 

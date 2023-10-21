@@ -1,16 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://do8osn2fwfcie"]
+[gd_scene load_steps=8 format=3 uid="uid://do8osn2fwfcie"]
 
 [ext_resource type="Script" path="res://Scenes/network_tower.gd" id="1_cbbve"]
 [ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="1_n5qn0"]
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="2_0x82i"]
-[ext_resource type="Script" path="res://Scenes/attackRange.gd" id="3_kklyg"]
 [ext_resource type="Texture2D" uid="uid://de52pygb55h5c" path="res://Art/circle-256.png" id="5_fpvw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtlyj"]
 size = Vector2(70, 70.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bbtwl"]
-radius = 800.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnnkl"]
 radius = 250.0
@@ -25,11 +21,6 @@ collision_mask = 273
 collision_priority = 0.0
 script = ExtResource("1_cbbve")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(2.2, 2.2)
-texture = ExtResource("1_n5qn0")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_jtlyj")
@@ -42,13 +33,6 @@ scale = Vector2(70, 3.734)
 texture = ExtResource("2_0x82i")
 centered = false
 
-[node name="ConnectionShapeCast" type="ShapeCast2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_bbtwl")
-target_position = Vector2(0, 0)
-collision_mask = 65521
-script = ExtResource("3_kklyg")
-
 [node name="ConnectionRange" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.756863, 1)
 self_modulate = Color(0.752941, 1, 1, 0.309804)
@@ -57,13 +41,6 @@ position = Vector2(0.500015, 0)
 scale = Vector2(3.16797, 3.10938)
 texture = ExtResource("5_fpvw5")
 
-[node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_bbtwl")
-target_position = Vector2(0, 0)
-collision_mask = 17
-script = ExtResource("3_kklyg")
-
 [node name="SupplyRange" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.415686, 0.992157, 1, 1)
@@ -71,6 +48,11 @@ self_modulate = Color(0.752941, 1, 1, 0.309804)
 position = Vector2(-1.49998, 7.62939e-06)
 scale = Vector2(1.97266, 1.95312)
 texture = ExtResource("5_fpvw5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("1_n5qn0")
 
 [node name="SupplyArea" type="Area2D" parent="."]
 visible = false

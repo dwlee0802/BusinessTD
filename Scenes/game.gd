@@ -154,6 +154,7 @@ func _input(event):
 						operationFunds -= buildingCosts[buildType]
 						
 						waitingForBuildLocation = false
+						UpdateSupply()
 						return
 						
 					elif buildType == 1:
@@ -205,6 +206,7 @@ func _input(event):
 							print("Not a mineral deposit!\n")
 						
 						waitingForBuildLocation = false
+						UpdateSupply()
 						
 					elif buildType == 3:
 						var newTower = networkTowerScene.instantiate()
@@ -263,6 +265,13 @@ func SpawnEnemy(where, attackWhat):
 	newUnit.attackTarget = attackWhat
 	add_child(newUnit)
 	
+	
+func UpdateSupply():
+	for item in playerStructures:
+		if item != null:
+			if item.type == 3 or item.type == 1:
+				item.UpdateSupply()
+				
 	
 func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 	var newPopup =damagePopupScene.instantiate()

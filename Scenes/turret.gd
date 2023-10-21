@@ -39,16 +39,18 @@ var networkUpdateHolder: float = 1
 
 var bodySprite
 var connectionRange
-var connectionCast
+var connectionArea
 var supplyRange
+var supplyArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bodySprite = get_node("TurretBarrelSprite")
 	if isHQ:
 		connectionRange = get_node("ConnectionRange")
-		connectionCast = get_node("ConnectionShapeCast")
+		connectionArea = get_node("ConnectionArea")
 		supplyRange = get_node("SupplyRange")
+		supplyArea = get_node("SupplyArea")
 		supplyRange.visible = true
 		
 	healthBar = get_node("Healthbar")
@@ -203,8 +205,7 @@ func ChangeAmmoType(ammotype):
 	
 	
 func UpdateSupply():
-	var results = get_node("SupplyShapeCast").GetColliders()
-	print("Supply collider count: ", len(results),"\n")
+	var results = supplyArea.get_overlapping_bodies()
 	for item in results:
 		if item != null:
 			if item.type == 0 or item.type == 2:
@@ -215,17 +216,23 @@ func UpdateNetwork():
 	if not isHQ:
 		return
 	
-	print("Network Update\n")
+#	print("Network Update\n")
 	
-	var results = connectionCast.GetColliders()
+	var results = connectionArea.get_overlapping_bodies()
 	
-	print("Network collider count: ", len(results))
-	print(connectionCast)
+	for item in game.playerStructures:
+		if item != null:
+			if item.type == 3:
+				item.isConnected = false
+				item.UpdateSupply()
+				item.visited = false
+				
 	# update towers
 	for item in results:
 		if item != null and item.type == 3:
-			if item.isConnected == false:
+			if item.visited == false:
 				item.isConnected = true
+				item.visited = true
 				item.UpdateConnection()
 	
 	for item in game.playerStructures:
@@ -239,7 +246,6 @@ func UpdateNetwork():
 		if item != null:
 			if item.type == 3:
 				item.UpdateSupply()
-			
 			
 	
 func _to_string():

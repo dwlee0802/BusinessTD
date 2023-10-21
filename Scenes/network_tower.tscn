@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://do8osn2fwfcie"]
+[gd_scene load_steps=10 format=3 uid="uid://do8osn2fwfcie"]
 
 [ext_resource type="Script" path="res://Scenes/network_tower.gd" id="1_cbbve"]
 [ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="1_n5qn0"]
@@ -12,8 +12,15 @@ size = Vector2(70, 70.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbtwl"]
 radius = 800.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnnkl"]
+radius = 250.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_27bua"]
+resource_name = "asdf"
+radius = 400.0
+
 [node name="Network Tower" type="CharacterBody2D"]
-collision_layer = 273
+collision_layer = 17
 collision_mask = 273
 collision_priority = 0.0
 script = ExtResource("1_cbbve")
@@ -36,16 +43,18 @@ texture = ExtResource("2_0x82i")
 centered = false
 
 [node name="ConnectionShapeCast" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_bbtwl")
 target_position = Vector2(0, 0)
 collision_mask = 65521
 script = ExtResource("3_kklyg")
 
 [node name="ConnectionRange" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.756863, 1)
 self_modulate = Color(0.752941, 1, 1, 0.309804)
 texture_filter = 1
-position = Vector2(-0.999939, 1.5)
-scale = Vector2(6.26563, 6.25391)
+position = Vector2(0.500015, 0)
+scale = Vector2(3.16797, 3.10938)
 texture = ExtResource("5_fpvw5")
 
 [node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
@@ -57,7 +66,22 @@ script = ExtResource("3_kklyg")
 
 [node name="SupplyRange" type="Sprite2D" parent="."]
 visible = false
+modulate = Color(0.415686, 0.992157, 1, 1)
 self_modulate = Color(0.752941, 1, 1, 0.309804)
-position = Vector2(-2.14577e-05, -1.52588e-05)
-scale = Vector2(2.34375, 2.33594)
+position = Vector2(-1.49998, 7.62939e-06)
+scale = Vector2(1.97266, 1.95312)
 texture = ExtResource("5_fpvw5")
+
+[node name="SupplyArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SupplyArea"]
+shape = SubResource("CircleShape2D_vnnkl")
+
+[node name="ConnectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConnectionArea"]
+shape = SubResource("CircleShape2D_27bua")

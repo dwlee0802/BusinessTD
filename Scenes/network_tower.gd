@@ -11,12 +11,21 @@ var game
 var isConnected: bool = false
 
 var connectionRange
+var connectionArea
 var supplyRange
+var supplyArea
+
+var spriteNode
+
+var visited: bool = false
 
 func _ready():
 	game = get_parent()
 	connectionRange = get_node("ConnectionRange")
+	connectionArea = get_node("ConnectionArea")
 	supplyRange = get_node("SupplyRange")
+	supplyArea = get_node("SupplyArea")
+	spriteNode = get_node("Sprite2D")
 
 func _process(delta):
 	if game.waitingForBuildLocation == true and game.buildType == type:
@@ -25,6 +34,24 @@ func _process(delta):
 	else:
 		connectionRange.visible = false
 		supplyRange.visible = true
+	
+	if isConnected == false:
+		connectionRange.visible = false
+		supplyRange.visible = false
+		spriteNode.modulate = Color.DIM_GRAY
+		
+	if hitPoints <= 0:
+		var tiles
+		tiles = game.GetSquare(placedTile, 3)
+			
+		for tile in tiles:
+			for item in tile:
+				item.occupied = false
+		
+		if game.selectedUnit == self:
+			game.selectedUnit = null
+			
+		queue_free()
 		
 	
 func hit(damage):
@@ -34,17 +61,23 @@ func hit(damage):
 
 
 func UpdateConnection():
-	var results = get_node("ConnectionShapeCast").GetColliders()
+	var results = connectionArea.get_overlapping_bodies()
 	for item in results:
 		if item != null and item.type == type:
-			if item.isConnected == false:
+			if item.visited == false:
 				item.isConnected = true
+				item.visited = true
 				item.UpdateConnection()
 
 	
 func UpdateSupply():
-	var results = get_node("SupplyShapeCast").GetColliders()
+	if isConnected == false:
+		return
+		
+	var results = supplyArea.get_overlapping_bodies()
 	for item in results:
-		if item != null and item.isSupplied == false:
-			item.isSupplied = true
+		if item != null:
+			if item.type == 0 or item.type == 2:
+				if item.isSupplied == false:
+					item.isSupplied = true
 			

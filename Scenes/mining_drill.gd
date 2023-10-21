@@ -17,12 +17,14 @@ var game
 
 var isSupplied: bool = false
 
+var sprite
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
 	game = get_parent()
-	
+	sprite = get_node("Sprite2D")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,6 +38,11 @@ func _process(delta):
 		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
+	
+	if isSupplied:
+		sprite.modulate = Color.WHITE
+	else:
+		sprite.modulate = Color.DIM_GRAY
 	
 	profitHolder -= delta
 	

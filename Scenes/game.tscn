@@ -124,10 +124,10 @@ text = "Current Funds: 0"
 [node name="AbortButton" type="Button" parent="Camera/CanvasLayer/InGameUI"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 1042.0
-offset_top = 18.0
-offset_right = 1142.0
-offset_bottom = 58.0
+offset_left = 1041.0
+offset_top = 9.0
+offset_right = 1141.0
+offset_bottom = 49.0
 theme_override_font_sizes/font_size = 20
 text = "Abort"
 script = ExtResource("4_r0jn5")
@@ -313,6 +313,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Background2" type="Panel" parent="Camera/CanvasLayer/InGameUI"]
+z_index = -10
+offset_left = 529.0
+offset_top = -2.0
+offset_right = 589.0
+offset_bottom = 28.0
+
+[node name="Background" type="Panel" parent="Camera/CanvasLayer/InGameUI"]
+z_index = -10
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 45.0
+offset_bottom = 55.0
+scale = Vector2(7.60074, 3.08)
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_entered_ui"]
@@ -354,3 +369,7 @@ uppercase = true
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_attack_speed_button_pressed" binds= [0]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/Background2" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/Background2" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/Background" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/Background" to="." method="_on_mouse_exited_ui"]

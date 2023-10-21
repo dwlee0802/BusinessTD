@@ -5,8 +5,8 @@ class_name MapBlock
 @export var boardWidth = 150
 @export var boardHeight = 150
 
-var depositSpawnRate: float = 0.005
-var slowdownSpawnRate: float = 0.02
+var depositSpawnRate: float = 0.001
+var slowdownSpawnRate: float = 0.015
 
 # Size of a square tile's one side's length in pixels
 var initialTilesize = 32

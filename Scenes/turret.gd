@@ -34,8 +34,23 @@ var upkeepHolder: float = 0
 
 const piercingShotRange = 100
 
+var isSupplied: bool = false
+var networkUpdateHolder: float = 1
+
+var bodySprite
+var connectionRange
+var connectionCast
+var supplyRange
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	bodySprite = get_node("TurretBarrelSprite")
+	if isHQ:
+		connectionRange = get_node("ConnectionRange")
+		connectionCast = get_node("ConnectionShapeCast")
+		supplyRange = get_node("SupplyRange")
+		supplyRange.visible = true
+		
 	healthBar = get_node("Healthbar")
 	game = get_parent()
 	
@@ -47,6 +62,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if isHQ and game.waitingForBuildLocation == true and game.buildType == 3:
+		connectionRange.visible = true
+		supplyRange.visible = false
+	elif isHQ:
+		connectionRange.visible = false
+		supplyRange.visible = true
+		
+	if not isSupplied and not isHQ:
+		bodySprite.modulate = Color.DIM_GRAY
+		return
+		
+	bodySprite.modulate = Color.WHITE
+	
 	if hitPoints <= 0:
 		if isHQ:
 			print("Game Over!")
@@ -81,6 +109,18 @@ func _process(delta):
 	
 	
 func _physics_process(delta):
+	if isHQ:
+		networkUpdateHolder += delta
+		if networkUpdateHolder > 1:
+			UpdateNetwork()
+			networkUpdateHolder = 0
+		
+	if not isSupplied and not isHQ:
+		bodySprite.modulate = Color.DIM_GRAY
+		return
+	
+	bodySprite.modulate = Color.WHITE
+	
 	fireRateHolder += delta
 	if fireRateHolder > fireRate * fireRateModifier * ammoTypeFireRate[ammoType]:
 		# choose the closest target
@@ -116,8 +156,6 @@ func _physics_process(delta):
 				for item in hitstuff:
 					if item != null:
 						item.ReceiveHit(randi_range(20, 40))
-				
-				print(len(hitstuff))
 						
 			fireRateHolder = 0
 
@@ -163,6 +201,46 @@ func ChangeAmmoType(ammotype):
 	if ammoType == 2:
 		print("changed ammo to Incendiary AP")
 	
+	
+func UpdateSupply():
+	var results = get_node("SupplyShapeCast").GetColliders()
+	print("Supply collider count: ", len(results),"\n")
+	for item in results:
+		if item != null:
+			if item.type == 0 or item.type == 2:
+				item.isSupplied = true
+
+
+func UpdateNetwork():
+	if not isHQ:
+		return
+	
+	print("Network Update\n")
+	
+	var results = connectionCast.GetColliders()
+	
+	print("Network collider count: ", len(results))
+	print(connectionCast)
+	# update towers
+	for item in results:
+		if item != null and item.type == 3:
+			if item.isConnected == false:
+				item.isConnected = true
+				item.UpdateConnection()
+	
+	for item in game.playerStructures:
+		if item != null:
+			if item.type != 3:
+				item.isSupplied = false
+				
+	UpdateSupply()
+	
+	for item in game.playerStructures:
+		if item != null:
+			if item.type == 3:
+				item.UpdateSupply()
+			
+			
 	
 func _to_string():
 	var output = ""

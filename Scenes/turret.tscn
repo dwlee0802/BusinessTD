@@ -35,6 +35,7 @@ scale = Vector2(2.4, 2.4)
 texture = ExtResource("2_d7vnd")
 
 [node name="APShapeCast" type="ShapeCast2D" parent="TurretBarrelSprite"]
+visible = false
 position = Vector2(127.083, 0)
 scale = Vector2(0.4248, 1.31233)
 shape = SubResource("RectangleShape2D_ccikx")
@@ -50,6 +51,7 @@ scale = Vector2(230, 10)
 texture = ExtResource("5_2kkv7")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_gbq8q")
 target_position = Vector2(0, 0)
 collision_mask = 10

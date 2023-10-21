@@ -221,9 +221,13 @@ func _input(event):
 						operationFunds -= buildingCosts[buildType]
 						waitingForBuildLocation = false
 						print("Spawned Network Tower at ", selectedTile)
-							
-							
-							
+						
+						playerStructures[0].UpdateNetwork()
+					
+					else:
+						waitingForBuildLocation = false
+						print("ERROR! Wrong building type!")
+				
 # returns a list of tiles in a N x N square centered at center tile
 # if not possible, returns null
 func GetSquare(center, N):
@@ -264,6 +268,7 @@ func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 	var newPopup =damagePopupScene.instantiate()
 	newPopup.position = where
 	newPopup.modulate = color
+	newPopup.get_node("DamagePopup").text = "[center][b]" + str(amount) + "[/b][/center]"
 	add_child(newPopup)
 
 
@@ -328,3 +333,8 @@ func _on_sell_button_pressed():
 	selectedUnit.hitPoints = 0
 	selectedUnit = null
 	mouseInUI = false
+
+
+func _on_network_connection_button_pressed():
+	waitingForTowerConnectionTarget = true
+	print("Waiting for another tower to connect to!\n")

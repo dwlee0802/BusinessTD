@@ -18,7 +18,7 @@ func _ready():
 	sellButton = get_node("SellButton")
 	upkeepUI = get_node("Upkeep")
 	attackSpeedMenu = get_node("AttackSpeedMenu")
-	networkButton = get_node("NetworkConnectionButton")
+	networkButton = get_node("InsideNetwork")
 
 
 func _process(delta):
@@ -93,6 +93,7 @@ func ShowUnit(unit = game.selectedUnit):
 		unitName = "Network Tower at " + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
 		upkeepUI.text = "Upkeep: 2 per second"
 		networkButton.visible = true
+		networkButton.text = "Connection: " + str(selectedUnit.isConnected)
 		
 	else:
 		print("ERROR! Wrong building type.")

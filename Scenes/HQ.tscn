@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvovhrmjw1nod"]
+[gd_scene load_steps=13 format=3 uid="uid://bvovhrmjw1nod"]
 
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_njw0n"]
 [ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="2_5wjaa"]
 [ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="3_1kfn8"]
 [ext_resource type="Script" path="res://Scenes/attackRange.gd" id="4_sn4ns"]
+[ext_resource type="Script" path="res://Scenes/APShapeCast.gd" id="4_vdnbn"]
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="5_lwoue"]
+[ext_resource type="Texture2D" uid="uid://de52pygb55h5c" path="res://Art/circle-256.png" id="6_y7kus"]
+[ext_resource type="Script" path="res://Scenes/SupplyShapeCast.gd" id="7_ulgaq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
 size = Vector2(201, 199)
@@ -13,21 +16,24 @@ size = Vector2(201, 199)
 size = Vector2(200, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5605"]
+resource_local_to_scene = true
 radius = 600.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u1shi"]
-radius = 600.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2c2b"]
+radius = 400.0
 
 [node name="HQ" type="CharacterBody2D"]
-collision_mask = 0
+collision_layer = 273
+collision_mask = 273
 script = ExtResource("1_njw0n")
 
-[node name="HQBodySprite" type="Sprite2D" parent="."]
+[node name="TurretBodySprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_5wjaa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_e8nbd")
 debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
@@ -37,12 +43,13 @@ scale = Vector2(2.4, 2.4)
 texture = ExtResource("3_1kfn8")
 
 [node name="APShapeCast" type="ShapeCast2D" parent="TurretBarrelSprite"]
+visible = false
 position = Vector2(143.75, 0)
 scale = Vector2(1.01952, 3.14959)
 shape = SubResource("RectangleShape2D_e7pca")
 target_position = Vector2(0, 0)
 collision_mask = 10
-script = ExtResource("4_sn4ns")
+script = ExtResource("4_vdnbn")
 
 [node name="APAreaSprite" type="Sprite2D" parent="TurretBarrelSprite"]
 visible = false
@@ -67,9 +74,32 @@ target_position = Vector2(0, 0)
 collision_mask = 10
 script = ExtResource("4_sn4ns")
 
+[node name="SupplyRange" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.752941, 1, 1, 0.309804)
+position = Vector2(-2.99998, -3.49999)
+scale = Vector2(3.11719, 3.13672)
+texture = ExtResource("6_y7kus")
+
 [node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
 visible = false
-shape = SubResource("CircleShape2D_u1shi")
+shape = SubResource("CircleShape2D_d2c2b")
 target_position = Vector2(0, 0)
-collision_mask = 10
-script = ExtResource("4_sn4ns")
+collide_with_areas = true
+script = ExtResource("7_ulgaq")
+
+[node name="ConnectionRange" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.756863, 1)
+self_modulate = Color(0.752941, 1, 1, 0.309804)
+texture_filter = 1
+position = Vector2(-2.99996, -1.5)
+scale = Vector2(7.80469, 7.77734)
+texture = ExtResource("6_y7kus")
+
+[node name="ConnectionShapeCast" type="ShapeCast2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_d2c2b")
+target_position = Vector2(0, 0)
+collision_mask = 256
+collide_with_areas = true
+script = ExtResource("7_ulgaq")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://do8osn2fwfcie"]
+[gd_scene load_steps=8 format=3 uid="uid://do8osn2fwfcie"]
 
 [ext_resource type="Script" path="res://Scenes/network_tower.gd" id="1_cbbve"]
 [ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="1_n5qn0"]
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="2_0x82i"]
 [ext_resource type="Script" path="res://Scenes/attackRange.gd" id="3_kklyg"]
+[ext_resource type="Texture2D" uid="uid://de52pygb55h5c" path="res://Art/circle-256.png" id="5_fpvw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtlyj"]
 size = Vector2(70, 70.5)
@@ -12,8 +13,9 @@ size = Vector2(70, 70.5)
 radius = 800.0
 
 [node name="Network Tower" type="CharacterBody2D"]
-collision_layer = 17
-collision_mask = 0
+collision_layer = 273
+collision_mask = 273
+collision_priority = 0.0
 script = ExtResource("1_cbbve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -36,10 +38,26 @@ centered = false
 [node name="ConnectionShapeCast" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_bbtwl")
 target_position = Vector2(0, 0)
-collision_mask = 16
+collision_mask = 65521
 script = ExtResource("3_kklyg")
 
+[node name="ConnectionRange" type="Sprite2D" parent="."]
+self_modulate = Color(0.752941, 1, 1, 0.309804)
+texture_filter = 1
+position = Vector2(-0.999939, 1.5)
+scale = Vector2(6.26563, 6.25391)
+texture = ExtResource("5_fpvw5")
+
 [node name="SupplyShapeCast" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_bbtwl")
 target_position = Vector2(0, 0)
+collision_mask = 17
 script = ExtResource("3_kklyg")
+
+[node name="SupplyRange" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.752941, 1, 1, 0.309804)
+position = Vector2(-2.14577e-05, -1.52588e-05)
+scale = Vector2(2.34375, 2.33594)
+texture = ExtResource("5_fpvw5")

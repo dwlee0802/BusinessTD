@@ -73,7 +73,7 @@ func _process(delta):
 		var assets = 0
 		for item in playerStructures:
 			if item != null:
-				assets += buildingCosts[item.type] * 0.8
+				assets += buildingCosts[item.type] * 0.8 * (item.hitPoints / item.maxHitPoints)
 			
 		totalValue = operationFunds + assets
 		

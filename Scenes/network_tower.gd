@@ -27,6 +27,9 @@ var spriteNode
 
 var visited: bool = false
 
+var buildTime: float = 3
+var	buildTimeLabel
+
 func _ready():
 	game = get_parent()
 	connectionRange = get_node("ConnectionRange")
@@ -35,9 +38,18 @@ func _ready():
 	supplyArea = get_node("SupplyArea")
 	spriteNode = get_node("Sprite2D")
 	healthBar = get_node("Healthbar")
-
+	buildTimeLabel = get_node("BuildTime")
+	
 
 func _process(delta):
+	if buildTime > 0:
+		buildTime -= delta
+		spriteNode.modulate = Color.DIM_GRAY
+		buildTimeLabel.text = str(snapped(buildTime, 0.001))
+		return
+	else:
+		buildTimeLabel.visible = false
+		
 	if game.waitingForBuildLocation == true and game.buildType == type:
 		connectionRange.visible = true
 		supplyRange.visible = false
@@ -49,6 +61,9 @@ func _process(delta):
 		connectionRange.visible = false
 		supplyRange.visible = false
 		spriteNode.modulate = Color.DIM_GRAY
+	
+		
+	spriteNode.modulate = Color.WHITE
 		
 	if hitPoints <= 0:
 		var tiles

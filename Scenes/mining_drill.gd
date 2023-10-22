@@ -25,15 +25,29 @@ var isSupplied: bool = false
 
 var sprite
 
+var buildTime: float = 10
+var buildTimeLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
 	game = get_parent()
 	sprite = get_node("Sprite2D")
+	buildTimeLabel = get_node("BuildTime")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if buildTime > 0:
+		buildTime -= delta
+		sprite.modulate = Color.DIM_GRAY
+		buildTimeLabel.text = str(snapped(buildTime, 0.001))
+		
+		return
+	else:
+		buildTimeLabel.visible = false
+		
+	sprite.modulate = Color.DIM_GRAY
+		
 	if hitPoints <= 0:
 		var tiles = game.GetSquare(placedTile, 5)
 		for tile in tiles:
@@ -58,9 +72,10 @@ func _process(delta):
 		profitHolder -= delta
 		
 		if profitHolder <= 0:
+			revenueAmount = randi_range(50, 150)
 			game.operationFunds += revenueAmount
 			profitHolder = profitGenerationPeriod
-			game.MakeDamagePopup(position, 20, Color.LAWN_GREEN)
+			game.MakeDamagePopup(position, revenueAmount, Color.LAWN_GREEN)
 	
 		
 	

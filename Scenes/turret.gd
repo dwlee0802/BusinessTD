@@ -45,10 +45,16 @@ var connectionArea
 var supplyRange
 var supplyArea
 
+var buildTime: float = 7
+var	buildTimeLabel
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bodySprite = get_node("TurretBarrelSprite")
+	buildTimeLabel = get_node("BuildTime")
+	
 	if isHQ:
+		buildTime = 3
 		connectionRange = get_node("ConnectionRange")
 		connectionArea = get_node("ConnectionArea")
 		supplyRange = get_node("SupplyRange")
@@ -62,10 +68,18 @@ func _ready():
 		maxHitPoints = 1500
 		hitPoints = maxHitPoints
 		healthBarSize = 200
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if buildTime > 0:
+		buildTime -= delta
+		bodySprite.modulate = Color.DIM_GRAY
+		buildTimeLabel.text = str(snapped(buildTime, 0.001))
+		return
+	else:
+		buildTimeLabel.visible = false
+		
 	if isHQ and game.waitingForBuildLocation == true and game.buildType == 3:
 		connectionRange.visible = true
 		supplyRange.visible = false
@@ -116,6 +130,9 @@ func _process(delta):
 	
 	
 func _physics_process(delta):
+	if buildTime > 0:
+		return
+		
 	if isHQ:
 		networkUpdateHolder += delta
 		if networkUpdateHolder > 1:

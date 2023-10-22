@@ -137,11 +137,12 @@ text = "Current Funds: 0"
 
 [node name="AbortButton" type="Button" parent="Camera/CanvasLayer/InGameUI"]
 self_modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 1041.0
-offset_top = 9.0
-offset_right = 1141.0
-offset_bottom = 49.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 28.6
+anchor_right = 28.6
+offset_bottom = 40.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 20
 text = "Abort"
 script = ExtResource("4_r0jn5")

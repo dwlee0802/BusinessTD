@@ -10,6 +10,8 @@ radius = 16.0
 [node name="EnemyUnit" type="CharacterBody2D"]
 collision_layer = 10
 script = ExtResource("1_e4wf8")
+speed = null
+speedModifier = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fvuth")

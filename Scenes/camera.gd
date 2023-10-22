@@ -20,9 +20,9 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			zoom = zoom * 1.1
+			zoom = zoom * 1.2
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			zoom = zoom * 0.9
+			zoom = zoom * 0.8
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_W:
 			position += Vector2(0, -tileSize * 4)

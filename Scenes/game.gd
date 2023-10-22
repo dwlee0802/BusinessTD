@@ -33,10 +33,11 @@ var buildingSizeN = [3, 7, 5, 3]
 var buildingCosts = [1500, 0, 4000, 1000]
 
 var spawnRate: float = 30
-var spawnRateHolder: float = 1
+var spawnRateHolder: float = 30
 var spawnCount: float = 20
 var difficultyScale: float = 2
 var enemyDifficultyIncrease: int = 0
+var enemyMaxCount: int = 400
 
 var gameStarted: bool = false
 var gamePaused: bool = true
@@ -60,10 +61,15 @@ func _ready():
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	
 	for i in range(1, homeBlock.boardWidth):
-		edgeTiles.append(homeBlock.blockTiles[1][i])
-		edgeTiles.append(homeBlock.blockTiles[-1][i])
-		edgeTiles.append(homeBlock.blockTiles[i][1])
-		edgeTiles.append(homeBlock.blockTiles[i][-1])
+		if homeBlock.blockTiles[1][i].passable == true:
+			edgeTiles.append(homeBlock.blockTiles[1][i])
+		if homeBlock.blockTiles[1][i].passable == true:
+			edgeTiles.append(homeBlock.blockTiles[-1][i])
+		if homeBlock.blockTiles[1][i].passable == true:
+			edgeTiles.append(homeBlock.blockTiles[i][1])
+		if homeBlock.blockTiles[1][i].passable == true:
+			edgeTiles.append(homeBlock.blockTiles[i][-1])
+			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -91,10 +97,10 @@ func _process(delta):
 		if spawnRateHolder > spawnRate:
 			# randomly spawn enemies at the edge of the map
 			for i in range(int(spawnCount)):
-				SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random(), enemyDifficultyIncrease * 5)
+				SpawnEnemy(edgeTiles.pick_random(), playerStructures.pick_random().placedTile, enemyDifficultyIncrease * 5)
 			spawnCount *= difficultyScale
-			if spawnCount > 600:
-				spawnCount = 600
+			if spawnCount > enemyMaxCount:
+				spawnCount = enemyMaxCount
 				enemyDifficultyIncrease += 1
 			spawnRateHolder = 0
 	
@@ -265,10 +271,12 @@ func GetSquare(center, N):
 
 func SpawnEnemy(where, attackWhat, addHealth):
 	var newUnit = enemyScene.instantiate()
-	newUnit.position = where
+	newUnit.position = where.position
 	newUnit.attackTarget = attackWhat
 	newUnit.maxHitPoints = 100 + addHealth
 	newUnit.hitPoints = newUnit.maxHitPoints
+	newUnit.startingTile = where
+	newUnit.targetTile = attackWhat
 	add_child(newUnit)
 	
 	

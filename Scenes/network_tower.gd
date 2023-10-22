@@ -4,12 +4,14 @@ var placedTile
 
 var type: int = 3
 
-var hitPoints: int = 250
+var hitPoints: float = 250
 var maxHitPoints: int = 250
 
 static var repairCost: int = 3
 static var upkeep: int = 3
 var upkeepHolder: float = 0
+
+var repairHolder: float = 0
 
 var game
 
@@ -54,13 +56,17 @@ func _process(delta):
 			game.selectedUnit = null
 			
 		queue_free()
+	
+	repairHolder += delta
+	if repairHolder > 1:
+		if hitPoints < maxHitPoints:
+			hitPoints += 10
+			game.operationFunds -= repairCost * 10
+		else:
+			hitPoints = maxHitPoints
+		repairHolder = 0
 		
-	if hitPoints < maxHitPoints:
-		hitPoints += 5 * delta
-		game.operationFunds -= delta * repairCost * 5
-		
-	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
-		healthBar.scale.x -= delta * 140
+	healthBar.scale.x = healthBarSize * hitPoints / maxHitPoints
 		
 	if buildTime > 0:
 		buildTime -= delta

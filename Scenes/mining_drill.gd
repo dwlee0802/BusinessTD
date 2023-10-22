@@ -14,6 +14,7 @@ var profitHolder: float = 1
 var placedTile
 
 static var repairCost: int = 3
+var repairHolder: float = 1
 static var upkeep: int = 10
 var upkeepHolder: float = 0
 
@@ -45,12 +46,17 @@ func _process(delta):
 		
 		queue_free()
 		
-	if hitPoints < maxHitPoints:
-		hitPoints += 5 * delta
-		game.operationFunds -= delta * repairCost * 5
+	repairHolder += delta
+	if repairHolder > 1:
+		if hitPoints < maxHitPoints:
+			hitPoints += 10
+			game.operationFunds -= repairCost * 10
+		else:
+			hitPoints = maxHitPoints
+		repairHolder = 0
 		
-	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
-		healthBar.scale.x -= delta * 140
+		
+	healthBar.scale.x = healthBarSize * hitPoints / maxHitPoints
 	
 	if buildTime > 0:
 		buildTime -= delta

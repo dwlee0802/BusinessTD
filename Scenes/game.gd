@@ -30,20 +30,21 @@ var playerStructures = []
 var buildingSizeN = [3, 7, 5, 3]
 
 # upfront cost of buildings
-var buildingCosts = [800, 1500, 500, 300]
+var buildingCosts = [1500, 0, 4000, 1000]
 
-var spawnRate: float = 10
+var spawnRate: float = 30
 var spawnRateHolder: float = 1
 var spawnCount: float = 20
-var difficultyScale: float = 1.1
+var difficultyScale: float = 2
+var enemyDifficultyIncrease: int = 0
 
 var gameStarted: bool = false
 var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 5000
-var highestValuePoint: float = 5000
+var operationFunds: float = 10000
+var highestValuePoint: float = 10000
 
 var operationTime: float = 0
 var operationTimeUI
@@ -90,8 +91,11 @@ func _process(delta):
 		if spawnRateHolder > spawnRate:
 			# randomly spawn enemies at the edge of the map
 			for i in range(int(spawnCount)):
-				SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random())
+				SpawnEnemy(edgeTiles.pick_random().position, playerStructures.pick_random(), enemyDifficultyIncrease * 5)
 			spawnCount *= difficultyScale
+			if spawnCount > 600:
+				spawnCount = 600
+				enemyDifficultyIncrease += 1
 			spawnRateHolder = 0
 	
 
@@ -259,10 +263,12 @@ func GetSquare(center, N):
 	return output
 	
 
-func SpawnEnemy(where, attackWhat):
+func SpawnEnemy(where, attackWhat, addHealth):
 	var newUnit = enemyScene.instantiate()
 	newUnit.position = where
 	newUnit.attackTarget = attackWhat
+	newUnit.maxHitPoints = 100 + addHealth
+	newUnit.hitPoints = newUnit.maxHitPoints
 	add_child(newUnit)
 	
 	

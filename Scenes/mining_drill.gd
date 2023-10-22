@@ -14,7 +14,7 @@ var profitHolder: float = 1
 var placedTile
 
 static var repairCost: int = 3
-static var upkeep: int = 3
+static var upkeep: int = 10
 var upkeepHolder: float = 0
 
 var revenueAmount: int = 100
@@ -37,17 +37,6 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if buildTime > 0:
-		buildTime -= delta
-		sprite.modulate = Color.DIM_GRAY
-		buildTimeLabel.text = str(snapped(buildTime, 0.001))
-		
-		return
-	else:
-		buildTimeLabel.visible = false
-		
-	sprite.modulate = Color.DIM_GRAY
-		
 	if hitPoints <= 0:
 		var tiles = game.GetSquare(placedTile, 5)
 		for tile in tiles:
@@ -63,6 +52,17 @@ func _process(delta):
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
 	
+	if buildTime > 0:
+		buildTime -= delta
+		sprite.modulate = Color.DIM_GRAY
+		buildTimeLabel.text = str(snapped(buildTime, 0.001))
+		
+		return
+	else:
+		buildTimeLabel.visible = false
+		
+	sprite.modulate = Color.DIM_GRAY
+		
 	if isSupplied:
 		sprite.modulate = Color.WHITE
 	else:

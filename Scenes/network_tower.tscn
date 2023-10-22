@@ -28,6 +28,7 @@ debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
 [node name="Healthbar" type="Sprite2D" parent="."]
 modulate = Color(0.698039, 0, 0, 1)
+z_index = 100
 position = Vector2(-35, 40)
 scale = Vector2(70, 3.734)
 texture = ExtResource("2_0x82i")
@@ -51,6 +52,7 @@ scale = Vector2(1.97266, 1.95312)
 texture = ExtResource("5_fpvw5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 texture_filter = 1
 scale = Vector2(2.2, 2.2)
 texture = ExtResource("1_n5qn0")

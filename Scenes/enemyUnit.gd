@@ -41,7 +41,7 @@ func _physics_process(delta):
 		if collision:
 			collision.get_collider().hit(hitPoints)
 			
-			enemyDeathEffect.instantiate()
+			game.add_child(enemyDeathEffect.instantiate())
 			queue_free()
 	else:
 		attackTarget = game.playerStructures.pick_random()

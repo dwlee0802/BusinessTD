@@ -42,29 +42,6 @@ func _ready():
 	
 
 func _process(delta):
-	if buildTime > 0:
-		buildTime -= delta
-		spriteNode.modulate = Color.DIM_GRAY
-		buildTimeLabel.text = str(snapped(buildTime, 0.001))
-		return
-	else:
-		buildTimeLabel.visible = false
-		
-	if game.waitingForBuildLocation == true and game.buildType == type:
-		connectionRange.visible = true
-		supplyRange.visible = false
-	else:
-		connectionRange.visible = false
-		supplyRange.visible = true
-	
-	if isConnected == false:
-		connectionRange.visible = false
-		supplyRange.visible = false
-		spriteNode.modulate = Color.DIM_GRAY
-	
-		
-	spriteNode.modulate = Color.WHITE
-		
 	if hitPoints <= 0:
 		var tiles
 		tiles = game.GetSquare(placedTile, 3)
@@ -84,6 +61,31 @@ func _process(delta):
 		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
+		
+	if buildTime > 0:
+		buildTime -= delta
+		spriteNode.modulate = Color.DIM_GRAY
+		buildTimeLabel.text = str(snapped(buildTime, 0.001))
+		isConnected = false
+		return
+	else:
+		buildTimeLabel.visible = false
+		
+		
+	if game.waitingForBuildLocation == true and game.buildType == type:
+		connectionRange.visible = true
+		supplyRange.visible = false
+	else:
+		connectionRange.visible = false
+		supplyRange.visible = true
+	
+	if isConnected == false:
+		connectionRange.visible = false
+		supplyRange.visible = false
+		spriteNode.modulate = Color.DIM_GRAY
+	
+		
+	spriteNode.modulate = Color.WHITE
 		
 	
 func hit(damage):

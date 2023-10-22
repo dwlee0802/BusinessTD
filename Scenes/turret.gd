@@ -8,6 +8,7 @@ var type: int = 0
 
 var ammoType: int = 0
 var ammoTypeFireRate = [1, 0.9, 1, 1]
+var ammoTypeCost = [15, 35, 1, 1]
 
 var targets = []
 
@@ -26,15 +27,13 @@ var isHQ: bool = false
 
 var placedTile
 
-var upkeep = [3, 5, 2]
+var upkeep = [10, 15, 10]
 var upkeepLow = [3, 5, 2]
 var upkeepHigh = [3, 5, 2]
 
 static var repairCost: int = 3
 
 var upkeepHolder: float = 0
-
-const piercingShotRange = 100
 
 var isSupplied: bool = false
 var networkUpdateHolder: float = 1
@@ -69,30 +68,10 @@ func _ready():
 		hitPoints = maxHitPoints
 		healthBarSize = 200
 	
+	game.game_ended.connect(GameEnded)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if buildTime > 0:
-		buildTime -= delta
-		bodySprite.modulate = Color.DIM_GRAY
-		buildTimeLabel.text = str(snapped(buildTime, 0.001))
-		return
-	else:
-		buildTimeLabel.visible = false
-		
-	if isHQ and game.waitingForBuildLocation == true and game.buildType == 3:
-		connectionRange.visible = true
-		supplyRange.visible = false
-	elif isHQ:
-		connectionRange.visible = false
-		supplyRange.visible = true
-		
-	if not isSupplied and not isHQ:
-		bodySprite.modulate = Color.DIM_GRAY
-		return
-		
-	bodySprite.modulate = Color.WHITE
-	
 	if hitPoints <= 0:
 		if isHQ:
 			print("Game Over!")
@@ -120,6 +99,27 @@ func _process(delta):
 		
 	if healthBar.scale.x > healthBarSize * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
+	
+	if buildTime > 0:
+		buildTime -= delta
+		bodySprite.modulate = Color.DIM_GRAY
+		buildTimeLabel.text = str(snapped(buildTime, 0.001))
+		return
+	else:
+		buildTimeLabel.visible = false
+		
+	if isHQ and game.waitingForBuildLocation == true and game.buildType == 3:
+		connectionRange.visible = true
+		supplyRange.visible = false
+	elif isHQ:
+		connectionRange.visible = false
+		supplyRange.visible = true
+		
+	if not isSupplied and not isHQ:
+		bodySprite.modulate = Color.DIM_GRAY
+		return
+		
+	bodySprite.modulate = Color.WHITE
 	
 	if upkeepHolder > 1:
 		game.operationFunds -= upkeep[type] + fireRateMode - 1
@@ -175,11 +175,15 @@ func _physics_process(delta):
 			# attack target
 			if ammoType == 0:
 				currentTarget.ReceiveHit(randi_range(50, 150))
+				game.operationFunds -= ammoTypeCost[0]
 			elif ammoType == 1:
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
 				for item in hitstuff:
 					if item != null:
 						item.ReceiveHit(randi_range(50, 150))
+						
+				game.operationFunds -= ammoTypeCost[1]
+						
 						
 			fireRateHolder = 0
 
@@ -269,6 +273,10 @@ func UpdateNetwork():
 			if item.type == 3:
 				item.UpdateSupply()
 			
+			
+func GameEnded():
+	queue_free()
+
 	
 func _to_string():
 	var output = ""

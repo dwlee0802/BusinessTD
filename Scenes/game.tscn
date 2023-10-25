@@ -330,6 +330,22 @@ offset_right = 45.0
 offset_bottom = 55.0
 scale = Vector2(7.60074, 3.08)
 
+[node name="EnemyCountLabel" type="Label" parent="Camera/CanvasLayer/InGameUI"]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 49.0
+offset_right = 1137.0
+offset_bottom = 75.0
+text = "Enemy Count: 0000"
+
+[node name="Background" type="Panel" parent="Camera/CanvasLayer/InGameUI/EnemyCountLabel"]
+z_index = -10
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 14.0
+offset_bottom = 7.0
+scale = Vector2(7.60074, 3.08)
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton" to="." method="_on_mouse_entered_ui"]
@@ -375,3 +391,5 @@ scale = Vector2(7.60074, 3.08)
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/Background2" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/Background" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/Background" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/EnemyCountLabel/Background" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/EnemyCountLabel/Background" to="." method="_on_mouse_exited_ui"]

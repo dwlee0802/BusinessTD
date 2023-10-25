@@ -37,6 +37,7 @@ func _process(delta):
 		var eff = enemyDeathEffect.instantiate()
 		eff.global_position = position
 		game.add_child(eff)
+		game.enemyCurrentCount -= 1
 		queue_free()
 	
 	if healthBar.scale.x > 32 * hitPoints / maxHitPoints:
@@ -45,7 +46,7 @@ func _process(delta):
 var tempHolder: float = 0
 	
 func _physics_process(delta):
-	if len(path) > pathCount:
+	if len(path) - 1 > pathCount:
 		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 1:
 			pathCount += 1
 	else:
@@ -61,21 +62,22 @@ func _physics_process(delta):
 		
 		game.add_child(enemyDeathEffect.instantiate())
 		queue_free()
-	else:
-		attackTarget = game.playerStructures.pick_random()
 		
-	
-	# slow down if tile is a slowdown tile
-	var space = get_viewport().world_2d.direct_space_state
-	var param = PhysicsPointQueryParameters2D.new()
-	param.position = position
-	param.collision_mask = 4
-	var result = space.intersect_point(param)
-	
-	if result[0] != null and result[0].collider.isSlowDown == true:
-		speedModifier = 0.5
-	else:
-		speedModifier = 1
+	tempHolder += delta
+	if tempHolder > 0.5:
+		# slow down if tile is a slowdown tile
+		var space = get_viewport().world_2d.direct_space_state
+		var param = PhysicsPointQueryParameters2D.new()
+		param.position = position
+		param.collision_mask = 4
+		var result = space.intersect_point(param)
+		
+		if result[0] != null and result[0].collider.isSlowDown == true:
+			speedModifier = 0.5
+		else:
+			speedModifier = 1
+		
+		tempHolder = 0
 	
 			
 func ReceiveHit(amount):

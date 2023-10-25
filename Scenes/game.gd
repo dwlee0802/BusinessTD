@@ -32,20 +32,26 @@ var buildingSizeN = [3, 7, 5, 3]
 # upfront cost of buildings
 var buildingCosts = [1500, 0, 4000, 1000]
 
+# the time between each enemy wave
 var spawnRate: float = 30
 var spawnRateHolder: float = 30
-var spawnCount: float = 20
-var difficultyScale: float = 2
-var enemyDifficultyIncrease: int = 0
-var enemyMaxCount: int = 400
+# how many enemies spawn for each wave
+var spawnCount: float = 500
+# determines the rate in which enemy count increases
+var difficultyScale: float = 1
+# determines the rate enemy health increases
+var enemyDifficultyIncrease: int = 1
+var enemyMaxCount: int = 500
+var enemyCurrentCount: int = 0
+var enemyCurrentCountUI
 
 var gameStarted: bool = false
 var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 10000
-var highestValuePoint: float = 10000
+var operationFunds: float = 20000
+var highestValuePoint: float = 20000
 
 var operationTime: float = 0
 var operationTimeUI
@@ -59,6 +65,7 @@ func _ready():
 	homeBlock = get_node("MapBlock")
 	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
+	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
 	
 	for i in range(1, homeBlock.boardWidth):
 		if homeBlock.blockTiles[1][i].passable == true:
@@ -73,6 +80,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	enemyCurrentCountUI.text = "Enemy count: " + str(enemyCurrentCount)
+	
 	if not playerStructures.is_empty():
 		operationTime += delta
 		operationTimeUI.text = str(int(operationTime)) + ":" + str(int(operationTime * 100) % 100)
@@ -97,7 +106,12 @@ func _process(delta):
 		if spawnRateHolder > spawnRate:
 			# randomly spawn enemies at the edge of the map
 			for i in range(int(spawnCount)):
-				SpawnEnemy(edgeTiles.pick_random(), playerStructures.pick_random().placedTile, enemyDifficultyIncrease * 5)
+				var target = playerStructures.pick_random()
+				if target != null:
+					SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 5)
+				else:
+					target = playerStructures.pick_random()
+					
 			spawnCount *= difficultyScale
 			if spawnCount > enemyMaxCount:
 				spawnCount = enemyMaxCount
@@ -278,6 +292,7 @@ func SpawnEnemy(where, attackWhat, addHealth):
 	newUnit.startingTile = where
 	newUnit.targetTile = attackWhat
 	add_child(newUnit)
+	enemyCurrentCount += 1
 	
 	
 func UpdateSupply():

@@ -59,15 +59,21 @@ func _ready():
 			blockTiles[y][x].noise2 = noise_level2
 			blockTiles[y][x].noise3 = noise_level3
 			
+			var sprite = blockTiles[y][x].get_node("Sprite2D")
+			
 			if noise_level2 < 0.34:
 				blockTiles[y][x].isSlowDown = true
+				sprite.modulate = Color.WEB_GRAY
 			if noise_level > 0.55:
 				blockTiles[y][x].occupied = true
 				blockTiles[y][x].passable = false
+				sprite.modulate = Color.BLACK
 			if noise_level > 0.8:
 				blockTiles[y][x].isDeposit = true
+				sprite.modulate = Color.PURPLE
 			if noise_level3 > 0.79:
 				blockTiles[y][x].isDeposit = true
+				sprite.modulate = Color.PURPLE
 				
 	
 	for items in blockTiles:

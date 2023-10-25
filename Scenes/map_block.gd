@@ -36,21 +36,6 @@ func _ready():
 	tileScene = load("res://Scenes/tile.tscn")
 	GenerateGameboard()
 	
-	for items in blockTiles:
-		for item in items:
-			if item.leftTile != null:
-				pathfinding.connect_points(item.id, item.leftTile.id)
-			if item.rightTile != null:
-				pathfinding.connect_points(item.id, item.rightTile.id)
-			if item.upperTile != null:
-				pathfinding.connect_points(item.id, item.upperTile.id)
-			if item.lowerTile != null:
-				pathfinding.connect_points(item.id, item.lowerTile.id)
-				
-			if item.passable == false:
-				pathfinding.set_point_disabled(item.id)
-	
-	
 	randomize()
 	noise.seed = 2
 	noise2.seed = 5
@@ -73,6 +58,40 @@ func _ready():
 			blockTiles[y][x].noise = noise_level
 			blockTiles[y][x].noise2 = noise_level2
 			blockTiles[y][x].noise3 = noise_level3
+			
+			if noise_level2 < 0.34:
+				blockTiles[y][x].isSlowDown = true
+			if noise_level > 0.55:
+				blockTiles[y][x].occupied = true
+				blockTiles[y][x].passable = false
+			if noise_level > 0.8:
+				blockTiles[y][x].isDeposit = true
+			if noise_level3 > 0.79:
+				blockTiles[y][x].isDeposit = true
+				
+	
+	for items in blockTiles:
+		for item in items:
+			if item.passable == false:
+				continue
+			
+			if item.leftTile != null and item.leftTile.passable != false:
+				pathfinding.connect_points(item.id, item.leftTile.id)
+			if item.rightTile != null and item.rightTile.passable != false:
+				pathfinding.connect_points(item.id, item.rightTile.id)
+			if item.upperTile != null and item.upperTile.passable != false:
+				pathfinding.connect_points(item.id, item.upperTile.id)
+			if item.lowerTile != null and item.lowerTile.passable != false:
+				pathfinding.connect_points(item.id, item.lowerTile.id)
+				
+			if item.lowerLeftTile != null and item.lowerLeftTile.passable != false:
+				pathfinding.connect_points(item.id, item.lowerLeftTile.id)
+			if item.lowerRightTile != null and item.lowerRightTile.passable != false:
+				pathfinding.connect_points(item.id, item.lowerRightTile.id)
+			if item.upperLeftTile != null and item.upperLeftTile.passable != false:
+				pathfinding.connect_points(item.id, item.upperLeftTile.id)
+			if item.upperRightTile != null and item.upperRightTile.passable != false:
+				pathfinding.connect_points(item.id, item.upperRightTile.id)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -112,10 +131,24 @@ func GenerateGameboard():
 			if i - 1 >= 0:
 				newTile.upperTile = blockTiles[i - 1][j]
 				newTile.upperTile.lowerTile = newTile
-				
 		
 		blockTiles.append(currentRow)
+		
+	ConnectDiagonals()
 
+
+func ConnectDiagonals():
+	for i in range(boardHeight):
+		for j in range(boardWidth):
+			if i > 0 and j > 0:
+				blockTiles[i][j].upperLeftTile = blockTiles[i-1][j-1]
+			if i < boardHeight - 1 and j < boardWidth - 1:
+				blockTiles[i][j].lowerRightTile = blockTiles[i+1][j+1]
+			if i > 0 and j < boardWidth - 1:
+				blockTiles[i][j].upperRightTile = blockTiles[i-1][j+1]
+			if i < boardHeight - 1 and j > 0:
+				blockTiles[i][j].lowerLeftTile = blockTiles[i+1][j-1]
+			
 
 func PixelCoordToTileIndex(position):
 	return [position.y / TILESIZE as int, position.x / TILESIZE as int]

@@ -21,6 +21,11 @@ var lowerTile
 var rightTile
 var leftTile
 
+var upperRightTile
+var lowerRightTile
+var upperLeftTile
+var lowerLeftTile
+
 var dist: int = 1000000
 
 var game
@@ -64,7 +69,13 @@ func _to_string():
 	output = "tile at "
 		
 	output += str(row) + ", " + str(col) + "\n"
-	output += str(noise)
 	
-	return output
+	output += "Passable: " + str(passable)
+	
+	return output + "\n"
 
+
+func _print_coords():
+	var output
+	output = "[" + str(self.row) + ", " + str(self.col) + "]"
+	return output

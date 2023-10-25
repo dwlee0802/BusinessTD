@@ -41,14 +41,23 @@ func _process(delta):
 	
 	if healthBar.scale.x > 32 * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
-	
+
+var tempHolder: float = 0
 	
 func _physics_process(delta):
-	if position..floor().is_equal_approx(pathfinding.get_point_position(path[pathCount])):
+	if tempHolder > 0.2:
+		tempHolder = 0
+		
+		if len(path) > pathCount:
+			position = pathfinding.get_point_position(path[pathCount])
+		else:
+			hitPoints = 0
+			
 		pathCount += 1
+		
+	tempHolder += delta
 	
-	print(position.floor(),"\n" ,pathfinding.get_point_position(path[pathCount]))
-	
+	"""
 	if attackTarget != null:
 		velocity = Vector2(speed * speedModifier,0).rotated(position.angle_to_point(pathfinding.get_point_position(path[pathCount])))
 		
@@ -60,7 +69,7 @@ func _physics_process(delta):
 			queue_free()
 	else:
 		attackTarget = game.playerStructures.pick_random()
-	
+	"""
 	
 	# slow down if tile is such tile
 	var space = get_viewport().world_2d.direct_space_state

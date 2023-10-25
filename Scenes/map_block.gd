@@ -84,13 +84,14 @@ func _ready():
 			if item.lowerTile != null and item.lowerTile.passable != false:
 				pathfinding.connect_points(item.id, item.lowerTile.id)
 				
-			if item.lowerLeftTile != null and item.lowerLeftTile.passable != false:
+			# connect diagonal towers
+			if item.lowerLeftTile != null and item.lowerLeftTile.passable != false and item.lowerTile.passable == true and  item.leftTile.passable == true:
 				pathfinding.connect_points(item.id, item.lowerLeftTile.id)
-			if item.lowerRightTile != null and item.lowerRightTile.passable != false:
+			if item.lowerRightTile != null and item.lowerRightTile.passable != false and item.lowerTile.passable == true and  item.rightTile.passable == true:
 				pathfinding.connect_points(item.id, item.lowerRightTile.id)
-			if item.upperLeftTile != null and item.upperLeftTile.passable != false:
+			if item.upperLeftTile != null and item.upperLeftTile.passable != false and item.upperTile.passable == true and  item.leftTile.passable == true:
 				pathfinding.connect_points(item.id, item.upperLeftTile.id)
-			if item.upperRightTile != null and item.upperRightTile.passable != false:
+			if item.upperRightTile != null and item.upperRightTile.passable != false and item.upperTile.passable == true and  item.rightTile.passable == true:
 				pathfinding.connect_points(item.id, item.upperRightTile.id)
 	
 	

@@ -28,8 +28,8 @@ func _ready():
 	game = get_parent()
 	game.game_ended.connect(GameEnded)
 	pathfinding = game.homeBlock.pathfinding
-	
-	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
+	path = startingTile.pathToHQ
+#	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

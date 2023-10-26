@@ -8,7 +8,7 @@ var type: int = 2
 var healthBar
 var healthBarSize: int = 125
 
-var profitGenerationPeriod: float = 0.5
+var profitGenerationPeriod: float = 1
 var profitHolder: float = 1
 
 var placedTile
@@ -86,6 +86,6 @@ func _process(delta):
 		
 	
 func hit(damage):
-	print("drill took ", damage, " damage. Remaining HQ: ", hitPoints)
+	print("drill took ", damage, " damage. Remaining HP: ", hitPoints)
 	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)

@@ -7,7 +7,7 @@ var maxHitPoints: int = 500
 var type: int = 0
 
 var ammoType: int = 0
-var ammoTypeFireRate = [1, 0.9, 1, 1]
+var ammoTypeFireRate = [1, 2, 1, 1]
 var ammoTypeCost = [15, 35, 1, 1]
 
 var targets = []
@@ -185,7 +185,7 @@ func _physics_process(delta):
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
 				for item in hitstuff:
 					if item != null:
-						item.ReceiveHit(randi_range(50, 150))
+						item.ReceiveHit(randi_range(25, 75))
 						
 				game.operationFunds -= ammoTypeCost[1]
 						

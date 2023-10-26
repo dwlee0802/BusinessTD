@@ -30,9 +30,11 @@ var noise3 = FastNoiseLite.new()
 
 var pathfinding = AStar2D.new()
 
+var game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	game = get_parent()
 	tileScene = load("res://Scenes/tile.tscn")
 	GenerateGameboard()
 	
@@ -99,6 +101,16 @@ func _ready():
 				pathfinding.connect_points(item.id, item.upperLeftTile.id)
 			if item.upperRightTile != null and item.upperRightTile.passable != false and item.upperTile.passable == true and  item.rightTile.passable == true:
 				pathfinding.connect_points(item.id, item.upperRightTile.id)
+	
+	for i in range(1, boardWidth):
+		if blockTiles[1][i].passable == true:
+			game.edgeTiles.append(blockTiles[1][i])
+		if blockTiles[-1][i].passable == true:
+			game.edgeTiles.append(blockTiles[-1][i])
+		if blockTiles[i][1].passable == true:
+			game.edgeTiles.append(blockTiles[i][1])
+		if blockTiles[i][-1].passable == true:
+			game.edgeTiles.append(blockTiles[i][-1])
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

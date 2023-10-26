@@ -34,6 +34,8 @@ var noise: float = 0
 var noise2: float = 0
 var noise3: float = 0
 
+var pathToHQ
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game = get_parent().get_parent()

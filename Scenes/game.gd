@@ -50,8 +50,8 @@ var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 20000
-var highestValuePoint: float = 20000
+var operationFunds: float = 10000
+var highestValuePoint: float = 10000
 
 var operationTime: float = 0
 var operationTimeUI
@@ -66,17 +66,7 @@ func _ready():
 	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
-	
-	for i in range(1, homeBlock.boardWidth):
-		if homeBlock.blockTiles[1][i].passable == true:
-			edgeTiles.append(homeBlock.blockTiles[1][i])
-		if homeBlock.blockTiles[1][i].passable == true:
-			edgeTiles.append(homeBlock.blockTiles[-1][i])
-		if homeBlock.blockTiles[1][i].passable == true:
-			edgeTiles.append(homeBlock.blockTiles[i][1])
-		if homeBlock.blockTiles[1][i].passable == true:
-			edgeTiles.append(homeBlock.blockTiles[i][-1])
-			
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -107,7 +97,7 @@ func _process(delta):
 			# randomly spawn enemies at the edge of the map
 			for i in range(int(spawnCount)):
 				var target = playerStructures.pick_random()
-				if target != null:
+				if target != null and target.hitPoints > 0:
 					SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 5)
 				else:
 					target = playerStructures.pick_random()
@@ -207,6 +197,9 @@ func _input(event):
 						playerStructures.append(newHQ)
 						gameStarted = true
 						
+						for item in edgeTiles:
+							item.pathToHQ = homeBlock.pathfinding.get_id_path(item.id, selectedTile.id)
+								
 						return
 					
 					elif buildType == 2:
@@ -253,6 +246,7 @@ func _input(event):
 					else:
 						waitingForBuildLocation = false
 						print("ERROR! Wrong building type!")
+				
 				
 # returns a list of tiles in a N x N square centered at center tile
 # if not possible, returns null

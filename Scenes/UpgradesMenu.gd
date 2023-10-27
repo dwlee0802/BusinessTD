@@ -33,5 +33,8 @@ func _on_upgrades_menu_button_pressed():
 	var options = get_node("Options")
 	options.visible = not options.visible
 
+
 func _on_option_pressed(extra_arg_0):
-	pass # Replace with function body.
+	var options = get_node("Options")
+	options.visible = false
+	

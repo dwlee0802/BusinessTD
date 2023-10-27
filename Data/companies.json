@@ -1,0 +1,54 @@
+{
+  "Companies": [
+	{
+	  "name": "Steeline",
+	  "ID": 0,
+	  "Description": "Steeline is an arms manufacturing company specialized in heavy weaponry and munition."
+	},
+	{
+	  "name": "Windchaser",
+	  "ID": 1,
+	  "Description": "Windchaser is a company with a long standing tradition of making high quality hunting rifles and specialized ammunition."
+	},
+	{
+	  "name": "White Incorporate",
+	  "ID": 2,
+	  "Description": "White Incorporate is a manufacturer of weaponized chemical products."
+	},
+	{
+	  "name": "Precision Interstellar",
+	  "ID": 3,
+	  "Description": "Precision Interstellar is a producer of high precision equipment from long range weapons to spaceships."
+	},
+	{
+	  "name": "Athena Artificial Intelligence",
+	  "ID": 4,
+	  "Description": "Athena Artificial Intelligence specializes in providing AI services tailored to specific domains."
+	},
+	{
+	  "name": "Shield inc.",
+	  "ID": 5,
+	  "Description": "Shield inc. is a prominant producer of armored cars for powerful personnel and militaries."
+	},
+	{
+	  "name": "Beehive",
+	  "ID": 6,
+	  "Description": "Beehive produces drone bots specialized for construction and supplies related services."
+	},
+	{
+	  "name": "Falcon Aero",
+	  "ID": 7,
+	  "Description": "Falcon Aero is an UAV company specialzed in providing security services with weaponized drone bots."
+	},
+	{
+	  "name": "Starmap",
+	  "ID": 8,
+	  "Description": "Starmap is an interstellar company that constructs and operates planetary communication networks."
+	},
+	{
+	  "name": "XENO",
+	  "ID": 9,
+	  "Description": "XENO is a supplier of weapons made with exotic materials."
+	}
+  ]
+}

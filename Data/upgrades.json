@@ -1,0 +1,84 @@
+{
+  "Upgrades": [
+	{
+	  "name": "Armor Piercing",
+	  "ID": 0,
+	  "CompanyID" : 0
+	},
+	{
+	  "name": "High Explosive",
+	  "ID": 1,
+	  "CompanyID" : 0
+	},
+	{
+	  "name": "Incendiary",
+	  "ID": 2,
+	  "CompanyID" : 2
+	},
+	{
+	  "name": "Shotgun",
+	  "ID": 3,
+	  "CompanyID" : 1
+	},
+	{
+	  "name": "Sharpnel",
+	  "ID": 4,
+	  "CompanyID" : 1
+	},
+	{
+	  "name": "Reloading System",
+	  "ID": 5,
+	  "CompanyID" : 3
+	},
+	{
+	  "name": "Composite Barrel",
+	  "ID": 6,
+	  "CompanyID" : 3
+	},
+	{
+	  "name": "Targetting Computers",
+	  "ID": 7,
+	  "CompanyID" : 4
+	},
+	{
+	  "name": "Reaction Armor",
+	  "ID": 8,
+	  "CompanyID" : 5
+	},
+	{
+	  "name": "Drone Assisted Repair",
+	  "ID": 9,
+	  "CompanyID" : 6
+	},
+	{
+	  "name": "Drone Assisted Construction",
+	  "ID": 10,
+	  "CompanyID" : 6
+	},
+	{
+	  "name": "Tar Shells",
+	  "ID": 11,
+	  "CompanyID" : 2
+	},
+	{
+	  "name": "Breach Charge",
+	  "ID": 12,
+	  "CompanyID" : 2
+	},
+	{
+	  "name": "Close Air Support",
+	  "ID": 13,
+	  "CompanyID" : 7
+	},
+	{
+	  "name": "Satellite Relay Network",
+	  "ID": 14,
+	  "CompanyID" : 8
+	},
+	{
+	  "name": "Exo-dimentional Matter",
+	  "ID": 15,
+	  "CompanyID" : 9
+	}
+  ]
+}

@@ -49,6 +49,7 @@ offset_bottom = 190.0
 script = ExtResource("3_sf8ga")
 
 [node name="Options" type="Panel" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu"]
+visible = false
 z_index = -10
 layout_mode = 0
 offset_left = 34.0
@@ -496,8 +497,6 @@ theme_override_font_sizes/normal_font_size = 30
 text = "Paused"
 fit_content = true
 scroll_active = false
-
-[node name="Timer" type="Timer" parent="Camera"]
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 

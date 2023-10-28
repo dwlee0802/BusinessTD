@@ -22,6 +22,9 @@ var targetTile
 var pathCount: int = 0
 var nextTile
 
+var sprite
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
@@ -29,6 +32,7 @@ func _ready():
 	game.game_ended.connect(GameEnded)
 	pathfinding = game.homeBlock.pathfinding
 	path = startingTile.pathToHQ
+	sprite = get_node("UnitSprite")
 #	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +46,7 @@ func _process(delta):
 	
 	if healthBar.scale.x > 32 * hitPoints / maxHitPoints:
 		healthBar.scale.x -= delta * 140
+
 
 var tempHolder: float = 0
 	
@@ -84,7 +89,13 @@ func ReceiveHit(amount):
 	hitPoints -= amount
 #	healthBar.scale.x = 32 * hitPoints / maxHitPoints
 	game.MakeDamagePopup(position, amount, Color.RED)
+	sprite.modulate = Color.RED
+	get_node("Timer").start(0.1)
 	
 
 func GameEnded():
 	queue_free()
+
+
+func _on_timer_timeout():
+	sprite.modulate = Color.WHITE

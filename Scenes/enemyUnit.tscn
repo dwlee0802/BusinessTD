@@ -10,8 +10,6 @@ radius = 16.0
 [node name="EnemyUnit" type="CharacterBody2D"]
 collision_layer = 10
 script = ExtResource("1_e4wf8")
-speed = null
-speedModifier = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fvuth")
@@ -27,3 +25,8 @@ position = Vector2(-16, 18)
 scale = Vector2(32, 3)
 texture = ExtResource("3_ja4bq")
 centered = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

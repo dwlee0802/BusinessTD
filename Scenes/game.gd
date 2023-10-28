@@ -298,8 +298,7 @@ func SpawnEnemy(where, attackWhat, addHealth):
 	
 	
 func ReceiveUpgrades(upgradeID):
-	if upgradeID == 0:
-		print("Upgrade ", upgradeID, " received.")
+	print("Upgrade ", upgradeID, " received.\n")
 	
 	
 func UpdateSupply():

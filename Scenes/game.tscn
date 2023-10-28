@@ -83,15 +83,15 @@ texture = ExtResource("4_al38i")
 
 [node name="Info" type="Label" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/Option1"]
 layout_mode = 0
-offset_left = 9.0
+offset_left = -9.0
 offset_top = -104.0
-offset_right = 124.0
-offset_bottom = -2.0
+offset_right = 141.0
+offset_bottom = -4.0
 theme_override_font_sizes/font_size = 10
 text = "Tar Barrage
 Call in artillery barrage of Tar shells from White Incorporate, making a field of tar that slows down units."
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 3
 
 [node name="Option2" type="Button" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options"]
 layout_mode = 0
@@ -111,10 +111,10 @@ texture = ExtResource("4_al38i")
 
 [node name="Info" type="Label" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/Option2"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = -104.0
-offset_right = 124.0
-offset_bottom = -2.0
+offset_left = -10.0
+offset_top = -105.0
+offset_right = 140.0
+offset_bottom = -3.0
 theme_override_font_sizes/font_size = 10
 text = "Tar Barrage
 Call in artillery barrage of Tar shells from White Incorporate, making a field of tar that slows down units."
@@ -139,9 +139,9 @@ texture = ExtResource("4_al38i")
 
 [node name="Info" type="Label" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/Option3"]
 layout_mode = 0
-offset_left = 9.0
+offset_left = -10.0
 offset_top = -104.0
-offset_right = 124.0
+offset_right = 140.0
 offset_bottom = -2.0
 theme_override_font_sizes/font_size = 10
 text = "Tar Barrage
@@ -514,6 +514,7 @@ scroll_active = false
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/Option3" to="Camera/CanvasLayer/InGameUI/UpgradesMenu" method="_on_option_pressed" binds= [2]]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/RerollButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/RerollButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options/RerollButton" to="Camera/CanvasLayer/InGameUI/UpgradesMenu" method="_on_reroll_button_pressed"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/UpgradesMenuButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/UpgradesMenuButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/InGameUI/UpgradesMenu/UpgradesMenuButton" to="Camera/CanvasLayer/InGameUI/UpgradesMenu" method="_on_upgrades_menu_button_pressed"]

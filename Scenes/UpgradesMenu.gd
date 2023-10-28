@@ -1,10 +1,9 @@
 extends Control
 
-var upgradeCost: int = 10000
+var upgradeCost: int = 5000
 var upgradeCostUI
 
-var rerollCount: int = 0
-var rerollCost: int = 4000
+var rerollCost: int = 2000
 var rerollButton
 
 var options = [-1, -2, -3, -4]
@@ -22,7 +21,7 @@ var OPTIONS_COUNT: int = 3
 
 
 func _ready():
-	game = get_parent().get_parent().get_parent().get_parent().get_parent()
+	game = get_parent().get_parent().get_parent().get_parent()
 	upgradeCostUI = get_node("Options/CostLabel")
 	rerollButton = get_node("Options/RerollButton")
 	optionsUI = get_node("Options")
@@ -36,8 +35,6 @@ func _ready():
 	upgradesDictionary = parse_json(content_as_text1)
 	companiesDictionary = parse_json(content_as_text2)
 	
-	print(upgradesDictionary.Upgrades[0].name)
-	
 	GenerateUpgradeOptions()
 	UpdateUI()
 	
@@ -50,14 +47,14 @@ func GenerateUpgradeOptions(amount = 3):
 	while amount > 0:
 		amount -= 1
 		
-		options[0] = randi_range(0, UPGRADE_COUNT)
-		options[1] = randi_range(0, UPGRADE_COUNT)
+		options[0] = randi_range(0, UPGRADE_COUNT - 1)
+		options[1] = randi_range(0, UPGRADE_COUNT - 1)
 		while options[0] == options[1]:
-			options[1] = randi_range(0, UPGRADE_COUNT)
+			options[1] = randi_range(0, UPGRADE_COUNT - 1)
 		
-		options[2] = randi_range(0, UPGRADE_COUNT)
+		options[2] = randi_range(0, UPGRADE_COUNT - 1)
 		while options[0] == options[1] and options[0] == options[2] and options[1] == options[2]:
-			options[2] = randi_range(0, UPGRADE_COUNT)
+			options[2] = randi_range(0, UPGRADE_COUNT - 1)
 	
 	
 func UpdateUI():
@@ -76,7 +73,18 @@ func _on_upgrades_menu_button_pressed():
 
 
 func _on_option_pressed(extra_arg_0):
-	var options = get_node("Options")
-	options.visible = false
+	var optionsUI = get_node("Options")
+	optionsUI.visible = false
 	
-	game.ReceiveUpgrades()
+	game.ReceiveUpgrades(options[extra_arg_0])
+	
+	upgradeCost *= 2
+	
+	GenerateUpgradeOptions()
+	UpdateUI()
+
+
+func _on_reroll_button_pressed():
+	rerollCost *= 2
+	GenerateUpgradeOptions()
+	UpdateUI()

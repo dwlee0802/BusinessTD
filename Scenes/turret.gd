@@ -197,6 +197,7 @@ func hit(damage):
 	print("hit!")
 	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
+	game.camera.ShakeScreen(10, 7)
 	
 	
 func ChangeFireRate(ammotype):

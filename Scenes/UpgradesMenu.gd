@@ -1,6 +1,6 @@
 extends Control
 
-var upgradeCost: int = 5000
+var upgradeCost: int = 2500
 var upgradeCostUI
 
 var rerollCost: int = 2000
@@ -78,6 +78,7 @@ func _on_option_pressed(extra_arg_0):
 	
 	game.ReceiveUpgrades(options[extra_arg_0])
 	
+	game.operationFunds -= upgradeCost
 	upgradeCost *= 2
 	
 	GenerateUpgradeOptions()
@@ -85,6 +86,7 @@ func _on_option_pressed(extra_arg_0):
 
 
 func _on_reroll_button_pressed():
+	game.operationFunds -= rerollCost
 	rerollCost *= 2
 	GenerateUpgradeOptions()
 	UpdateUI()

@@ -36,12 +36,12 @@ var buildingCosts = [1500, 0, 4000, 1000]
 var spawnRate: float = 30
 var spawnRateHolder: float = 30
 # how many enemies spawn for each wave
-var spawnCount: float = 500
+var spawnCount: float = 200
 # determines the rate in which enemy count increases
 var difficultyScale: float = 1
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 1
-var enemyMaxCount: int = 500
+var enemyMaxCount: int = 200
 var enemyCurrentCount: int = 0
 var enemyCurrentCountUI
 
@@ -62,10 +62,13 @@ var totalValue: float = 5000
 var selectedUpgrades = []
 const UPGRADE_COUNT: int = 16
 
+var camera
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	homeBlock = get_node("MapBlock")
+	camera = get_node("Camera")
 	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")

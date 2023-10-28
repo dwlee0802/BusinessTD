@@ -497,6 +497,8 @@ text = "Paused"
 fit_content = true
 scroll_active = false
 
+[node name="Timer" type="Timer" parent="Camera"]
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UpgradesMenu" to="." method="_on_mouse_entered_ui"]

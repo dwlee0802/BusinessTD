@@ -59,6 +59,9 @@ var operationTimeUI
 # takes into account the cash in value of buildings
 var totalValue: float = 5000
 
+var selectedUpgrades = []
+const UPGRADE_COUNT: int = 16
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,7 +69,11 @@ func _ready():
 	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
-
+	
+	# initialize upgrades array
+	for i in range(UPGRADE_COUNT):
+		selectedUpgrades.append(0)
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -250,6 +257,7 @@ func _input(event):
 				
 # returns a list of tiles in a N x N square centered at center tile
 # if not possible, returns null
+# needs to have more boundary checks
 func GetSquare(center, N):
 	var output = []
 	var col = center.col - int(N/2)
@@ -287,6 +295,11 @@ func SpawnEnemy(where, attackWhat, addHealth):
 	newUnit.targetTile = attackWhat
 	add_child(newUnit)
 	enemyCurrentCount += 1
+	
+	
+func ReceiveUpgrades(upgradeID):
+	if upgradeID == 0:
+		print("Upgrade ", upgradeID, " received.")
 	
 	
 func UpdateSupply():

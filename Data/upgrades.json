@@ -3,82 +3,98 @@
 	{
 	  "name": "Armor Piercing",
 	  "ID": 0,
-	  "CompanyID" : 0
+	  "CompanyID" : 0,
+	  "Description" : "AP rounds from Steeline. Pierces through hit target, damaging everything in a line."
 	},
 	{
 	  "name": "High Explosive",
 	  "ID": 1,
-	  "CompanyID" : 0
+	  "CompanyID" : 0,
+	  "Description" : "HE rounds from Steeline. Explodes on impact, damaging everything nearby."
 	},
 	{
 	  "name": "Incendiary",
 	  "ID": 2,
-	  "CompanyID" : 2
+	  "CompanyID" : 2,
+	  "Description" : "HE rounds from White Incorporate. Sets the target on fire. Deals percentage damage of full health."
 	},
 	{
 	  "name": "Shotgun",
 	  "ID": 3,
-	  "CompanyID" : 1
+	  "CompanyID" : 1,
+	  "Description" : "Shotgun firing mode from Windchaser. Deals more damage when target is closer."
 	},
 	{
 	  "name": "Sharpnel",
 	  "ID": 4,
-	  "CompanyID" : 1
+	  "CompanyID" : 1,
+	  "Description" : "Sharpnel firing mode from Windchaser. Deals more damage when target is further away."
 	},
 	{
 	  "name": "Reloading System",
 	  "ID": 5,
-	  "CompanyID" : 3
+	  "CompanyID" : 3,
+	  "Description" : "Advanced reloading system from Precision Interstellar. Increases attack speed of all turrets."
 	},
 	{
 	  "name": "Composite Barrel",
 	  "ID": 6,
-	  "CompanyID" : 3
+	  "CompanyID" : 3,
+	  "Description" : "Advanced Gun Barrels from Precision Interstellar. Increases attack range of all turrets."
 	},
 	{
 	  "name": "Targetting Computers",
 	  "ID": 7,
-	  "CompanyID" : 4
+	  "CompanyID" : 4,
+	  "Description" : "Improved target acquisition system from A.A.I. Increases the chance to land a critical strike, dealing double damage."
 	},
 	{
-	  "name": "Reaction Armor",
+	  "name": "Explosive Reactive Armour",
 	  "ID": 8,
-	  "CompanyID" : 5
+	  "CompanyID" : 5,
+	  "Description" : "Install Shield inc. ERA system on all structures, increasing their HP by 50 percent."
 	},
 	{
 	  "name": "Drone Assisted Repair",
 	  "ID": 9,
-	  "CompanyID" : 6
+	  "CompanyID" : 6,
+	  "Description" : "Repair services provided by Beehive. Increases speed of repairs."
 	},
 	{
 	  "name": "Drone Assisted Construction",
 	  "ID": 10,
-	  "CompanyID" : 6
+	  "CompanyID" : 6,
+	  "Description" : "Allows construction of barricades. Provided by Beehive."
 	},
 	{
 	  "name": "Tar Shells",
 	  "ID": 11,
-	  "CompanyID" : 2
+	  "CompanyID" : 2,
+	  "Description" : "Call in artillery barrage of Tar shells from White Incorporate, making a field of tar that slows down units."
 	},
 	{
 	  "name": "Breach Charge",
 	  "ID": 12,
-	  "CompanyID" : 2
+	  "CompanyID" : 2,
+	  "Description" : "Powerful charges from White Incorporate that allows removing map features."
 	},
 	{
 	  "name": "Close Air Support",
 	  "ID": 13,
-	  "CompanyID" : 7
+	  "CompanyID" : 7,
+	  "Description" : "Air security services provided by Falcon Aero. Call in combat drones that attack enemies within a zone."
 	},
 	{
-	  "name": "Satellite Relay Network",
+	  "name": "Drone Assisted Logistics",
 	  "ID": 14,
-	  "CompanyID" : 8
+	  "CompanyID" : 6,
+	  "Description" : "Call in Beehive logistics robots to set up a temporary network tower anywhere on the map."
 	},
 	{
 	  "name": "Exo-dimentional Matter",
 	  "ID": 15,
-	  "CompanyID" : 9
+	  "CompanyID" : 9,
+	  "Description" : "Exotic matter rounds that tear space-time. Randomizes target's position and Health."
 	}
   ]
 }

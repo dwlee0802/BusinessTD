@@ -5,7 +5,7 @@ var maxHitPoints: int = 100
 
 var attackTarget
 
-@export var speed: int = 100
+@export var speed: int = 200
 @export var speedModifier: float = 1
 
 var enemyDeathEffect = preload("res://Scenes/explosion_effect.tscn")
@@ -23,7 +23,7 @@ var pathCount: int = 0
 var nextTile
 
 var sprite
-
+var hitAnimation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +33,7 @@ func _ready():
 	pathfinding = game.homeBlock.pathfinding
 	path = startingTile.pathToHQ
 	sprite = get_node("UnitSprite")
+	hitAnimation = get_node("AnimationPlayer")
 #	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,7 +53,7 @@ var tempHolder: float = 0
 	
 func _physics_process(delta):
 	if len(path) - 1 > pathCount:
-		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 1:
+		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 2:
 			pathCount += 1
 	else:
 		# no path!
@@ -91,6 +92,7 @@ func ReceiveHit(amount):
 	game.MakeDamagePopup(position, amount, Color.RED)
 	sprite.modulate = Color.RED
 	get_node("Timer").start(0.1)
+	hitAnimation.play("hit_animation")
 	
 
 func GameEnded():

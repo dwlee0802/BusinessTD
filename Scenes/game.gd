@@ -36,9 +36,9 @@ var buildingCosts = [1500, 0, 4000, 1000]
 var spawnRate: float = 30
 var spawnRateHolder: float = 30
 # how many enemies spawn for each wave
-var spawnCount: float = 200
+var spawnCount: float = 10
 # determines the rate in which enemy count increases
-var difficultyScale: float = 1
+var difficultyScale: float = 1.5
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 1
 var enemyMaxCount: int = 200
@@ -76,7 +76,7 @@ func _ready():
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
 	unitMenu = get_node("Camera/CanvasLayer/InGameUI/UnitMenu")
-	totalValueGraph = get_node("Camera/CanvasLayer/InGameUI/TotalValueGraph/Graph2D")
+	totalValueGraph = get_node("Camera/CanvasLayer/InGameUI/TotalValueGraph/Graph2D").add_plot_item("", Color.GREEN, 1.0)
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):

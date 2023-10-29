@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ficibtmmykyq"]
+[gd_scene load_steps=7 format=3 uid="uid://ficibtmmykyq"]
 
 [ext_resource type="Texture2D" uid="uid://veeg0yrq8o7i" path="res://Art/temp_enemy_sprite.png" id="1_58xrn"]
 [ext_resource type="Script" path="res://Scenes/enemyUnit.gd" id="1_e4wf8"]
@@ -6,6 +6,27 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fvuth"]
 radius = 16.0
+
+[sub_resource type="Animation" id="Animation_oqa0h"]
+resource_name = "hit_animation"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UnitSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4yeh"]
+_data = {
+"hit_animation": SubResource("Animation_oqa0h")
+}
 
 [node name="EnemyUnit" type="CharacterBody2D"]
 collision_layer = 10
@@ -28,5 +49,11 @@ centered = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 2.0
+libraries = {
+"": SubResource("AnimationLibrary_b4yeh")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=10 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="4_al38i"]
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
 [ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
+[ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -20,7 +21,7 @@ script = ExtResource("2_3q2bq")
 
 [node name="GameOverLabel" type="Label" parent="Camera/CanvasLayer"]
 visible = false
-modulate = Color(0.886275, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
 texture_filter = 1
 offset_left = 370.0
 offset_top = 294.0
@@ -31,6 +32,17 @@ text = "Operation Terminated"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/GameOverLabel"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 119.0
+offset_top = 51.0
+offset_right = 290.0
+offset_bottom = 77.0
+text = "Score: 0000000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InGameUI" type="Control" parent="Camera/CanvasLayer"]
 layout_mode = 3
@@ -488,6 +500,26 @@ theme_override_font_sizes/normal_font_size = 30
 text = "Paused"
 fit_content = true
 scroll_active = false
+
+[node name="TotalValueGraph" type="Control" parent="Camera/CanvasLayer/InGameUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Graph2D" type="Control" parent="Camera/CanvasLayer/InGameUI/TotalValueGraph"]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 145.0
+offset_right = 310.0
+offset_bottom = 285.0
+script = ExtResource("8_fjhd7")
+show_x_ticks = false
+show_x_numbers = false
+y_max = 100000.0
+show_y_ticks = false
+show_y_numbers = false
+grid_horizontal_visible = true
+grid_vertical_visible = true
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 

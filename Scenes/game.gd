@@ -58,6 +58,7 @@ var operationTimeUI
 
 # takes into account the cash in value of buildings
 var totalValue: float = 5000
+var totalValueGraph
 
 var selectedUpgrades = []
 const UPGRADE_COUNT: int = 16
@@ -65,6 +66,7 @@ const UPGRADE_COUNT: int = 16
 var camera
 
 var unitMenu
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,6 +76,7 @@ func _ready():
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
 	unitMenu = get_node("Camera/CanvasLayer/InGameUI/UnitMenu")
+	totalValueGraph = get_node("Camera/CanvasLayer/InGameUI/TotalValueGraph/Graph2D")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -119,6 +122,9 @@ func _process(delta):
 				spawnCount = enemyMaxCount
 				enemyDifficultyIncrease += 1
 			spawnRateHolder = 0
+	
+	if int(operationTime) % 10 == 0:
+		totalValueGraph.add_point(Vector2(int(operationTime / 10), totalValue))
 	
 
 func _input(event):
@@ -368,6 +374,7 @@ func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 
 func GameOver():
 	get_node("Camera/CanvasLayer/GameOverLabel").visible = true
+	get_node("Camera/CanvasLayer/GameOverLabel/Label").text = "Score: " + str(totalValue)
 	gameStarted = false
 	emit_signal("game_ended")
 	get_node("Camera/CanvasLayer/InGameUI").visible = false

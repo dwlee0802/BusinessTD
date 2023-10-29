@@ -289,7 +289,7 @@ func UpdateNetwork():
 			
 			
 func GameEnded():
-	queue_free()
+	hitPoints = 0
 
 	
 func _to_string():

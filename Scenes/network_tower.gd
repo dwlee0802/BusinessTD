@@ -41,6 +41,7 @@ func _ready():
 	spriteNode = get_node("Sprite2D")
 	healthBar = get_node("Healthbar")
 	buildTimeLabel = get_node("BuildTime")
+	game.game_ended.connect(GameEnded)
 	
 
 func _process(delta):
@@ -120,4 +121,7 @@ func UpdateSupply():
 			if item.type == 0 or item.type == 2:
 				if item.isSupplied == false:
 					item.isSupplied = true
-			
+
+
+func GameEnded():
+	hitPoints = 0

@@ -29,12 +29,17 @@ var sprite
 var buildTime: float = 10
 var buildTimeLabel
 
+var particles
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
 	game = get_parent()
 	sprite = get_node("Sprite2D")
 	buildTimeLabel = get_node("BuildTime")
+	particles = get_node("CPUParticles2D")
+	game.game_ended.connect(GameEnded)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -71,8 +76,10 @@ func _process(delta):
 		
 	if isSupplied:
 		sprite.modulate = Color.WHITE
+		particles.emitting = true
 	else:
 		sprite.modulate = Color.DIM_GRAY
+		particles.emitting = false
 	
 	if isSupplied:
 		profitHolder -= delta
@@ -82,10 +89,13 @@ func _process(delta):
 			game.operationFunds += revenueAmount
 			profitHolder = profitGenerationPeriod
 			game.MakeDamagePopup(position, revenueAmount, Color.LAWN_GREEN)
-	
 		
 	
 func hit(damage):
 	print("drill took ", damage, " damage. Remaining HP: ", hitPoints)
 	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
+
+
+func GameEnded():
+	hitPoints = 0

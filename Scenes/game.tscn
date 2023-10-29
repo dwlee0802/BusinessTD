@@ -301,20 +301,11 @@ offset_right = 150.0
 offset_bottom = 57.0
 action_mode = 1
 keep_pressed_outside = true
-item_count = 4
+item_count = 1
 selected = 0
 allow_reselect = true
 popup/item_0/text = "Regular"
 popup/item_0/id = 0
-popup/item_1/text = "AP"
-popup/item_1/id = 1
-popup/item_1/disabled = true
-popup/item_2/text = "Incendiary"
-popup/item_2/id = 2
-popup/item_2/disabled = true
-popup/item_3/text = "Incendiary AP"
-popup/item_3/id = 3
-popup/item_3/disabled = true
 
 [node name="Label" type="Label" parent="Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu"]
 layout_mode = 0

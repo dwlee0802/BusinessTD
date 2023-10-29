@@ -64,6 +64,7 @@ const UPGRADE_COUNT: int = 16
 
 var camera
 
+var unitMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,6 +73,7 @@ func _ready():
 	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
+	unitMenu = get_node("Camera/CanvasLayer/InGameUI/UnitMenu")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -167,6 +169,10 @@ func _input(event):
 						newTurret.position = selectedTile.position
 						newTurret.placedTile = selectedTile
 						newTurret.type = 0
+						
+						# modify turret range based on selectedUpgrades
+						var shapenode = newTurret.get_node("ShapeCast2D").shape
+						shapenode.set_radius(shapenode.get_radius() + 100 * selectedUpgrades[6])
 						
 						for row in tiles:
 							for tile in row:
@@ -303,6 +309,47 @@ func SpawnEnemy(where, attackWhat, addHealth):
 func ReceiveUpgrades(upgradeID):
 	print("Upgrade ", upgradeID, " received.\n")
 	
+	selectedUpgrades[upgradeID] += 1
+	
+	if upgradeID == 0:
+		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("AP", 1)
+	if upgradeID == 1:
+		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("HE", 2)
+	if upgradeID == 2:
+		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Incendiary", 3)
+	if upgradeID == 3:
+		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Shotgun", 4)
+	if upgradeID == 4:
+		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Sharpnel", 5)
+	if upgradeID == 5:
+		Turret.fireRate *= 0.9
+	if upgradeID == 6:
+		# increase range of existing turrets
+		for item in playerStructures:
+			if item.type == 0 or item.type == 1:
+				var shapenode = item.get_node("ShapeCast2D").shape
+				item.get_node("ShapeCast2D").shape.set_radius(shapenode.get_radius() + 100)
+		
+		# newly made turrets will have their range modified by selectedUpgrades
+	if upgradeID == 7:
+		Turret.criticalChance += 0.1
+	if upgradeID == 8:
+		Turret.maxHitPoints = Turret.maxHitPoints * 1.5
+	if upgradeID == 9:
+		pass
+	if upgradeID == 10:
+		pass
+	if upgradeID == 11:
+		pass
+	if upgradeID == 12:
+		pass
+	if upgradeID == 13:
+		pass
+	if upgradeID == 14:
+		pass
+	if upgradeID == 15:
+		pass
+	
 	
 func UpdateSupply():
 	for item in playerStructures:
@@ -370,7 +417,7 @@ func _on_attack_speed_button_pressed(extra_arg_0):
 
 
 func _on_option_button_item_selected(index):
-	selectedUnit.ChangeAmmoType(index)
+	selectedUnit.ChangeAmmoType(get_node("Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton").get_item_id(index))
 	get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
 	mouseInUI = false
 

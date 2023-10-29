@@ -1,19 +1,23 @@
 extends CharacterBody2D
 
+class_name Turret
+
 var hitPoints: int = 500
-var maxHitPoints: int = 500
+static var maxHitPoints: int = 500
 
 # 0: turret, 1: HQ, 2: Drill
 var type: int = 0
 
 var ammoType: int = 0
-var ammoTypeFireRate = [1, 2, 1, 1]
-var ammoTypeCost = [15, 35, 1, 1]
+static var ammoTypeFireRate = [1, 3, 1, 1, 1]
+static var ammoTypeCost = [15, 35, 1, 1, 1]
+static var ammoTypeDamageRange = [[50, 100], [25,75]]
+static var criticalChance: float = 0.1
 
 var targets = []
 
 # time in seconds between each shots
-var fireRate: float = 0.25
+static var fireRate: float = 0.25
 var fireRateHolder: float = 0
 var fireRateModifier: float = 1
 var fireRateMode: int = 1
@@ -177,15 +181,19 @@ func _physics_process(delta):
 		if currentTarget != null:
 			get_node("TurretBarrelSprite").rotation = global_position.angle_to_point(currentTarget.position)
 		
+			var crit = 1
+			if randf() < criticalChance:
+				crit = 2
+				
 			# attack target
 			if ammoType == 0:
-				currentTarget.ReceiveHit(randi_range(50, 150))
+				currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][0]))
 				game.operationFunds -= ammoTypeCost[0]
 			elif ammoType == 1:
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
 				for item in hitstuff:
 					if item != null:
-						item.ReceiveHit(randi_range(25, 75))
+						item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][0]))
 						
 				game.operationFunds -= ammoTypeCost[1]
 						
@@ -229,10 +237,10 @@ func ChangeAmmoType(ammotype):
 		print("changed ammo to AP")
 		get_node("TurretBarrelSprite/APAreaSprite").visible = true
 	# Incendiary
-	if ammoType == 2:
+	if ammoType == 3:
 		print("changed ammo to Incendiary")
 	# Incendiary AP
-	if ammoType == 2:
+	if ammoType == 4:
 		print("changed ammo to Incendiary AP")
 	
 	

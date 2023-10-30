@@ -86,10 +86,14 @@ func _physics_process(delta):
 		tempHolder = 0
 	
 			
-func ReceiveHit(amount):
+func ReceiveHit(amount, isCrit = false):
 	hitPoints -= amount
 #	healthBar.scale.x = 32 * hitPoints / maxHitPoints
-	game.MakeDamagePopup(position, amount, Color.RED)
+	if isCrit:
+		game.MakeDamagePopup(position, amount, Color.DARK_ORANGE)
+	else:
+		game.MakeDamagePopup(position, amount, Color.RED)
+		
 	sprite.modulate = Color.RED
 	get_node("Timer").start(0.1)
 	hitAnimation.play("hit_animation")

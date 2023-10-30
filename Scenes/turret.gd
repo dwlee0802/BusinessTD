@@ -11,7 +11,7 @@ var type: int = 0
 var ammoType: int = 0
 static var ammoTypeFireRate = [1, 3, 1, 1, 1]
 static var ammoTypeCost = [15, 35, 1, 1, 1]
-static var ammoTypeDamageRange = [[50, 100], [25,75]]
+static var ammoTypeDamageRange = [[25, 75], [10,30]]
 static var criticalChance: float = 0.1
 
 var targets = []
@@ -187,13 +187,20 @@ func _physics_process(delta):
 				
 			# attack target
 			if ammoType == 0:
-				currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][0]))
+				if crit == 1:
+					currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]))
+				else:
+					currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), true)
+									
 				game.operationFunds -= ammoTypeCost[0]
 			elif ammoType == 1:
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
 				for item in hitstuff:
 					if item != null:
-						item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][0]))
+						if crit == 1:
+							item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]))
+						else:
+							item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), true)
 						
 				game.operationFunds -= ammoTypeCost[1]
 						

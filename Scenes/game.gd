@@ -30,7 +30,7 @@ var playerStructures = []
 var buildingSizeN = [3, 7, 5, 3]
 
 # upfront cost of buildings
-var buildingCosts = [1500, 0, 4000, 1000]
+var buildingCosts = [3000, 0, 6000, 1500]
 
 # the time between each enemy wave
 var spawnRate: float = 30
@@ -38,10 +38,10 @@ var spawnRateHolder: float = 30
 # how many enemies spawn for each wave
 var spawnCount: float = 10
 # determines the rate in which enemy count increases
-var difficultyScale: float = 1.5
+var difficultyScale: float = 1.35
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 1
-var enemyMaxCount: int = 200
+var enemyMaxCount: int = 500
 var enemyCurrentCount: int = 0
 var enemyCurrentCountUI
 
@@ -110,10 +110,10 @@ func _process(delta):
 		
 		if spawnRateHolder > spawnRate:
 			# randomly spawn enemies at the edge of the map
-			for i in range(int(spawnCount)):
+			for i in range(15 + int(spawnCount)):
 				var target = playerStructures.pick_random()
 				if target != null and target.hitPoints > 0:
-					SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 5)
+					SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 10)
 				else:
 					target = playerStructures.pick_random()
 					
@@ -332,7 +332,7 @@ func ReceiveUpgrades(upgradeID):
 	if upgradeID == 6:
 		# increase range of existing turrets
 		for item in playerStructures:
-			if item.type == 0 or item.type == 1:
+			if item != null and item.type == 0 or item.type == 1:
 				var shapenode = item.get_node("ShapeCast2D").shape
 				item.get_node("ShapeCast2D").shape.set_radius(shapenode.get_radius() + 100)
 		

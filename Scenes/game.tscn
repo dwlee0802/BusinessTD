@@ -502,6 +502,7 @@ fit_content = true
 scroll_active = false
 
 [node name="TotalValueGraph" type="Control" parent="Camera/CanvasLayer/InGameUI"]
+modulate = Color(1, 1, 1, 0.596078)
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -513,11 +514,11 @@ offset_top = 145.0
 offset_right = 310.0
 offset_bottom = 285.0
 script = ExtResource("8_fjhd7")
-x_max = 60.0
+x_max = 120.0
 show_x_ticks = false
 show_x_numbers = false
+y_min = -20000.0
 y_max = 100000.0
-show_y_ticks = false
 show_y_numbers = false
 grid_horizontal_visible = true
 grid_vertical_visible = true

@@ -85,14 +85,15 @@ func _process(delta):
 		profitHolder -= delta
 		
 		if profitHolder <= 0:
-			revenueAmount = randi_range(50, 150)
-			game.operationFunds += revenueAmount
+#			revenueAmount = randi_range(50, 150)
+#			game.operationFunds += revenueAmount
+			Market.AddCrystals(randi_range(0, 4))
 			profitHolder = profitGenerationPeriod
-			game.MakeDamagePopup(position, revenueAmount, Color.LAWN_GREEN)
+#			game.MakeDamagePopup(position, revenueAmount, Color.LAWN_GREEN)
 		
 	
 func hit(damage):
-	print("drill took ", damage, " damage. Remaining HP: ", hitPoints)
+	print("Drill took ", damage, " damage. Remaining HP: ", hitPoints, "\n")
 	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
 

@@ -4,55 +4,64 @@
 	  "name": "Armor Piercing",
 	  "ID": 0,
 	  "CompanyID" : 0,
-	  "Description" : "AP rounds from Steeline. Pierces through hit target, damaging everything in a line."
+	  "Description" : "AP rounds from Steeline. Pierces through hit target, damaging everything in a line.",
+	  "Consumption" : [1,0,0]
 	},
 	{
 	  "name": "High Explosive",
 	  "ID": 1,
 	  "CompanyID" : 0,
-	  "Description" : "HE rounds from Steeline. Explodes on impact, damaging everything nearby."
+	  "Description" : "HE rounds from Steeline. Explodes on impact, damaging everything nearby.",
+	  "Consumption" : [0,1,0]
 	},
 	{
 	  "name": "Incendiary",
 	  "ID": 2,
 	  "CompanyID" : 2,
-	  "Description" : "HE rounds from White Incorporate. Sets the target on fire. Deals percentage damage of full health."
+	  "Description" : "HE rounds from White Incorporate. Sets the target on fire. Deals percentage damage of full health.",
+	  "Consumption" : [0,1,0]
 	},
 	{
 	  "name": "Shotgun",
 	  "ID": 3,
 	  "CompanyID" : 1,
-	  "Description" : "Shotgun firing mode from Windchaser. Deals more damage when target is closer."
+	  "Description" : "Shotgun firing mode from Windchaser. Deals more damage when target is closer.",
+	  "Consumption" : [1,0,0]
 	},
 	{
 	  "name": "Sharpnel",
 	  "ID": 4,
 	  "CompanyID" : 1,
-	  "Description" : "Sharpnel firing mode from Windchaser. Deals more damage when target is further away."
+	  "Description" : "Sharpnel firing mode from Windchaser. Deals more damage when target is further away.",
+	  "Consumption" : [1,0,0]
 	},
 	{
 	  "name": "Reloading System",
 	  "ID": 5,
 	  "CompanyID" : 3,
-	  "Description" : "Advanced reloading system from Precision Interstellar. Increases attack speed of all turrets."
+	  "Description" : "Advanced reloading system from Precision Interstellar. Increases attack speed of all turrets.",
+	  "Consumption" : [0,0,1]
 	},
 	{
 	  "name": "Composite Barrel",
 	  "ID": 6,
 	  "CompanyID" : 3,
-	  "Description" : "Advanced Gun Barrels from Precision Interstellar. Increases attack range of all turrets."
+	  "Description" : "Advanced Gun Barrels from Precision Interstellar. Increases attack range of all turrets.",
+	  "Consumption" : [1,0,0]
 	},
 	{
 	  "name": "Targetting Computers",
 	  "ID": 7,
 	  "CompanyID" : 4,
-	  "Description" : "Improved target acquisition system from A.A.I. Increases the chance to land a critical strike, dealing double damage."
+	  "Description" : "Improved target acquisition system from A.A.I. Increases the chance to land a critical strike, dealing double damage.",
+	  "Consumption" : [0,0,1]
 	},
 	{
 	  "name": "Explosive Reactive Armour",
 	  "ID": 8,
 	  "CompanyID" : 5,
-	  "Description" : "Install Shield inc. ERA system on all structures, increasing their HP by 50 percent."
+	  "Description" : "Install Shield inc. ERA system on all structures, increasing their HP by 50 percent.",
+	  "Consumption" : [1,1,0]
 	},
 	{
 	  "name": "Drone Assisted Repair",

@@ -21,7 +21,6 @@ var shake_strength: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game = get_parent()
-	timer = get_node("Timer")
 	var board = game.get_node("MapBlock")
 	tileSize = board.TILESIZE
 	noise.frequency = 2

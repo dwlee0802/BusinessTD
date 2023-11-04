@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=10 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -9,13 +9,12 @@
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
 [ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
 [ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
-[ext_resource type="Script" path="res://Scenes/Market.gd" id="9_pml1c"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(576, 328)
+position = Vector2(803, 453)
 script = ExtResource("2_3q2bq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
@@ -24,10 +23,10 @@ script = ExtResource("2_3q2bq")
 visible = false
 self_modulate = Color(1, 0, 0, 1)
 texture_filter = 1
-offset_left = 370.0
-offset_top = 294.0
-offset_right = 801.0
-offset_bottom = 352.0
+offset_left = 600.0
+offset_top = 400.0
+offset_right = 1031.0
+offset_bottom = 458.0
 theme_override_font_sizes/font_size = 35
 text = "Operation Terminated"
 horizontal_alignment = 1
@@ -55,19 +54,20 @@ offset_bottom = 47.0
 
 [node name="UpgradesMenu" type="Control" parent="Camera/CanvasLayer/InGameUI"]
 anchors_preset = 0
-offset_left = 176.0
-offset_top = 150.0
-offset_right = 216.0
-offset_bottom = 190.0
+offset_left = 162.0
+offset_top = 410.0
+offset_right = 202.0
+offset_bottom = 450.0
 script = ExtResource("3_sf8ga")
 
 [node name="Options" type="Panel" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu"]
 visible = false
 z_index = -10
 layout_mode = 0
-offset_left = 34.0
-offset_right = 761.0
-offset_bottom = 314.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 577.0
+offset_bottom = 274.0
 
 [node name="Label" type="Label" parent="Camera/CanvasLayer/InGameUI/UpgradesMenu/Options"]
 layout_mode = 0
@@ -192,10 +192,10 @@ text = "Upgrades"
 
 [node name="BuildMenu" type="Control" parent="Camera/CanvasLayer/InGameUI"]
 anchors_preset = 0
-offset_left = 41.0
-offset_top = 550.0
-offset_right = 81.0
-offset_bottom = 590.0
+offset_left = 40.0
+offset_top = 800.0
+offset_right = 80.0
+offset_bottom = 840.0
 
 [node name="BuildButton" type="Button" parent="Camera/CanvasLayer/InGameUI/BuildMenu"]
 layout_mode = 0
@@ -259,10 +259,10 @@ mouse_filter = 2
 
 [node name="UnitMenu" type="Label" parent="Camera/CanvasLayer/InGameUI"]
 layout_mode = 0
-offset_left = 833.0
-offset_top = 500.0
-offset_right = 973.0
-offset_bottom = 531.0
+offset_left = 1275.0
+offset_top = 751.0
+offset_right = 1415.0
+offset_bottom = 782.0
 theme_override_font_sizes/font_size = 20
 text = "Building Menu"
 script = ExtResource("5_tkslb")
@@ -411,7 +411,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 28.6
 anchor_right = 28.6
-offset_bottom = 40.0
+offset_left = 388.0
+offset_top = 5.0
+offset_right = 451.0
+offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 20
 text = "Abort"
@@ -451,8 +454,8 @@ text = "Abort Operation?"
 
 [node name="OperationTimeUI" type="Label" parent="Camera/CanvasLayer/InGameUI"]
 layout_mode = 0
-offset_left = 539.0
-offset_right = 580.0
+offset_left = 800.0
+offset_right = 841.0
 offset_bottom = 26.0
 text = "00:00"
 
@@ -475,10 +478,10 @@ scale = Vector2(7.60074, 3.08)
 
 [node name="EnemyCountLabel" type="Label" parent="Camera/CanvasLayer/InGameUI"]
 layout_mode = 0
-offset_left = 987.0
-offset_top = 49.0
-offset_right = 1137.0
-offset_bottom = 75.0
+offset_left = 1438.0
+offset_top = 53.0
+offset_right = 1588.0
+offset_bottom = 79.0
 text = "Enemy Count: 0000"
 
 [node name="Background" type="Panel" parent="Camera/CanvasLayer/InGameUI/EnemyCountLabel"]
@@ -513,7 +516,7 @@ anchors_preset = 0
 offset_left = 4.0
 offset_top = 145.0
 offset_right = 310.0
-offset_bottom = 285.0
+offset_bottom = 346.0
 script = ExtResource("8_fjhd7")
 x_max = 120.0
 show_x_ticks = false
@@ -524,12 +527,119 @@ show_y_numbers = false
 grid_horizontal_visible = true
 grid_vertical_visible = true
 
-[node name="Market" type="Control" parent="Camera/CanvasLayer"]
+[node name="MarketUI" type="Control" parent="Camera/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("9_pml1c")
+offset_left = 5.0
+offset_top = 356.0
+offset_right = 215.0
+offset_bottom = 467.0
+
+[node name="CrystalsUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/MarketUI/CrystalsUI"]
+self_modulate = Color(1, 0.627451, 0.996078, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_right = 145.0
+offset_bottom = 26.0
+text = "Crystals: 000 / 250"
+
+[node name="CrystalPriceUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
+offset_left = 164.0
+offset_right = 209.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/MarketUI/CrystalPriceUI"]
+self_modulate = Color(1, 0.627451, 0.996078, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_right = 145.0
+offset_bottom = 26.0
+text = "80"
+
+[node name="ConsumptionUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 164.0
+offset_bottom = 111.0
+
+[node name="Title" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 108.0
+offset_bottom = 26.0
+text = "Consumption"
+
+[node name="SteelConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
+self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 109.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "Steel: 000"
+
+[node name="GasConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
+self_modulate = Color(1, 0.00392157, 0, 1)
+offset_left = 5.0
+offset_top = 42.0
+offset_right = 109.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "Gas: 000"
+
+[node name="SemiconductorConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
+modulate = Color(0.305882, 1, 0.596078, 1)
+offset_left = 5.0
+offset_top = 62.0
+offset_right = 158.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 12
+text = "Semiconductor: 000"
+
+[node name="PriceUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
+offset_left = 164.0
+offset_top = 27.0
+offset_right = 209.0
+offset_bottom = 111.0
+
+[node name="SteelConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/PriceUI"]
+self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 109.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "0000"
+
+[node name="GasConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/PriceUI"]
+self_modulate = Color(1, 0.00392157, 0, 1)
+offset_left = 5.0
+offset_top = 42.0
+offset_right = 109.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "0000"
+
+[node name="SemiconductorConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/PriceUI"]
+modulate = Color(0.305882, 1, 0.596078, 1)
+offset_left = 5.0
+offset_top = 62.0
+offset_right = 158.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 12
+text = "0000"
+
+[node name="SellButton" type="Button" parent="Camera/CanvasLayer/MarketUI"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 114.0
+offset_bottom = 143.0
+text = "Sell All Crystals"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
@@ -599,3 +709,7 @@ script = ExtResource("9_pml1c")
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/Background" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/EnemyCountLabel/Background" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/EnemyCountLabel/Background" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_mouse_exited_ui"]

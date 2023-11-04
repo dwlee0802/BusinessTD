@@ -67,9 +67,15 @@ var camera
 
 var unitMenu
 
+# time between market update
+var marketUpdateTime: float = 5
+var marketUpdateTimeHolder: float = 0
+
+var marketUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Market.game = self
 	homeBlock = get_node("MapBlock")
 	camera = get_node("Camera")
 	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
@@ -77,6 +83,7 @@ func _ready():
 	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
 	unitMenu = get_node("Camera/CanvasLayer/InGameUI/UnitMenu")
 	totalValueGraph = get_node("Camera/CanvasLayer/InGameUI/TotalValueGraph/Graph2D").add_plot_item("", Color.GREEN, 1.0)
+	marketUI = get_node("Camera/CanvasLayer/MarketUI")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -87,6 +94,15 @@ func _ready():
 func _process(delta):
 	enemyCurrentCountUI.text = "Enemy count: " + str(enemyCurrentCount)
 	
+	if gameStarted == true:
+		marketUpdateTimeHolder -= delta
+		if marketUpdateTimeHolder <= 0:
+			marketUpdateTimeHolder = marketUpdateTime
+			Market.SupplyGrowth()
+			Market.UpdatePrices()
+			UpdateMarketUI()
+		
+	# update operation time and player finance ui
 	if not playerStructures.is_empty():
 		operationTime += delta
 		operationTimeUI.text = str(int(operationTime)) + ":" + str(int(operationTime * 100) % 100)
@@ -104,6 +120,7 @@ func _process(delta):
 	get_node("Camera/CanvasLayer/InGameUI/MoneyLabel").text = "Current Funds: " + str(int(operationFunds))
 	get_node("Camera/CanvasLayer/InGameUI/Total Value").text = "Current Value: " + str(int(totalValue))
 	
+	# spawn enemy wave
 	if not playerStructures.is_empty() and gameStarted == true:
 		gameStarted = true
 		spawnRateHolder += delta
@@ -123,6 +140,7 @@ func _process(delta):
 				enemyDifficultyIncrease += 1
 			spawnRateHolder = 0
 	
+	# add data point to graph
 	if int(operationTime) % 10 == 0:
 		totalValueGraph.add_point(Vector2(int(operationTime / 10), totalValue))
 	
@@ -394,6 +412,13 @@ func AbortOperation():
 			item.queue_free()
 		
 	GameOver()
+	
+	
+func UpdateMarketUI():
+	marketUI.get_node("CrystalsUI/Label").text = "Crystals: " + str(Market.playerCrystals) + " / " + str(Market.maxCrystalStorage)
+	marketUI.get_node("CrystalPriceUI/Label").text = str(Market.crystalPrice)
+	marketUI.get_node("CrystalsUI/Label").text = "Crystals: " + str(Market.playerCrystals) + " / " + str(Market.maxCrystalStorage)
+	marketUI.get_node("CrystalsUI/Label").text = "Crystals: " + str(Market.playerCrystals) + " / " + str(Market.maxCrystalStorage)
 	
 
 func _on_build_turret_option_pressed(extra_arg_0):

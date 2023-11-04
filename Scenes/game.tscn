@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=11 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
 [ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
 [ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
+[ext_resource type="Script" path="res://Scenes/Market.gd" id="9_pml1c"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -522,6 +523,13 @@ y_max = 100000.0
 show_y_numbers = false
 grid_horizontal_visible = true
 grid_vertical_visible = true
+
+[node name="Market" type="Control" parent="Camera/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_pml1c")
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 

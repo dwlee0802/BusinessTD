@@ -649,16 +649,53 @@ offset_bottom = 88.0
 theme_override_font_sizes/font_size = 12
 text = "0000"
 
-[node name="SellButton" type="CheckButton" parent="Camera/CanvasLayer/MarketUI"]
+[node name="AutosellUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 113.0
-offset_right = 133.0
-offset_bottom = 150.0
+offset_top = 114.0
+offset_right = 256.0
+offset_bottom = 177.0
+
+[node name="MinimumSellPrice" type="Label" parent="Camera/CanvasLayer/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 28.0
+offset_right = 155.0
+offset_bottom = 54.0
+text = "Minimum sell price:"
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 29.0
+offset_right = 200.0
+offset_bottom = 55.0
+text = "100"
+
+[node name="Increase" type="Button" parent="Camera/CanvasLayer/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 26.0
+offset_right = 223.0
+offset_bottom = 57.0
+text = "-"
+
+[node name="Decrease" type="Button" parent="Camera/CanvasLayer/MarketUI/AutosellUI"]
+offset_left = 227.0
+offset_top = 26.0
+offset_right = 253.0
+offset_bottom = 57.0
+text = "+"
+
+[node name="SellButton" type="CheckButton" parent="Camera/CanvasLayer/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -1.0
+offset_right = 136.0
+offset_bottom = 36.0
 text = "Hold"
 expand_icon = true
 
-[node name="Label" type="Label" parent="Camera/CanvasLayer/MarketUI/SellButton"]
+[node name="Label" type="Label" parent="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton"]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 7.0
@@ -736,6 +773,12 @@ text = "Sell"
 [connection signal="mouse_exited" from="Camera/CanvasLayer/InGameUI/EnemyCountLabel/Background" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI" to="." method="_on_mouse_exited_ui"]
-[connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_mouse_entered_ui"]
-[connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_mouse_exited_ui"]
-[connection signal="pressed" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/AutosellUI/Increase" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/AutosellUI/Increase" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/MarketUI/AutosellUI/Increase" to="." method="_on_increase_pressed" binds= [false]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/AutosellUI/Decrease" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/AutosellUI/Decrease" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/MarketUI/AutosellUI/Decrease" to="." method="_on_increase_pressed" binds= [true]]
+[connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]

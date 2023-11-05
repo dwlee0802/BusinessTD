@@ -95,7 +95,7 @@ func _process(delta):
 	enemyCurrentCountUI.text = "Enemy count: " + str(enemyCurrentCount)
 	
 	if gameStarted == true:
-		if Market.autoSell == true:
+		if Market.autoSell == true and Market.crystalPrice >= Market.minSellPrice:
 			Market.SellCrystals()
 			
 		marketUpdateTimeHolder -= delta
@@ -434,6 +434,8 @@ func UpdateMarketUI():
 	marketUI.get_node("PriceUI/SteelConsumed").text = str(Market.marketPrices[0])
 	marketUI.get_node("PriceUI/GasConsumed").text = str(Market.marketPrices[1])
 	marketUI.get_node("PriceUI/SemiconductorConsumed").text = str(Market.marketPrices[2])
+	
+	marketUI.get_node("AutosellUI/Label").text = str(Market.minSellPrice)
 
 
 func _on_build_turret_option_pressed(extra_arg_0):
@@ -486,3 +488,16 @@ func _on_sell_crystals_button_pressed():
 	Market.autoSell = not Market.autoSell
 	UpdateMarketUI()
 	
+
+
+func _on_increase_pressed(extra_arg_0):
+	if extra_arg_0 == true:
+		Market.minSellPrice += 1
+	else:
+		Market.minSellPrice -= 1
+		if Market.minSellPrice < 0:
+			Market.minSellPrice = 0
+
+	UpdateMarketUI()		
+		
+		

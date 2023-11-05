@@ -29,7 +29,9 @@ _data = {
 }
 
 [node name="EnemyUnit" type="CharacterBody2D"]
+disable_mode = 2
 collision_layer = 10
+motion_mode = 1
 script = ExtResource("1_e4wf8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -25,6 +25,8 @@ var nextTile
 var sprite
 var hitAnimation
 
+var dead: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
@@ -38,11 +40,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if dead:
+		return
+		
 	if hitPoints <= 0:
 		var eff = enemyDeathEffect.instantiate()
 		eff.global_position = position
 		game.add_child(eff)
-		game.enemyCurrentCount -= 1
+		Die()
 		queue_free()
 	
 	if healthBar.scale.x > 32 * hitPoints / maxHitPoints:
@@ -52,6 +57,9 @@ func _process(delta):
 var tempHolder: float = 0
 	
 func _physics_process(delta):
+	if dead:
+		return
+		
 	if len(path) - 1 > pathCount:
 		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 2:
 			pathCount += 1
@@ -102,6 +110,24 @@ func ReceiveHit(amount, isCrit = false):
 func GameEnded():
 	queue_free()
 
+
+func Die():
+	game.enemyCurrentCount -= 1
+	game.deadEnemies.append(self)
+	sprite.visible = false
+	set_physics_process(false)
+	healthBar.visible = false
+	dead = true
+
+
+func Revive():
+	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
+	pathCount = 0
+	sprite.visible = true
+	set_physics_process(true)
+	healthBar.visible = true
+	dead = false
+	
 
 func _on_timer_timeout():
 	sprite.modulate = Color.WHITE

@@ -45,6 +45,8 @@ var enemyMaxCount: int = 500
 var enemyCurrentCount: int = 0
 var enemyCurrentCountUI
 
+var deadEnemies = []
+
 var gameStarted: bool = false
 var gamePaused: bool = true
 
@@ -121,6 +123,7 @@ func _process(delta):
 	get_node("Camera/CanvasLayer/InGameUI/MoneyLabel").text = "Current Funds: " + str(int(operationFunds))
 	get_node("Camera/CanvasLayer/InGameUI/Total Value").text = "Current Value: " + str(int(totalValue))
 	
+	
 	# spawn enemy wave
 	if not playerStructures.is_empty() and gameStarted == true:
 		gameStarted = true
@@ -128,18 +131,22 @@ func _process(delta):
 		
 		if spawnRateHolder > spawnRate:
 			# randomly spawn enemies at the edge of the map
-			for i in range(15 + int(spawnCount)):
+			
+			if enemyCurrentCount <= spawnCount + 10:
 				var target = playerStructures.pick_random()
 				if target != null and target.hitPoints > 0:
+					# spawn more
 					SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 10)
 				else:
 					target = playerStructures.pick_random()
+			else:
+				spawnCount *= difficultyScale
+				if spawnCount > enemyMaxCount:
+					spawnCount = enemyMaxCount
+					enemyDifficultyIncrease += 1
 					
-			spawnCount *= difficultyScale
-			if spawnCount > enemyMaxCount:
-				spawnCount = enemyMaxCount
-				enemyDifficultyIncrease += 1
-			spawnRateHolder = 0
+				spawnRateHolder = 0
+	
 	
 	# add data point to graph
 	if int(operationTime) % 10 == 0:

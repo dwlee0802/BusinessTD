@@ -81,6 +81,7 @@ func _on_option_pressed(extra_arg_0):
 	game.operationFunds -= upgradeCost
 	upgradeCost *= 2
 	
+	game._on_mouse_exited_ui()
 	GenerateUpgradeOptions()
 	UpdateUI()
 

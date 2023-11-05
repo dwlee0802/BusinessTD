@@ -38,6 +38,7 @@ func _ready():
 	hitAnimation = get_node("AnimationPlayer")
 	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if dead:
@@ -113,7 +114,6 @@ func GameEnded():
 
 func Die():
 	game.enemyCurrentCount -= 1
-	game.deadEnemies.append(self)
 	sprite.visible = false
 	set_physics_process(false)
 	healthBar.visible = false

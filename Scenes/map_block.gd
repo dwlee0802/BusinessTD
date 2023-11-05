@@ -39,9 +39,9 @@ func _ready():
 	GenerateGameboard()
 	
 	randomize()
-	noise.seed = 2
-	noise2.seed = 5
-	noise2.seed = 7
+	noise.seed = randi()
+	noise2.seed = randi()
+	noise2.seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise2.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise3.noise_type = FastNoiseLite.TYPE_PERLIN
@@ -66,7 +66,7 @@ func _ready():
 			if noise_level2 < 0.34:
 				blockTiles[y][x].isSlowDown = true
 				sprite.modulate = Color.WEB_GRAY
-			if noise_level > 0.55:
+			if noise_level > 0.535:
 				blockTiles[y][x].occupied = true
 				blockTiles[y][x].passable = false
 				sprite.modulate = Color.BLACK

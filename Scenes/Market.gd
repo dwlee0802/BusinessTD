@@ -83,3 +83,7 @@ static func AddCrystals(amount):
 		game.operationFunds += overflow * crystalPrice
 		print("Sold overflow of ", overflow, " at price of ", crystalPrice, "\n")
 		playerCrystals = maxCrystalStorage
+
+
+static func ModifierFromDifference(diff):
+	pass

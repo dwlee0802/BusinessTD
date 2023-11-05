@@ -680,6 +680,7 @@ offset_bottom = 57.0
 text = "-"
 
 [node name="Decrease" type="Button" parent="Camera/CanvasLayer/MarketUI/AutosellUI"]
+layout_mode = 0
 offset_left = 227.0
 offset_top = 26.0
 offset_right = 253.0

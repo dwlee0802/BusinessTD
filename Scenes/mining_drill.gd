@@ -98,6 +98,7 @@ func hit(damage):
 	print("Drill took ", damage, " damage. Remaining HP: ", hitPoints, "\n")
 	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)
+	game.camera.ShakeScreen(10, 7)
 
 
 func GameEnded():

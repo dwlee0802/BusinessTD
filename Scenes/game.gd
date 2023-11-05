@@ -38,22 +38,20 @@ var spawnRateHolder: float = 30
 # how many enemies spawn for each wave
 var spawnCount: float = 10
 # determines the rate in which enemy count increases
-var difficultyScale: float = 1.35
+var difficultyScale: float = 1.30
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 1
-var enemyMaxCount: int = 500
+var enemyMaxCount: int = 1000
 var enemyCurrentCount: int = 0
 var enemyCurrentCountUI
-
-var deadEnemies = []
 
 var gameStarted: bool = false
 var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 10000
-var highestValuePoint: float = 10000
+var operationFunds: float = 100000
+var highestValuePoint: float = 100000
 
 var operationTime: float = 0
 var operationTimeUI
@@ -349,24 +347,26 @@ func SpawnEnemy(where, attackWhat, addHealth):
 func ReceiveUpgrades(upgradeID):
 	print("Upgrade ", upgradeID, " received.\n")
 	
+	if selectedUpgrades[upgradeID] == 0:
+		if upgradeID == 0:
+			unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("AP", 1)
+		if upgradeID == 1:
+			unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("HE", 2)
+		if upgradeID == 2:
+			unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Incendiary", 3)
+		if upgradeID == 3:
+			unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Shotgun", 4)
+		if upgradeID == 4:
+			unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Sharpnel", 5)
+		
 	selectedUpgrades[upgradeID] += 1
 	
-	if upgradeID == 0:
-		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("AP", 1)
-	if upgradeID == 1:
-		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("HE", 2)
-	if upgradeID == 2:
-		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Incendiary", 3)
-	if upgradeID == 3:
-		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Shotgun", 4)
-	if upgradeID == 4:
-		unitMenu.get_node("AmmoChoiceMenu").get_node("OptionButton").add_item("Sharpnel", 5)
 	if upgradeID == 5:
 		Turret.fireRate *= 0.9
 	if upgradeID == 6:
 		# increase range of existing turrets
 		for item in playerStructures:
-			if item != null and item.type == 0 or item.type == 1:
+			if item.is_instance_valid() and item.type == 0 or item.type == 1:
 				var shapenode = item.get_node("ShapeCast2D").shape
 				item.get_node("ShapeCast2D").shape.set_radius(shapenode.get_radius() + 100)
 		
@@ -389,6 +389,8 @@ func ReceiveUpgrades(upgradeID):
 		pass
 	if upgradeID == 15:
 		pass
+	
+	Market.UpdateConsumption()
 	
 	
 func UpdateSupply():

@@ -52,6 +52,7 @@ var supplyArea
 var buildTime: float = 7
 var	buildTimeLabel
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bodySprite = get_node("TurretBarrelSprite")
@@ -188,7 +189,11 @@ func _physics_process(delta):
 #				game.operationFunds -= ammoTypeCost[0]
 			elif ammoType == 1:
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
+				var count = 0
 				for item in hitstuff:
+					if count > game.selectedUpgrades[0]:
+						break
+					count += 1
 					if item != null:
 						if crit == 1:
 							item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]))

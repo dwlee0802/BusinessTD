@@ -721,3 +721,4 @@ text = "Sell All Crystals"
 [connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/CanvasLayer/MarketUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]

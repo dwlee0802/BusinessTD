@@ -129,14 +129,7 @@ func _process(delta):
 		return
 		
 	bodySprite.modulate = Color.WHITE
-	
-	if upkeepHolder > 1:
-		game.operationFunds -= upkeep[type] + fireRateMode - 1
-		upkeepHolder = 0
-	
-	upkeepHolder += delta
 		
-	
 	
 func _physics_process(delta):
 	if buildTime > 0:
@@ -192,7 +185,7 @@ func _physics_process(delta):
 				else:
 					currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), true)
 									
-				game.operationFunds -= ammoTypeCost[0]
+#				game.operationFunds -= ammoTypeCost[0]
 			elif ammoType == 1:
 				var hitstuff = get_node("TurretBarrelSprite/APShapeCast").GetColliders()
 				for item in hitstuff:
@@ -202,7 +195,7 @@ func _physics_process(delta):
 						else:
 							item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), true)
 						
-				game.operationFunds -= ammoTypeCost[1]
+#				game.operationFunds -= ammoTypeCost[1]
 						
 						
 			fireRateHolder = 0

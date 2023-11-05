@@ -476,3 +476,9 @@ func _on_sell_button_pressed():
 func _on_network_connection_button_pressed():
 	waitingForTowerConnectionTarget = true
 	print("Waiting for another tower to connect to!\n")
+
+
+func _on_sell_crystals_button_pressed():
+	Market.SellCrystals()
+	UpdateMarketUI()
+	

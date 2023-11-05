@@ -40,7 +40,8 @@ static func UpdatePrices():
 	
 # called when player presses sell stored crystals button. Sells all in storage by current price.
 static func SellCrystals():
-	pass
+	game.operationFunds += playerCrystals * crystalPrice
+	playerCrystals = 0
 	
 
 # calculates the supply amount for each ingredient type for the next cycle.
@@ -51,14 +52,15 @@ static func SupplyGrowth():
 static func UpdateConsumption():
 	totalConsumption = [0, 0, 0]
 	for item in game.playerStructures:
-		var modifier = 1
-		if item.type == 0 or item.type == 1:
-			if item.fireRateMode == 2:
-				modifier = 2
-				
-		totalConsumption[0] += baseConsumption[item.type][0] * modifier
-		totalConsumption[1] += baseConsumption[item.type][1] * modifier
-		totalConsumption[2] += baseConsumption[item.type][2] * modifier
+		if is_instance_valid(item):
+			var modifier = 1
+			if item.type == 0 or item.type == 1:
+				if item.fireRateMode == 2:
+					modifier = 2
+					
+			totalConsumption[0] += baseConsumption[item.type][0] * modifier
+			totalConsumption[1] += baseConsumption[item.type][1] * modifier
+			totalConsumption[2] += baseConsumption[item.type][2] * modifier
 
 
 static func Consumption():

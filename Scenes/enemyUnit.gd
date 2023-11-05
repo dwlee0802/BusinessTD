@@ -78,6 +78,7 @@ func _physics_process(delta):
 		collision.get_collider().hit(hitPoints)
 		
 		game.add_child(enemyDeathEffect.instantiate())
+		Die()
 		queue_free()
 		
 	tempHolder += delta
@@ -111,9 +112,10 @@ func ReceiveHit(amount, isCrit = false, isHE = false):
 	
 	if isHE:
 		for item in get_node("ExplosionArea").get_overlapping_bodies():
-			if item == self:
+			if item.position == position:
 				continue
-			item.ReceiveHit(randi_range(int(amount/4), amount), isCrit)
+				
+			item.ReceiveHit(randi_range(int(amount/10), amount), isCrit)
 			
 		explosionAnimation.play("explosionAnimation")
 	

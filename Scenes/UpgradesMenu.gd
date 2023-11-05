@@ -16,7 +16,7 @@ var upgradesFilePath: String = "res://Data/upgrades.json"
 var companiesDictionary
 var companiesFilePath: String = "res://Data/companies.json"
 
-const UPGRADE_COUNT: int = 16
+const UPGRADE_COUNT: int = 9
 var OPTIONS_COUNT: int = 3
 
 

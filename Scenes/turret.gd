@@ -230,6 +230,9 @@ func ChangeFireRate(ammotype):
 		
 	print("changed fire rate to ", ammotype)
 		
+	Market.UpdateConsumption()
+	game.UpdateMarketUI()
+	
 		
 func ChangeAmmoType(ammotype):
 	ammoType = ammotype
@@ -249,6 +252,9 @@ func ChangeAmmoType(ammotype):
 	# Incendiary AP
 	if ammoType == 4:
 		print("changed ammo to Incendiary AP")
+	
+	Market.UpdateConsumption()
+	game.UpdateMarketUI()
 	
 	
 func UpdateSupply():

@@ -51,13 +51,19 @@ static func SupplyGrowth():
 static func UpdateConsumption():
 	totalConsumption = [0, 0, 0]
 	for item in game.playerStructures:
-		totalConsumption[0] += baseConsumption[item.type][0]
-		totalConsumption[1] += baseConsumption[item.type][1]
-		totalConsumption[2] += baseConsumption[item.type][2]
+		var modifier = 1
+		if item.type == 0 or item.type == 1:
+			if item.fireRateMode == 2:
+				modifier = 2
+				
+		totalConsumption[0] += baseConsumption[item.type][0] * modifier
+		totalConsumption[1] += baseConsumption[item.type][1] * modifier
+		totalConsumption[2] += baseConsumption[item.type][2] * modifier
 
 
 static func Consumption():
-	pass
+	for i in range(3):
+		game.operationFunds -= totalConsumption[i] * marketPrices[i]
 	
 	
 static func AddCrystals(amount):

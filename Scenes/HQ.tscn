@@ -78,6 +78,19 @@ texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("3_1kfn8")
 
+[node name="MuzzleFlash" type="Sprite2D" parent="TurretBarrelSprite"]
+visible = false
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(22.0833, 0)
+scale = Vector2(0.0472005, 0.0260417)
+texture = ExtResource("6_y7kus")
+
+[node name="MuzzleFlash" type="Sprite2D" parent="TurretBarrelSprite/MuzzleFlash"]
+self_modulate = Color(1, 0.392157, 0, 1)
+position = Vector2(-56.3219, -4.76837e-06)
+scale = Vector2(0.474497, 0.5)
+texture = ExtResource("6_y7kus")
+
 [node name="APShapeCast" type="ShapeCast2D" parent="TurretBarrelSprite"]
 visible = false
 position = Vector2(143.75, 0)

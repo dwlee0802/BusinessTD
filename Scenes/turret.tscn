@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://co0iu8csjmd8h"]
+[gd_scene load_steps=10 format=3 uid="uid://co0iu8csjmd8h"]
 
 [ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="1_o0ic3"]
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_s5d8n"]
 [ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="2_d7vnd"]
 [ext_resource type="Script" path="res://Scenes/attackRange.gd" id="4_6shgm"]
+[ext_resource type="Texture2D" uid="uid://de52pygb55h5c" path="res://Art/circle-256.png" id="4_86ps0"]
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="5_2kkv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8nbd"]
@@ -34,6 +35,19 @@ texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("2_d7vnd")
 
+[node name="MuzzleFlash" type="Sprite2D" parent="TurretBarrelSprite"]
+visible = false
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(20.625, 5.96046e-08)
+scale = Vector2(0.0472005, 0.0260417)
+texture = ExtResource("4_86ps0")
+
+[node name="MuzzleFlash" type="Sprite2D" parent="TurretBarrelSprite/MuzzleFlash"]
+self_modulate = Color(1, 0.392157, 0, 1)
+position = Vector2(-56.3219, -4.76837e-06)
+scale = Vector2(0.474497, 0.5)
+texture = ExtResource("4_86ps0")
+
 [node name="APShapeCast" type="ShapeCast2D" parent="TurretBarrelSprite"]
 visible = false
 position = Vector2(127.083, 0)
@@ -51,6 +65,7 @@ scale = Vector2(230, 10)
 texture = ExtResource("5_2kkv7")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_gbq8q")
 target_position = Vector2(0, 0)
 collision_mask = 10

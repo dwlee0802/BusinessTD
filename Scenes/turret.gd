@@ -52,11 +52,14 @@ var supplyArea
 var buildTime: float = 7
 var	buildTimeLabel
 
+var muzzleFlashSprite
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bodySprite = get_node("TurretBarrelSprite")
 	buildTimeLabel = get_node("BuildTime")
+	muzzleFlashSprite = get_node("TurretBarrelSprite/MuzzleFlash")
 	
 	if isHQ:
 		buildTime = 3
@@ -136,6 +139,8 @@ func _physics_process(delta):
 	if buildTime > 0:
 		return
 		
+	muzzleFlashSprite.visible = false
+	
 	if isHQ:
 		networkUpdateHolder += delta
 		if networkUpdateHolder > 1:
@@ -175,6 +180,7 @@ func _physics_process(delta):
 		if currentTarget != null:
 			get_node("TurretBarrelSprite").rotation = global_position.angle_to_point(currentTarget.position)
 		
+			muzzleFlashSprite.visible = true
 			var crit = 1
 			if randf() < criticalChance:
 				crit = 2

@@ -98,10 +98,8 @@ func _process(delta):
 		marketUpdateTimeHolder -= delta
 		if marketUpdateTimeHolder <= 0:
 			marketUpdateTimeHolder = marketUpdateTime
-			Market.SupplyGrowth()
-			Market.UpdatePrices()
-			UpdateMarketUI()
-		
+			MarketCycle()
+			
 	# update operation time and player finance ui
 	if not playerStructures.is_empty():
 		operationTime += delta
@@ -143,6 +141,14 @@ func _process(delta):
 	# add data point to graph
 	if int(operationTime) % 10 == 0:
 		totalValueGraph.add_point(Vector2(int(operationTime / 10), totalValue))
+
+
+func MarketCycle():
+	Market.Consumption()
+	Market.SupplyGrowth()
+	Market.UpdateConsumption()
+	Market.UpdatePrices()
+	UpdateMarketUI()
 	
 
 func _input(event):
@@ -417,9 +423,15 @@ func AbortOperation():
 func UpdateMarketUI():
 	marketUI.get_node("CrystalsUI/Label").text = "Crystals: " + str(Market.playerCrystals) + " / " + str(Market.maxCrystalStorage)
 	marketUI.get_node("CrystalPriceUI/Label").text = str(Market.crystalPrice)
-	marketUI.get_node("CrystalsUI/Label").text = "Crystals: " + str(Market.playerCrystals) + " / " + str(Market.maxCrystalStorage)
-	marketUI.get_node("CrystalsUI/Label").text = "Crystals: " + str(Market.playerCrystals) + " / " + str(Market.maxCrystalStorage)
 	
+	marketUI.get_node("ConsumptionUI/SteelConsumed").text = "Steel: " + str(Market.totalConsumption[0])
+	marketUI.get_node("ConsumptionUI/GasConsumed").text = "Gas: " + str(Market.totalConsumption[1])
+	marketUI.get_node("ConsumptionUI/SemiconductorConsumed").text = "Semiconductor: " + str(Market.totalConsumption[2])
+	
+	marketUI.get_node("PriceUI/SteelConsumed").text = str(Market.marketPrices[0])
+	marketUI.get_node("PriceUI/GasConsumed").text = str(Market.marketPrices[1])
+	marketUI.get_node("PriceUI/SemiconductorConsumed").text = str(Market.marketPrices[2])
+
 
 func _on_build_turret_option_pressed(extra_arg_0):
 	var str = "turret"

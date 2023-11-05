@@ -549,6 +549,7 @@ offset_bottom = 26.0
 text = "Crystals: 000 / 250"
 
 [node name="CrystalPriceUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
+layout_mode = 0
 offset_left = 164.0
 offset_right = 209.0
 offset_bottom = 27.0
@@ -576,6 +577,7 @@ text = "Consumption"
 
 [node name="SteelConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+layout_mode = 0
 offset_left = 5.0
 offset_top = 22.0
 offset_right = 109.0
@@ -585,6 +587,7 @@ text = "Steel: 000"
 
 [node name="GasConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
 self_modulate = Color(1, 0.00392157, 0, 1)
+layout_mode = 0
 offset_left = 5.0
 offset_top = 42.0
 offset_right = 109.0
@@ -594,6 +597,7 @@ text = "Gas: 000"
 
 [node name="SemiconductorConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/ConsumptionUI"]
 modulate = Color(0.305882, 1, 0.596078, 1)
+layout_mode = 0
 offset_left = 5.0
 offset_top = 62.0
 offset_right = 158.0
@@ -602,6 +606,7 @@ theme_override_font_sizes/font_size = 12
 text = "Semiconductor: 000"
 
 [node name="PriceUI" type="Panel" parent="Camera/CanvasLayer/MarketUI"]
+layout_mode = 0
 offset_left = 164.0
 offset_top = 27.0
 offset_right = 209.0
@@ -609,6 +614,7 @@ offset_bottom = 111.0
 
 [node name="SteelConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/PriceUI"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+layout_mode = 0
 offset_left = 5.0
 offset_top = 22.0
 offset_right = 109.0
@@ -618,6 +624,7 @@ text = "0000"
 
 [node name="GasConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/PriceUI"]
 self_modulate = Color(1, 0.00392157, 0, 1)
+layout_mode = 0
 offset_left = 5.0
 offset_top = 42.0
 offset_right = 109.0
@@ -627,6 +634,7 @@ text = "0000"
 
 [node name="SemiconductorConsumed" type="Label" parent="Camera/CanvasLayer/MarketUI/PriceUI"]
 modulate = Color(0.305882, 1, 0.596078, 1)
+layout_mode = 0
 offset_left = 5.0
 offset_top = 62.0
 offset_right = 158.0

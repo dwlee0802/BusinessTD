@@ -9,9 +9,9 @@ static var maxHitPoints: int = 500
 var type: int = 0
 
 var ammoType: int = 0
-static var ammoTypeFireRate = [1, 3, 1, 1, 1]
+static var ammoTypeFireRate = [1, 2, 2, 1, 1]
 static var ammoTypeCost = [15, 35, 1, 1, 1]
-static var ammoTypeDamageRange = [[25, 75], [10,30]]
+static var ammoTypeDamageRange = [[25, 75], [10,30], [10, 30]]
 static var criticalChance: float = 0.1
 
 var targets = []
@@ -199,7 +199,13 @@ func _physics_process(delta):
 							item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]))
 						else:
 							item.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), true)
-						
+			elif ammoType == 2:
+				if crit == 1:
+					currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), false, true)
+				else:
+					currentTarget.ReceiveHit(crit * randi_range(ammoTypeDamageRange[ammoType][0], ammoTypeDamageRange[ammoType][1]), true, true)
+								
+				
 #				game.operationFunds -= ammoTypeCost[1]
 						
 						
@@ -244,6 +250,8 @@ func ChangeAmmoType(ammotype):
 	if ammoType == 1:
 		print("changed ammo to AP")
 		get_node("TurretBarrelSprite/APAreaSprite").visible = true
+	if ammoType == 2:
+		print("changed ammo to HE")
 	# Incendiary
 	if ammoType == 3:
 		print("changed ammo to Incendiary")

@@ -24,6 +24,7 @@ var nextTile
 
 var sprite
 var hitAnimation
+var explosionAnimation
 
 var dead: bool = false
 
@@ -36,6 +37,7 @@ func _ready():
 	path = startingTile.pathToHQ
 	sprite = get_node("UnitSprite")
 	hitAnimation = get_node("AnimationPlayer")
+	explosionAnimation = get_node("ExplosionArea/ExplosionSprite/AnimationPlayer")
 	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
 
 
@@ -95,7 +97,7 @@ func _physics_process(delta):
 		tempHolder = 0
 	
 			
-func ReceiveHit(amount, isCrit = false):
+func ReceiveHit(amount, isCrit = false, isHE = false):
 	hitPoints -= amount
 #	healthBar.scale.x = 32 * hitPoints / maxHitPoints
 	if isCrit:
@@ -107,6 +109,15 @@ func ReceiveHit(amount, isCrit = false):
 	get_node("Timer").start(0.1)
 	hitAnimation.play("hit_animation")
 	
+	if isHE:
+		for item in get_node("ExplosionArea").get_overlapping_bodies():
+			if item == self:
+				continue
+			item.ReceiveHit(randi_range(int(amount/4), amount), isCrit)
+			
+		explosionAnimation.play("explosionAnimation")
+	
+			
 
 func GameEnded():
 	queue_free()

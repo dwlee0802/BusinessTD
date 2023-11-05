@@ -62,6 +62,10 @@ static func UpdateConsumption():
 			if item.type == 0 or item.type == 1:
 				if item.fireRateMode == 2:
 					modifier = 2
+				if item.ammoType == 1:
+					totalConsumption[0] += modifier
+				elif item.ammoType == 2 or item.ammoType == 3:
+					totalConsumption[1] += modifier
 					
 			totalConsumption[0] += baseConsumption[item.type][0] * modifier
 			totalConsumption[1] += baseConsumption[item.type][1] * modifier

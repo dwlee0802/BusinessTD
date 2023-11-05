@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ficibtmmykyq"]
+[gd_scene load_steps=12 format=3 uid="uid://ficibtmmykyq"]
 
 [ext_resource type="Texture2D" uid="uid://veeg0yrq8o7i" path="res://Art/temp_enemy_sprite.png" id="1_58xrn"]
 [ext_resource type="Script" path="res://Scenes/enemyUnit.gd" id="1_e4wf8"]
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="3_ja4bq"]
+[ext_resource type="Texture2D" uid="uid://de52pygb55h5c" path="res://Art/circle-256.png" id="4_fi758"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fvuth"]
 radius = 16.0
@@ -27,6 +28,69 @@ tracks/0/keys = {
 _data = {
 "hit_animation": SubResource("Animation_oqa0h")
 }
+
+[sub_resource type="Animation" id="Animation_a27mm"]
+resource_name = "explosionAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.956863, 0, 0.172549, 1), Color(0.705882, 0.219608, 0.113725, 0.870588), Color(0.878431, 0.305882, 0.180392, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.275, 0.275)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6x0yv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0.305882, 0.180392, 0.494118)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7dar"]
+_data = {
+"RESET": SubResource("Animation_6x0yv"),
+"explosionAnimation": SubResource("Animation_a27mm")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cx56d"]
+radius = 32.0
 
 [node name="EnemyUnit" type="CharacterBody2D"]
 disable_mode = 2
@@ -57,5 +121,26 @@ speed_scale = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_b4yeh")
 }
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="ExplosionSprite" type="Sprite2D" parent="ExplosionArea"]
+visible = false
+self_modulate = Color(0.878431, 0.305882, 0.180392, 0.494118)
+position = Vector2(0, -1.13687e-13)
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("4_fi758")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionArea/ExplosionSprite"]
+speed_scale = 3.0
+libraries = {
+"": SubResource("AnimationLibrary_e7dar")
+}
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea"]
+visible = false
+shape = SubResource("CircleShape2D_cx56d")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

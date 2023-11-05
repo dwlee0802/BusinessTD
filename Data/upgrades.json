@@ -4,14 +4,14 @@
 	  "name": "Armor Piercing",
 	  "ID": 0,
 	  "CompanyID" : 0,
-	  "Description" : "AP rounds from Steeline. Pierces through hit target, damaging everything in a line.",
+	  "Description" : "Increase penetration, allowing bullets to hit those behind the first target. Lower damage and fire speed than normal rounds.",
 	  "Consumption" : [1,0,0]
 	},
 	{
 	  "name": "High Explosive",
 	  "ID": 1,
 	  "CompanyID" : 0,
-	  "Description" : "HE rounds from Steeline. Explodes on impact, damaging everything nearby.",
+	  "Description" : "Explodes on impact, damaging everything nearby. Damage to surroundings is reduced to 25%.",
 	  "Consumption" : [0,1,0]
 	},
 	{

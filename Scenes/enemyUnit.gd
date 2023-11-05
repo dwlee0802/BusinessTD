@@ -115,7 +115,7 @@ func ReceiveHit(amount, isCrit = false, isHE = false):
 			if item.position == position:
 				continue
 				
-			item.ReceiveHit(randi_range(int(amount/10), amount), isCrit)
+			item.ReceiveHit(randi_range(1,1 + int(amount/10) * game.selectedUpgrades[1]), isCrit)
 			
 		explosionAnimation.play("explosionAnimation")
 	

@@ -95,6 +95,9 @@ func _process(delta):
 	enemyCurrentCountUI.text = "Enemy count: " + str(enemyCurrentCount)
 	
 	if gameStarted == true:
+		if Market.autoSell == true:
+			Market.SellCrystals()
+			
 		marketUpdateTimeHolder -= delta
 		if marketUpdateTimeHolder <= 0:
 			marketUpdateTimeHolder = marketUpdateTime
@@ -480,5 +483,6 @@ func _on_network_connection_button_pressed():
 
 func _on_sell_crystals_button_pressed():
 	Market.SellCrystals()
+	Market.autoSell = not Market.autoSell
 	UpdateMarketUI()
 	

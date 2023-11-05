@@ -3,7 +3,7 @@ extends Control
 class_name Market
 
 # price of one crystal
-static var crystalPrice = 120
+static var crystalPrice = 200
 static var lastSoldCrystals
 
 # player's crystals
@@ -26,13 +26,16 @@ static var buyOrders = [0, 0, 0]
 
 enum INGREDIENTS { Steel, Gas, Semiconductors }
 
+static var autoSell: bool = false
+
 static var game
+
 
 
 # called every updateTime seconds
 static func UpdatePrices():
 	# temporary completely random function
-	crystalPrice = randi_range(60, 180)
+	crystalPrice = randi_range(100, 200)
 	marketPrices[0] = randi_range(75, 125)
 	marketPrices[1] = randi_range(25, 75)
 	marketPrices[2] = randi_range(100, 200)

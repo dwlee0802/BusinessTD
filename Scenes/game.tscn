@@ -426,29 +426,36 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Panel" type="Panel" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
+layout_mode = 0
+offset_left = -862.0
+offset_top = 384.0
+offset_right = -597.0
+offset_bottom = 471.0
+
 [node name="ConfirmButton" type="Button" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = -567.0
-offset_top = 291.0
-offset_right = -496.0
-offset_bottom = 322.0
+offset_left = -827.0
+offset_top = 431.0
+offset_right = -756.0
+offset_bottom = 462.0
 text = "Confirm"
 
 [node name="CancelButton" type="Button" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
 layout_mode = 0
-offset_left = -436.0
-offset_top = 291.0
-offset_right = -365.0
-offset_bottom = 322.0
+offset_left = -696.0
+offset_top = 431.0
+offset_right = -625.0
+offset_bottom = 462.0
 text = "Cancel"
 
 [node name="Label" type="Label" parent="Camera/CanvasLayer/InGameUI/AbortButton/Buttons"]
 layout_mode = 0
-offset_left = -572.0
-offset_top = 241.0
-offset_right = -361.0
-offset_bottom = 279.0
+offset_left = -832.0
+offset_top = 381.0
+offset_right = -621.0
+offset_bottom = 419.0
 theme_override_font_sizes/font_size = 25
 text = "Abort Operation?"
 
@@ -642,12 +649,22 @@ offset_bottom = 88.0
 theme_override_font_sizes/font_size = 12
 text = "0000"
 
-[node name="SellButton" type="Button" parent="Camera/CanvasLayer/MarketUI"]
+[node name="SellButton" type="CheckButton" parent="Camera/CanvasLayer/MarketUI"]
 layout_mode = 0
-offset_top = 112.0
-offset_right = 114.0
-offset_bottom = 143.0
-text = "Sell All Crystals"
+offset_left = 48.0
+offset_top = 113.0
+offset_right = 133.0
+offset_bottom = 150.0
+text = "Hold"
+expand_icon = true
+
+[node name="Label" type="Label" parent="Camera/CanvasLayer/MarketUI/SellButton"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 7.0
+offset_right = 125.0
+offset_bottom = 33.0
+text = "Sell"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 

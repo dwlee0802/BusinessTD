@@ -34,7 +34,7 @@ func _ready():
 	path = startingTile.pathToHQ
 	sprite = get_node("UnitSprite")
 	hitAnimation = get_node("AnimationPlayer")
-#	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
+	path = pathfinding.get_id_path(startingTile.id, targetTile.id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

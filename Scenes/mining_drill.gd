@@ -87,7 +87,7 @@ func _process(delta):
 		if profitHolder <= 0:
 #			revenueAmount = randi_range(50, 150)
 #			game.operationFunds += revenueAmount
-			var mined = randi_range(1, 7)
+			var mined = randi_range(2, 6)
 			Market.AddCrystals(mined)
 			profitHolder = profitGenerationPeriod
 			game.MakeDamagePopup(position, mined, Color.PURPLE)

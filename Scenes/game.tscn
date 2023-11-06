@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=11 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
 [ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
 [ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
+[ext_resource type="Script" path="res://Scenes/MenuBar.gd" id="9_iptbq"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -18,6 +19,7 @@ position = Vector2(803, 453)
 script = ExtResource("2_3q2bq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
+visible = false
 
 [node name="GameOverLabel" type="Label" parent="Camera/CanvasLayer"]
 visible = false
@@ -704,6 +706,525 @@ offset_right = 125.0
 offset_bottom = 33.0
 text = "Sell"
 
+[node name="User Interface" type="CanvasLayer" parent="Camera"]
+
+[node name="MarketUI" type="Control" parent="Camera/User Interface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 356.0
+offset_right = 215.0
+offset_bottom = 467.0
+
+[node name="CrystalsUI" type="Panel" parent="Camera/User Interface/MarketUI"]
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="Camera/User Interface/MarketUI/CrystalsUI"]
+self_modulate = Color(1, 0.627451, 0.996078, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_right = 145.0
+offset_bottom = 26.0
+text = "Crystals: 000 / 250"
+
+[node name="CrystalPriceUI" type="Panel" parent="Camera/User Interface/MarketUI"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 209.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="Camera/User Interface/MarketUI/CrystalPriceUI"]
+self_modulate = Color(1, 0.627451, 0.996078, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_right = 145.0
+offset_bottom = 26.0
+text = "80"
+
+[node name="ConsumptionUI" type="Panel" parent="Camera/User Interface/MarketUI"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 164.0
+offset_bottom = 111.0
+
+[node name="Title" type="Label" parent="Camera/User Interface/MarketUI/ConsumptionUI"]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 108.0
+offset_bottom = 26.0
+text = "Consumption"
+
+[node name="SteelConsumed" type="Label" parent="Camera/User Interface/MarketUI/ConsumptionUI"]
+self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 109.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "Steel: 000"
+
+[node name="GasConsumed" type="Label" parent="Camera/User Interface/MarketUI/ConsumptionUI"]
+self_modulate = Color(1, 0.00392157, 0, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 42.0
+offset_right = 109.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "Gas: 000"
+
+[node name="SemiconductorConsumed" type="Label" parent="Camera/User Interface/MarketUI/ConsumptionUI"]
+modulate = Color(0.305882, 1, 0.596078, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 62.0
+offset_right = 158.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 12
+text = "Semiconductor: 000"
+
+[node name="PriceUI" type="Panel" parent="Camera/User Interface/MarketUI"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 27.0
+offset_right = 209.0
+offset_bottom = 111.0
+
+[node name="SteelConsumed" type="Label" parent="Camera/User Interface/MarketUI/PriceUI"]
+self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 109.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "0000"
+
+[node name="GasConsumed" type="Label" parent="Camera/User Interface/MarketUI/PriceUI"]
+self_modulate = Color(1, 0.00392157, 0, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 42.0
+offset_right = 109.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 12
+text = "0000"
+
+[node name="SemiconductorConsumed" type="Label" parent="Camera/User Interface/MarketUI/PriceUI"]
+modulate = Color(0.305882, 1, 0.596078, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 62.0
+offset_right = 158.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 12
+text = "0000"
+
+[node name="AutosellUI" type="Panel" parent="Camera/User Interface/MarketUI"]
+layout_mode = 0
+offset_top = 114.0
+offset_right = 256.0
+offset_bottom = 177.0
+
+[node name="MinimumSellPrice" type="Label" parent="Camera/User Interface/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 28.0
+offset_right = 155.0
+offset_bottom = 54.0
+text = "Minimum sell price:"
+
+[node name="Label" type="Label" parent="Camera/User Interface/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 29.0
+offset_right = 200.0
+offset_bottom = 55.0
+text = "100"
+
+[node name="Increase" type="Button" parent="Camera/User Interface/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 26.0
+offset_right = 223.0
+offset_bottom = 57.0
+text = "-"
+
+[node name="Decrease" type="Button" parent="Camera/User Interface/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 26.0
+offset_right = 253.0
+offset_bottom = 57.0
+text = "+"
+
+[node name="SellButton" type="CheckButton" parent="Camera/User Interface/MarketUI/AutosellUI"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -1.0
+offset_right = 136.0
+offset_bottom = 36.0
+text = "Hold"
+expand_icon = true
+
+[node name="Label" type="Label" parent="Camera/User Interface/MarketUI/AutosellUI/SellButton"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 7.0
+offset_right = 125.0
+offset_bottom = 33.0
+text = "Sell"
+
+[node name="GameOverLabel" type="Label" parent="Camera/User Interface"]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+offset_left = 600.0
+offset_top = 400.0
+offset_right = 1031.0
+offset_bottom = 458.0
+theme_override_font_sizes/font_size = 35
+text = "Operation Terminated"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="Camera/User Interface/GameOverLabel"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 119.0
+offset_top = 51.0
+offset_right = 290.0
+offset_bottom = 77.0
+text = "Score: 0000000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnitMenu" type="Label" parent="Camera/User Interface"]
+offset_left = 1275.0
+offset_top = 711.0
+offset_right = 1415.0
+offset_bottom = 742.0
+theme_override_font_sizes/font_size = 20
+text = "Building Menu"
+script = ExtResource("5_tkslb")
+
+[node name="Background" type="Panel" parent="Camera/User Interface/UnitMenu"]
+z_index = -10
+layout_mode = 0
+offset_left = -18.0
+offset_top = -11.0
+offset_right = 22.0
+offset_bottom = 29.0
+scale = Vector2(8.44074, 3.72)
+
+[node name="Name" type="Label" parent="Camera/User Interface/UnitMenu"]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 140.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 20
+text = "Name here"
+
+[node name="SellButton" type="Button" parent="Camera/User Interface/UnitMenu"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 245.0
+offset_top = 7.0
+offset_right = 295.0
+offset_bottom = 57.0
+text = "Sell"
+
+[node name="Upkeep" type="Label" parent="Camera/User Interface/UnitMenu"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 168.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 16
+text = "Upkeep: 1 per minute"
+
+[node name="AmmoChoiceMenu" type="Control" parent="Camera/User Interface/UnitMenu"]
+anchors_preset = 0
+offset_top = 68.0
+offset_right = 40.0
+offset_bottom = 108.0
+
+[node name="OptionButton" type="OptionButton" parent="Camera/User Interface/UnitMenu/AmmoChoiceMenu"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 150.0
+offset_bottom = 57.0
+action_mode = 1
+keep_pressed_outside = true
+item_count = 1
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Regular"
+popup/item_0/id = 0
+
+[node name="Label" type="Label" parent="Camera/User Interface/UnitMenu/AmmoChoiceMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Ammo Type"
+
+[node name="AttackSpeedMenu" type="Control" parent="Camera/User Interface/UnitMenu"]
+anchors_preset = 0
+offset_left = 157.0
+offset_top = 69.0
+offset_right = 197.0
+offset_bottom = 109.0
+
+[node name="Base" type="Button" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 93.0
+offset_bottom = 55.0
+disabled = true
+toggle_mode = true
+button_pressed = true
+text = "Base"
+
+[node name="High" type="Button" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 96.0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "High"
+
+[node name="Low" type="Button" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
+modulate = Color(0.67451, 1, 1, 1)
+layout_mode = 0
+offset_top = 24.0
+offset_right = 45.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "Low"
+
+[node name="Label" type="Label" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
+layout_mode = 0
+offset_right = 114.0
+offset_bottom = 26.0
+text = "Attack Speed"
+
+[node name="InsideNetwork" type="RichTextLabel" parent="Camera/User Interface/UnitMenu"]
+visible = false
+layout_mode = 0
+offset_top = 68.0
+offset_right = 184.0
+offset_bottom = 108.0
+text = "Connection: True"
+fit_content = true
+
+[node name="OperationTimeUI" type="Label" parent="Camera/User Interface"]
+offset_left = 800.0
+offset_top = 10.0
+offset_right = 841.0
+offset_bottom = 36.0
+text = "00:00"
+
+[node name="Background2" type="Panel" parent="Camera/User Interface/OperationTimeUI"]
+z_index = -10
+layout_mode = 0
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 50.0
+offset_bottom = 28.0
+
+[node name="AbortButton" type="Button" parent="Camera/User Interface"]
+self_modulate = Color(1, 0, 0, 1)
+anchors_preset = -1
+anchor_left = 28.6
+anchor_right = 28.6
+offset_left = -44222.0
+offset_top = 5.0
+offset_right = -44159.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Abort"
+script = ExtResource("4_r0jn5")
+
+[node name="Buttons" type="Control" parent="Camera/User Interface/AbortButton"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Camera/User Interface/AbortButton/Buttons"]
+layout_mode = 0
+offset_left = -862.0
+offset_top = 384.0
+offset_right = -597.0
+offset_bottom = 471.0
+
+[node name="ConfirmButton" type="Button" parent="Camera/User Interface/AbortButton/Buttons"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = -827.0
+offset_top = 431.0
+offset_right = -756.0
+offset_bottom = 462.0
+text = "Confirm"
+
+[node name="CancelButton" type="Button" parent="Camera/User Interface/AbortButton/Buttons"]
+layout_mode = 0
+offset_left = -696.0
+offset_top = 431.0
+offset_right = -625.0
+offset_bottom = 462.0
+text = "Cancel"
+
+[node name="Label" type="Label" parent="Camera/User Interface/AbortButton/Buttons"]
+layout_mode = 0
+offset_left = -832.0
+offset_top = 381.0
+offset_right = -621.0
+offset_bottom = 419.0
+theme_override_font_sizes/font_size = 25
+text = "Abort Operation?"
+
+[node name="EnemyCountLabel" type="Label" parent="Camera/User Interface"]
+offset_left = 1438.0
+offset_top = 53.0
+offset_right = 1588.0
+offset_bottom = 79.0
+text = "Enemy Count: 0000"
+
+[node name="Background" type="Panel" parent="Camera/User Interface/EnemyCountLabel"]
+z_index = -10
+layout_mode = 0
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 14.0
+offset_bottom = 7.0
+scale = Vector2(7.60074, 3.08)
+
+[node name="OperationFundsUI" type="Control" parent="Camera/User Interface"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Total Value" type="RichTextLabel" parent="Camera/User Interface/OperationFundsUI"]
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 315.0
+offset_bottom = 57.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Total Value: 0"
+
+[node name="MostFundsLabel" type="RichTextLabel" parent="Camera/User Interface/OperationFundsUI"]
+offset_left = 14.0
+offset_top = 44.0
+offset_right = 314.0
+offset_bottom = 94.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Highest reached: 0"
+
+[node name="MoneyLabel" type="RichTextLabel" parent="Camera/User Interface/OperationFundsUI"]
+offset_left = 14.0
+offset_top = 79.0
+offset_right = 314.0
+offset_bottom = 129.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Current Funds: 0"
+
+[node name="Background" type="Panel" parent="Camera/User Interface/OperationFundsUI"]
+z_index = -10
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 47.0
+offset_bottom = 45.0
+scale = Vector2(7.60074, 3.08)
+
+[node name="MenuBar" type="Control" parent="Camera/User Interface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 7.0
+offset_right = 47.0
+offset_bottom = 40.0
+script = ExtResource("9_iptbq")
+
+[node name="BuildMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 857.0
+offset_right = 207.0
+offset_bottom = 900.0
+text = "Build"
+
+[node name="Panel" type="Panel" parent="Camera/User Interface/MenuBar/BuildMenu"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -318.0
+offset_right = 681.0
+offset_bottom = -7.0
+
+[node name="FinanceMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+offset_left = 234.0
+offset_top = 857.0
+offset_right = 439.0
+offset_bottom = 900.0
+text = "Finance"
+
+[node name="UpgradesMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+offset_left = 465.0
+offset_top = 857.0
+offset_right = 670.0
+offset_bottom = 900.0
+text = "Upgrades"
+
+[node name="MarketMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+offset_left = 705.0
+offset_top = 857.0
+offset_right = 910.0
+offset_bottom = 900.0
+text = "Market"
+
+[node name="CompetitionMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+offset_left = 948.0
+offset_top = 857.0
+offset_right = 1153.0
+offset_bottom = 900.0
+text = "Competition"
+
+[node name="SettingsMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+offset_left = 1383.0
+offset_top = 854.0
+offset_right = 1588.0
+offset_bottom = 897.0
+text = "Settings"
+
+[node name="Panel" type="Panel" parent="Camera/User Interface/MenuBar"]
+z_index = -1
+layout_mode = 0
+offset_left = -24.0
+offset_top = 853.0
+offset_right = 1755.0
+offset_bottom = 903.0
+
+[node name="SpeedUpUI" type="CheckButton" parent="Camera/User Interface"]
+offset_left = 1462.0
+offset_top = 100.0
+offset_right = 1593.0
+offset_bottom = 131.0
+text = "x1.5 Speed"
+
+[node name="Panel" type="Panel" parent="Camera/User Interface/SpeedUpUI"]
+z_index = -1
+layout_mode = 0
+offset_left = -3.0
+offset_right = 135.0
+offset_bottom = 34.0
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/CanvasLayer/InGameUI/UpgradesMenu" to="." method="_on_mouse_entered_ui"]
@@ -783,3 +1304,59 @@ text = "Sell"
 [connection signal="mouse_entered" from="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/CanvasLayer/MarketUI/AutosellUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/MarketUI" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MarketUI" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MarketUI/AutosellUI/Increase" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MarketUI/AutosellUI/Increase" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/MarketUI/AutosellUI/Increase" to="." method="_on_increase_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/MarketUI/AutosellUI/Decrease" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MarketUI/AutosellUI/Decrease" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/MarketUI/AutosellUI/Decrease" to="." method="_on_increase_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/MarketUI/AutosellUI/SellButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MarketUI/AutosellUI/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/MarketUI/AutosellUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/Background" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/Background" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/SellButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/UnitMenu/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="item_selected" from="Camera/User Interface/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_attack_speed_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_attack_speed_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_attack_speed_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/OperationTimeUI/Background2" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/OperationTimeUI/Background2" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/AbortButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/AbortButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/AbortButton/Buttons/ConfirmButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/AbortButton/Buttons/ConfirmButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/AbortButton/Buttons/ConfirmButton" to="Camera/User Interface/AbortButton" method="_on_confirm_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/AbortButton/Buttons/CancelButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/AbortButton/Buttons/CancelButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/AbortButton/Buttons/CancelButton" to="Camera/User Interface/AbortButton" method="_on_cancel_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/EnemyCountLabel/Background" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/EnemyCountLabel/Background" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/OperationFundsUI/Background" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/OperationFundsUI/Background" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/BuildMenu" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/BuildMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/FinanceMenu" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/FinanceMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/UpgradesMenu" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/UpgradesMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/CompetitionMenu" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/CompetitionMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/SettingsMenu" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/SettingsMenu" to="." method="_on_mouse_exited_ui"]

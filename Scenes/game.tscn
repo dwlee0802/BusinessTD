@@ -711,10 +711,10 @@ text = "Sell"
 [node name="MarketUI" type="Control" parent="Camera/User Interface"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 356.0
-offset_right = 215.0
-offset_bottom = 467.0
+offset_left = 9.0
+offset_top = 135.0
+offset_right = 219.0
+offset_bottom = 246.0
 
 [node name="CrystalsUI" type="Panel" parent="Camera/User Interface/MarketUI"]
 layout_mode = 0
@@ -1161,18 +1161,151 @@ offset_right = 207.0
 offset_bottom = 900.0
 text = "Build"
 
-[node name="Panel" type="Panel" parent="Camera/User Interface/MenuBar/BuildMenu"]
+[node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/BuildMenu"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = -9.977
+anchor_right = 1.961
+offset_left = -1.025
+offset_top = -6.98898
+offset_right = -55.005
+offset_bottom = -8.0
+
+[node name="Title" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = -318.0
-offset_right = 681.0
-offset_bottom = -7.0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
+text = "Build"
+
+[node name="HQButton" type="Button" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 79.0
+offset_right = 139.0
+offset_bottom = 119.0
+text = "HQ"
+
+[node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/HQButton"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 5.0
+offset_right = 239.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 14
+text = "Cost: 0000"
+
+[node name="ConsumptionLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/HQButton"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 30.0
+offset_right = 303.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 14
+text = "Upkeep: 2 St, 0 Oi, 2 Se"
+
+[node name="TurretButton" type="Button" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel"]
+visible = false
+offset_left = 10.0
+offset_top = 79.0
+offset_right = 140.0
+offset_bottom = 119.0
+text = "Turret"
+
+[node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/TurretButton"]
+offset_left = 159.0
+offset_top = 5.0
+offset_right = 239.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 14
+text = "Cost: 0000"
+
+[node name="ConsumptionLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/TurretButton"]
+offset_left = 160.0
+offset_top = 30.0
+offset_right = 303.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 14
+text = "Upkeep: 2 St, 0 Oi, 2 Se"
+
+[node name="NetworkTowerButton" type="Button" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel"]
+visible = false
+offset_left = 11.0
+offset_top = 197.0
+offset_right = 141.0
+offset_bottom = 237.0
+text = "Network Tower"
+
+[node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/NetworkTowerButton"]
+offset_left = 159.0
+offset_top = 5.0
+offset_right = 239.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 14
+text = "Cost: 0000"
+
+[node name="ConsumptionLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/NetworkTowerButton"]
+offset_left = 160.0
+offset_top = 30.0
+offset_right = 303.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 14
+text = "Upkeep: 1 St, 0 Oi, 1 Se"
+
+[node name="DrillButton" type="Button" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel"]
+visible = false
+offset_left = 13.0
+offset_top = 310.0
+offset_right = 143.0
+offset_bottom = 350.0
+text = "Mining Drill"
+
+[node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/DrillButton"]
+offset_left = 159.0
+offset_top = 5.0
+offset_right = 239.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 14
+text = "Cost: 0000"
+
+[node name="ConsumptionLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/DrillButton"]
+offset_left = 160.0
+offset_top = 30.0
+offset_right = 303.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 14
+text = "Upkeep: 1 St, 2 Oi, 1 Se"
 
 [node name="FinanceMenu" type="Button" parent="Camera/User Interface/MenuBar"]
 offset_left = 234.0
 offset_top = 857.0
 offset_right = 439.0
 offset_bottom = 900.0
+text = "Finance"
+
+[node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/FinanceMenu"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = -9.977
+anchor_right = 1.961
+offset_left = -233.025
+offset_top = -6.98898
+offset_right = -287.005
+offset_bottom = -7.99997
+
+[node name="Title" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
 text = "Finance"
 
 [node name="UpgradesMenu" type="Button" parent="Camera/User Interface/MenuBar"]
@@ -1182,11 +1315,53 @@ offset_right = 670.0
 offset_bottom = 900.0
 text = "Upgrades"
 
+[node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/UpgradesMenu"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = -9.977
+anchor_right = 1.961
+offset_left = -463.025
+offset_top = -6.98898
+offset_right = -517.005
+offset_bottom = -8.0
+
+[node name="Title" type="Label" parent="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
+text = "Upgrades"
+
 [node name="MarketMenu" type="Button" parent="Camera/User Interface/MenuBar"]
 offset_left = 705.0
 offset_top = 857.0
 offset_right = 910.0
 offset_bottom = 900.0
+text = "Market"
+
+[node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = -9.977
+anchor_right = 1.961
+offset_left = -704.025
+offset_top = -6.98898
+offset_right = -758.005
+offset_bottom = -8.0
+
+[node name="Title" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
 text = "Market"
 
 [node name="CompetitionMenu" type="Button" parent="Camera/User Interface/MenuBar"]
@@ -1196,6 +1371,27 @@ offset_right = 1153.0
 offset_bottom = 900.0
 text = "Competition"
 
+[node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/CompetitionMenu"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = -9.977
+anchor_right = 1.961
+offset_left = -946.025
+offset_top = -6.98898
+offset_right = -1000.01
+offset_bottom = -8.0
+
+[node name="Title" type="Label" parent="Camera/User Interface/MenuBar/CompetitionMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
+text = "Competition"
+
 [node name="SettingsMenu" type="Button" parent="Camera/User Interface/MenuBar"]
 offset_left = 1383.0
 offset_top = 854.0
@@ -1203,7 +1399,28 @@ offset_right = 1588.0
 offset_bottom = 897.0
 text = "Settings"
 
-[node name="Panel" type="Panel" parent="Camera/User Interface/MenuBar"]
+[node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/SettingsMenu"]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = -9.977
+anchor_right = 1.961
+offset_left = -141.025
+offset_top = -3.98898
+offset_right = -195.005
+offset_bottom = -5.0
+
+[node name="Title" type="Label" parent="Camera/User Interface/MenuBar/SettingsMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
+text = "Settings"
+
+[node name="ButtonBackgroundPanel" type="Panel" parent="Camera/User Interface/MenuBar"]
 z_index = -1
 layout_mode = 0
 offset_left = -24.0

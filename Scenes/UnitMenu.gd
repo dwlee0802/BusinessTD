@@ -29,6 +29,9 @@ func _process(delta):
 
 		
 func ShowUnit(unit = game.selectedUnit):
+	if not unit.is_instance_valid():
+		return
+		
 	visible = true
 	
 	var selectedUnit = unit

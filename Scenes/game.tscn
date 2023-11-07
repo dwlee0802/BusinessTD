@@ -702,40 +702,28 @@ text = "Ammo Type"
 
 [node name="AttackSpeedMenu" type="Control" parent="Camera/User Interface/UnitMenu"]
 anchors_preset = 0
-offset_left = 157.0
+offset_left = 200.0
 offset_top = 69.0
-offset_right = 197.0
+offset_right = 240.0
 offset_bottom = 109.0
 
 [node name="Base" type="Button" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
 layout_mode = 0
-offset_left = 48.0
+offset_left = 5.0
 offset_top = 24.0
-offset_right = 93.0
+offset_right = 50.0
 offset_bottom = 55.0
 disabled = true
-toggle_mode = true
-button_pressed = true
 text = "Base"
 
 [node name="High" type="Button" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 96.0
+offset_left = 53.0
 offset_top = 24.0
-offset_right = 141.0
+offset_right = 98.0
 offset_bottom = 55.0
-toggle_mode = true
 text = "High"
-
-[node name="Low" type="Button" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
-modulate = Color(0.67451, 1, 1, 1)
-layout_mode = 0
-offset_top = 24.0
-offset_right = 45.0
-offset_bottom = 55.0
-toggle_mode = true
-text = "Low"
 
 [node name="Label" type="Label" parent="Camera/User Interface/UnitMenu/AttackSpeedMenu"]
 layout_mode = 0
@@ -751,6 +739,14 @@ offset_right = 184.0
 offset_bottom = 108.0
 text = "Connection: True"
 fit_content = true
+
+[node name="HPLabel" type="Label" parent="Camera/User Interface/UnitMenu"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 29.0
+offset_right = 233.0
+offset_bottom = 55.0
+text = "HP: 0000"
 
 [node name="OperationTimeUI" type="Label" parent="Camera/User Interface"]
 offset_left = 800.0
@@ -954,13 +950,10 @@ offset_bottom = 34.0
 [connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AmmoChoiceMenu/OptionButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_mouse_exited_ui"]
-[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_attack_speed_button_pressed"]
+[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Base" to="." method="_on_attack_speed_button_pressed" binds= [1]]
 [connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_mouse_exited_ui"]
-[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_attack_speed_button_pressed"]
-[connection signal="mouse_entered" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_entered_ui"]
-[connection signal="mouse_exited" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_mouse_exited_ui"]
-[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/Low" to="." method="_on_attack_speed_button_pressed"]
+[connection signal="pressed" from="Camera/User Interface/UnitMenu/AttackSpeedMenu/High" to="." method="_on_attack_speed_button_pressed" binds= [2]]
 [connection signal="mouse_entered" from="Camera/User Interface/OperationTimeUI/Background2" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/OperationTimeUI/Background2" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/AbortButton" to="." method="_on_mouse_entered_ui"]

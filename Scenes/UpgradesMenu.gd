@@ -11,6 +11,7 @@ var optionsUI
 
 var game
 var menuBar
+var menuPanel
 
 var upgradesDictionary
 var upgradesFilePath: String = "res://Data/upgrades.json"
@@ -24,6 +25,7 @@ var OPTIONS_COUNT: int = 3
 func _ready():
 	menuBar = get_parent()
 	game = menuBar.get_parent().get_parent().get_parent()
+	menuPanel = $MenuPanel
 	upgradeCostUI = get_node("MenuPanel/CostLabel")
 	rerollButton = get_node("MenuPanel/RerollButton")
 	optionsUI = get_node("MenuPanel/Title")
@@ -88,5 +90,8 @@ func _on_reroll_button_pressed():
 
 
 func _on_pressed():
+	var prev = menuPanel.visible
 	menuBar.HideAllMenus()
-	get_node("MenuPanel").visible = true
+	
+	if prev == false:
+		menuPanel.visible = true

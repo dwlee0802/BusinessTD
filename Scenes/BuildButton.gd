@@ -24,8 +24,11 @@ func _process(delta):
 		
 
 func _pressed():
+	var prev = menuPanel.visible
 	menuBar.HideAllMenus()
-	menuPanel.visible = true
+	
+	if prev == false:
+		menuPanel.visible = true
 
 
 func MadeHQ():

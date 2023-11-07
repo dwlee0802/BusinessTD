@@ -169,7 +169,7 @@ func _input(event):
 		elif len(result) == 2:
 			selectedTile = result[0].collider
 			selectedUnit = result[1].collider
-			get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
+			get_node("Camera/User Interface/UnitMenu").ShowUnit(selectedUnit)
 		else:
 			selectedTile = null
 			selectedUnit = null
@@ -400,11 +400,11 @@ func MakeDamagePopup(where, amount, color = Color.DARK_RED):
 
 
 func GameOver():
-	get_node("Camera/CanvasLayer/GameOverLabel").visible = true
-	get_node("Camera/CanvasLayer/GameOverLabel/Label").text = "Score: " + str(totalValue)
+	get_node("Camera/User Interface/GameOverLabel").visible = true
+	get_node("Camera/User Interface/GameOverLabel/Label").text = "Score: " + str(totalValue)
 	gameStarted = false
 	emit_signal("game_ended")
-	get_node("Camera/CanvasLayer/InGameUI").visible = false
+	get_node("Camera/User Interface/InGameUI").visible = false
 	
 	
 # when the current operation can't be profitable anymore, the player can abort mission
@@ -462,12 +462,12 @@ func _on_mouse_exited_ui():
 
 func _on_attack_speed_button_pressed(extra_arg_0):
 	selectedUnit.ChangeFireRate(extra_arg_0)
-	get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
+	get_node("Camera/User Interface/UnitMenu").ShowUnit(selectedUnit)
 
 
 func _on_option_button_item_selected(index):
-	selectedUnit.ChangeAmmoType(get_node("Camera/CanvasLayer/InGameUI/UnitMenu/AmmoChoiceMenu/OptionButton").get_item_id(index))
-	get_node("Camera/CanvasLayer/InGameUI/UnitMenu").ShowUnit(selectedUnit)
+	selectedUnit.ChangeAmmoType(get_node("Camera/User Interface/UnitMenu/AmmoChoiceMenu/OptionButton").get_item_id(index))
+	get_node("Camera/User Interface/UnitMenu").ShowUnit(selectedUnit)
 	mouseInUI = false
 
 

@@ -63,7 +63,7 @@ func _ready():
 			
 			var sprite = blockTiles[y][x].get_node("Sprite2D")
 			
-			if noise_level2 < 0.34:
+			if noise_level2 < 0.38:
 				blockTiles[y][x].isSlowDown = true
 				sprite.modulate = Color.WEB_GRAY
 			if noise_level > 0.535:

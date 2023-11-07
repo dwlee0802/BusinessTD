@@ -5,6 +5,7 @@ var game
 var ammoChoiceMenu
 
 var nameUI
+var HPUI
 var sellButton
 var upkeepUI
 var attackSpeedMenu
@@ -15,6 +16,7 @@ func _ready():
 	game = get_parent().get_parent().get_parent()
 	ammoChoiceMenu = get_node("AmmoChoiceMenu")
 	nameUI = get_node("Name")
+	HPUI = get_node("HPLabel")
 	sellButton = get_node("SellButton")
 	upkeepUI = get_node("Upkeep")
 	attackSpeedMenu = get_node("AttackSpeedMenu")
@@ -36,6 +38,7 @@ func ShowUnit(unit = game.selectedUnit):
 	upkeepUI.visible = false
 	ammoChoiceMenu.visible = false
 	attackSpeedMenu.visible = false
+	HPUI.text = "HP: " + str(unit.hitPoints)
 	
 	# turret
 	if selectedUnit.type == 0:
@@ -69,12 +72,11 @@ func ShowUnit(unit = game.selectedUnit):
 		upkeepUI.text = "Upkeep: " + str(selectedUnit.upkeep[selectedUnit.type]) + " per second"
 		
 		var buttons = []
-		buttons.append(get_node("AttackSpeedMenu/Low"))
 		buttons.append(get_node("AttackSpeedMenu/Base"))
 		buttons.append(get_node("AttackSpeedMenu/High"))
 		
-		for i in range(3):
-			if game.selectedUnit.fireRateMode == i:
+		for i in range(2):
+			if game.selectedUnit.fireRateMode == i + 1:
 				buttons[i].disabled = true
 			else:
 				buttons[i].disabled = false

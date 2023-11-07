@@ -10,6 +10,7 @@ var options = [-1, -2, -3, -4]
 var optionsUI
 
 var game
+var menuBar
 
 var upgradesDictionary
 var upgradesFilePath: String = "res://Data/upgrades.json"
@@ -21,10 +22,11 @@ var OPTIONS_COUNT: int = 3
 
 
 func _ready():
-	game = get_parent().get_parent().get_parent().get_parent()
-	upgradeCostUI = get_node("Options/CostLabel")
-	rerollButton = get_node("Options/RerollButton")
-	optionsUI = get_node("Options")
+	menuBar = get_parent()
+	game = menuBar.get_parent().get_parent().get_parent()
+	upgradeCostUI = get_node("MenuPanel/CostLabel")
+	rerollButton = get_node("MenuPanel/RerollButton")
+	optionsUI = get_node("MenuPanel/Title")
 	
 	# read in json files
 	var file1 = FileAccess.open(upgradesFilePath, FileAccess.READ)
@@ -63,19 +65,11 @@ func UpdateUI():
 	
 	# Update the cards to show the options
 	for i in range(OPTIONS_COUNT):
-		var item = optionsUI.get_child(1 + i)
+		var item = optionsUI.get_child(i)
 		item.get_node("Info").text = upgradesDictionary.Upgrades[options[i]].name + "\n" + upgradesDictionary.Upgrades[options[i]].Description
 		
-	
-func _on_upgrades_menu_button_pressed():
-	var options = get_node("Options")
-	options.visible = not options.visible
-
 
 func _on_option_pressed(extra_arg_0):
-	var optionsUI = get_node("Options")
-	optionsUI.visible = false
-	
 	game.ReceiveUpgrades(options[extra_arg_0])
 	
 	game.operationFunds -= upgradeCost
@@ -91,3 +85,8 @@ func _on_reroll_button_pressed():
 	rerollCost *= 2
 	GenerateUpgradeOptions()
 	UpdateUI()
+
+
+func _on_pressed():
+	menuBar.HideAllMenus()
+	get_node("MenuPanel").visible = true

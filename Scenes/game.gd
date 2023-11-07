@@ -78,12 +78,11 @@ func _ready():
 	Market.game = self
 	homeBlock = get_node("MapBlock")
 	camera = get_node("Camera")
-	operationTimeUI = get_node("Camera/CanvasLayer/InGameUI/OperationTimeUI")
+	operationTimeUI = get_node("Camera/User Interface/OperationTimeUI")
 	get_node("Camera").FocusOnTile(homeBlock.blockTiles[int(homeBlock.boardWidth/2)][int(homeBlock.boardWidth/2)])
-	enemyCurrentCountUI = get_node("Camera/CanvasLayer/InGameUI/EnemyCountLabel")
-	unitMenu = get_node("Camera/CanvasLayer/InGameUI/UnitMenu")
-	totalValueGraph = get_node("Camera/CanvasLayer/InGameUI/TotalValueGraph/Graph2D").add_plot_item("", Color.GREEN, 1.0)
-	marketUI = get_node("Camera/CanvasLayer/MarketUI")
+	enemyCurrentCountUI = get_node("Camera/User Interface/EnemyCountLabel")
+	unitMenu = get_node("Camera/User Interface/UnitMenu")
+	marketUI = get_node("Camera/User Interface/MarketUI")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -117,9 +116,9 @@ func _process(delta):
 	if totalValue > highestValuePoint:
 		highestValuePoint = totalValue
 		
-	get_node("Camera/CanvasLayer/InGameUI/MostFundsLabel").text = "Highest Value: " + str(int(highestValuePoint))
-	get_node("Camera/CanvasLayer/InGameUI/MoneyLabel").text = "Current Funds: " + str(int(operationFunds))
-	get_node("Camera/CanvasLayer/InGameUI/Total Value").text = "Current Value: " + str(int(totalValue))
+	get_node("Camera/User Interface/OperationFundsUI/MostFundsLabel").text = "Highest Value: " + str(int(highestValuePoint))
+	get_node("Camera/User Interface/OperationFundsUI/MoneyLabel").text = "Current Funds: " + str(int(operationFunds))
+	get_node("Camera/User Interface/OperationFundsUI/Total Value").text = "Current Value: " + str(int(totalValue))
 	
 	
 	# spawn enemy wave
@@ -144,11 +143,6 @@ func _process(delta):
 					enemyDifficultyIncrease += 1
 					
 				spawnRateHolder = 0
-	
-	
-	# add data point to graph
-	if int(operationTime) % 10 == 0:
-		totalValueGraph.add_point(Vector2(int(operationTime / 10), totalValue))
 
 
 func MarketCycle():
@@ -242,10 +236,7 @@ func _input(event):
 						print("Spawned HQ at ", selectedTile)
 						waitingForBuildLocation = false
 						
-						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/HQButton").visible = false
-						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/TurretButton").visible = true
-						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/MiningDrillButton").visible = true
-						get_node("Camera/CanvasLayer/InGameUI/BuildMenu/BuildButton/BuildOptionsMenu/NetworkTowerButton").visible = true
+						get_node("Camera/User Interface/MenuBar/BuildMenu").MadeHQ()
 						
 						operationFunds -= buildingCosts[buildType]
 						playerStructures.append(newHQ)

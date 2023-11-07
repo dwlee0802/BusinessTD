@@ -803,6 +803,7 @@ theme_override_font_sizes/font_size = 12
 text = "0000"
 
 [node name="AutosellUI" type="Panel" parent="Camera/User Interface/MarketUI"]
+visible = false
 layout_mode = 0
 offset_top = 114.0
 offset_right = 256.0
@@ -856,31 +857,6 @@ offset_top = 7.0
 offset_right = 125.0
 offset_bottom = 33.0
 text = "Sell"
-
-[node name="GameOverLabel" type="Label" parent="Camera/User Interface"]
-visible = false
-self_modulate = Color(1, 0, 0, 1)
-texture_filter = 1
-offset_left = 600.0
-offset_top = 400.0
-offset_right = 1031.0
-offset_bottom = 458.0
-theme_override_font_sizes/font_size = 35
-text = "Operation Terminated"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Label" type="Label" parent="Camera/User Interface/GameOverLabel"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 119.0
-offset_top = 51.0
-offset_right = 290.0
-offset_bottom = 77.0
-text = "Score: 0000000000000"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="UnitMenu" type="Label" parent="Camera/User Interface"]
 offset_left = 1275.0
@@ -1138,6 +1114,31 @@ offset_left = -3.0
 offset_right = 135.0
 offset_bottom = 34.0
 mouse_filter = 2
+
+[node name="GameOverLabel" type="Label" parent="Camera/User Interface"]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+offset_left = 600.0
+offset_top = 400.0
+offset_right = 1031.0
+offset_bottom = 458.0
+theme_override_font_sizes/font_size = 35
+text = "Operation Terminated"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="Camera/User Interface/GameOverLabel"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 119.0
+offset_top = 51.0
+offset_right = 290.0
+offset_bottom = 77.0
+text = "Score: 0000000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 

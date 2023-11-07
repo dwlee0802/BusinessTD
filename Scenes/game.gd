@@ -106,7 +106,7 @@ func _process(delta):
 			MarketCycle()
 			
 	# update operation time and player finance ui
-	if not playerStructures.is_empty():
+	if not playerStructures.is_empty() and gameStarted == true:
 		operationTime += delta
 		operationTimeUI.text = str(int(operationTime)) + ":" + str(int(operationTime * 100) % 100)
 		var assets = 0
@@ -407,7 +407,9 @@ func GameOver():
 	get_node("Camera/User Interface/GameOverLabel/Label").text = "Score: " + str(totalValue)
 	gameStarted = false
 	emit_signal("game_ended")
-	get_node("Camera/User Interface/InGameUI").visible = false
+	get_node("Camera/User Interface/MenuBar").visible = false
+	get_node("Camera/User Interface/MarketUI").visible = false
+	get_node("Camera/User Interface/SpeedUpUI").visible = false
 	
 	
 # when the current operation can't be profitable anymore, the player can abort mission

@@ -72,6 +72,8 @@ var marketUpdateTime: float = 5
 var marketUpdateTimeHolder: float = 0
 
 var marketUI
+var marketPanel
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -83,6 +85,7 @@ func _ready():
 	enemyCurrentCountUI = get_node("Camera/User Interface/EnemyCountLabel")
 	unitMenu = get_node("Camera/User Interface/UnitMenu")
 	marketUI = get_node("Camera/User Interface/MarketUI")
+	marketPanel = get_node("Camera/User Interface/MenuBar/MarketMenu/MenuPanel")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -436,6 +439,7 @@ func UpdateMarketUI():
 	marketUI.get_node("PriceUI/SemiconductorConsumed").text = str(Market.marketPrices[2])
 	
 	marketUI.get_node("AutosellUI/Label").text = str(Market.minSellPrice)
+	marketPanel.get_node("CrystalMarket/AutosellUI/Label").text = str(Market.minSellPrice)
 
 
 func _on_build_turret_option_pressed(extra_arg_0):

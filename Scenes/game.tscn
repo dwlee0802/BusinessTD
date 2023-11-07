@@ -65,7 +65,7 @@ layout_mode = 0
 offset_left = 9.0
 offset_top = 79.0
 offset_right = 139.0
-offset_bottom = 138.0
+offset_bottom = 139.0
 text = "HQ"
 
 [node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/HQButton"]
@@ -99,7 +99,7 @@ layout_mode = 0
 offset_left = 10.0
 offset_top = 79.0
 offset_right = 140.0
-offset_bottom = 119.0
+offset_bottom = 139.0
 text = "Turret"
 
 [node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/TurretButton"]
@@ -126,7 +126,7 @@ layout_mode = 0
 offset_left = 11.0
 offset_top = 197.0
 offset_right = 141.0
-offset_bottom = 237.0
+offset_bottom = 257.0
 text = "Network Tower"
 
 [node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/NetworkTowerButton"]
@@ -153,7 +153,7 @@ layout_mode = 0
 offset_left = 13.0
 offset_top = 310.0
 offset_right = 143.0
-offset_bottom = 350.0
+offset_bottom = 370.0
 text = "Mining Drill"
 
 [node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/DrillButton"]
@@ -400,6 +400,61 @@ offset_top = 193.0
 offset_right = 45.0
 offset_bottom = 216.0
 text = "Current Price: "
+
+[node name="AutosellUI" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
+offset_left = 38.0
+offset_top = 301.0
+offset_right = 294.0
+offset_bottom = 364.0
+
+[node name="MinimumSellPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 28.0
+offset_right = 155.0
+offset_bottom = 54.0
+text = "Minimum sell price:"
+
+[node name="Label" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 29.0
+offset_right = 200.0
+offset_bottom = 55.0
+text = "100"
+
+[node name="Increase" type="Button" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 26.0
+offset_right = 223.0
+offset_bottom = 57.0
+text = "-"
+
+[node name="Decrease" type="Button" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 26.0
+offset_right = 253.0
+offset_bottom = 57.0
+text = "+"
+
+[node name="SellButton" type="CheckButton" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -1.0
+offset_right = 152.0
+offset_bottom = 36.0
+text = "Hold"
+expand_icon = true
+
+[node name="Label" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 7.0
+offset_right = 125.0
+offset_bottom = 33.0
+text = "Sell"
 
 [node name="SteelMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
 visible = false
@@ -1115,6 +1170,17 @@ mouse_filter = 2
 [connection signal="pressed" from="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/RerollButton" to="Camera/User Interface/MenuBar/UpgradesMenu" method="_on_reroll_button_pressed"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="button_down" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_increase_pressed" binds= [false]]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_increase_pressed" binds= [false]]
+[connection signal="button_down" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_increase_pressed" binds= [true]]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_increase_pressed" binds= [true]]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/CompetitionMenu" to="." method="_on_mouse_entered_ui"]

@@ -1140,6 +1140,22 @@ text = "Score: 0000000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RestartButton" type="Button" parent="Camera/User Interface/GameOverLabel"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 81.0
+offset_right = 189.0
+offset_bottom = 121.0
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="Camera/User Interface/GameOverLabel"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 81.0
+offset_right = 290.0
+offset_bottom = 121.0
+text = "Quit"
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
@@ -1235,3 +1251,7 @@ vertical_alignment = 1
 [connection signal="mouse_entered" from="Camera/User Interface/SpeedUpUI" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/SpeedUpUI" to="." method="_on_mouse_exited_ui"]
 [connection signal="toggled" from="Camera/User Interface/SpeedUpUI" to="." method="_on_speed_up_ui_toggled"]
+[connection signal="mouse_entered" from="Camera/User Interface/GameOverLabel/RestartButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/GameOverLabel/RestartButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/GameOverLabel/QuitButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/GameOverLabel/QuitButton" to="." method="_on_mouse_exited_ui"]

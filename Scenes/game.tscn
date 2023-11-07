@@ -270,6 +270,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Option2" type="Button" parent="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/Title"]
+layout_mode = 0
 offset_left = 279.0
 offset_top = 171.0
 offset_right = 333.0
@@ -301,6 +302,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Option3" type="Button" parent="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/Title"]
+layout_mode = 0
 offset_left = 278.0
 offset_top = 283.0
 offset_right = 332.0
@@ -388,15 +390,6 @@ offset_right = 63.0
 offset_bottom = 78.0
 text = "For:"
 
-[node name="CrystalPriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
-anchors_preset = 0
-offset_left = 2.0
-offset_top = 31.0
-offset_right = 328.0
-offset_bottom = 177.0
-script = ExtResource("8_fjhd7")
-y_max = 200.0
-
 [node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
 layout_mode = 0
 offset_left = 5.0
@@ -406,6 +399,7 @@ offset_bottom = 216.0
 text = "Current Price: "
 
 [node name="AutosellUI" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
+layout_mode = 0
 offset_left = 38.0
 offset_top = 301.0
 offset_right = 294.0
@@ -460,22 +454,24 @@ offset_right = 125.0
 offset_bottom = 33.0
 text = "Sell"
 
-[node name="SteelMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
-visible = false
-offset_left = 9.0
-offset_top = 52.0
-offset_right = 63.0
-offset_bottom = 78.0
-text = "For:"
-
-[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
 anchors_preset = 0
 offset_left = 2.0
 offset_top = 31.0
 offset_right = 328.0
 offset_bottom = 177.0
 script = ExtResource("8_fjhd7")
+x_max = 60.0
 y_max = 200.0
+
+[node name="SteelMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "For:"
 
 [node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
 layout_mode = 0
@@ -486,11 +482,12 @@ offset_bottom = 216.0
 text = "Current Price: "
 
 [node name="TotalConsumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 212.0
 offset_right = 157.0
 offset_bottom = 238.0
-text = "Total Consumption:"
+text = "Total Demand:"
 
 [node name="Consumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
 layout_mode = 0
@@ -501,28 +498,31 @@ offset_bottom = 276.0
 text = "Your Consumption:"
 
 [node name="Cost" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 269.0
 offset_right = 153.0
 offset_bottom = 295.0
 text = "Cost:"
 
-[node name="OilMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
-visible = false
-offset_left = 9.0
-offset_top = 52.0
-offset_right = 63.0
-offset_bottom = 78.0
-text = "For:"
-
-[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
 anchors_preset = 0
 offset_left = 2.0
 offset_top = 31.0
 offset_right = 328.0
 offset_bottom = 177.0
 script = ExtResource("8_fjhd7")
-y_max = 100.0
+x_max = 60.0
+y_max = 200.0
+
+[node name="OilMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "For:"
 
 [node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
 layout_mode = 0
@@ -533,6 +533,7 @@ offset_bottom = 216.0
 text = "Current Price: "
 
 [node name="TotalConsumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 212.0
 offset_right = 157.0
@@ -548,28 +549,31 @@ offset_bottom = 276.0
 text = "Your Consumption:"
 
 [node name="Cost" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 269.0
 offset_right = 153.0
 offset_bottom = 295.0
 text = "Cost:"
 
-[node name="SemiconductorMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
-visible = false
-offset_left = 9.0
-offset_top = 52.0
-offset_right = 63.0
-offset_bottom = 78.0
-text = "For:"
-
-[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
 anchors_preset = 0
 offset_left = 2.0
 offset_top = 31.0
 offset_right = 328.0
 offset_bottom = 177.0
 script = ExtResource("8_fjhd7")
-y_max = 300.0
+x_max = 60.0
+y_max = 100.0
+
+[node name="SemiconductorMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "For:"
 
 [node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
 layout_mode = 0
@@ -580,6 +584,7 @@ offset_bottom = 216.0
 text = "Current Price: "
 
 [node name="TotalConsumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 212.0
 offset_right = 157.0
@@ -595,11 +600,22 @@ offset_bottom = 276.0
 text = "Your Consumption:"
 
 [node name="Cost" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 269.0
 offset_right = 153.0
 offset_bottom = 295.0
 text = "Cost:"
+
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 177.0
+script = ExtResource("8_fjhd7")
+x_max = 60.0
+y_max = 300.0
 
 [node name="OptionButton" type="OptionButton" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
 layout_mode = 0

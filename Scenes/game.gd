@@ -74,6 +74,8 @@ var marketUpdateTimeHolder: float = 0
 var marketUI
 var marketPanel
 
+signal market_cycle
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -151,9 +153,14 @@ func _process(delta):
 func MarketCycle():
 	Market.Consumption()
 	Market.SupplyGrowth()
+	
 	Market.UpdateConsumption()
+	
+	Market.RecordPrices()
 	Market.UpdatePrices()
 	UpdateMarketUI()
+
+	emit_signal("market_cycle")
 	
 
 func _input(event):
@@ -245,9 +252,6 @@ func _input(event):
 						playerStructures.append(newHQ)
 						gameStarted = true
 						
-						for item in edgeTiles:
-							item.pathToHQ = homeBlock.pathfinding.get_id_path(item.id, selectedTile.id)
-								
 						return
 					
 					elif buildType == 2:

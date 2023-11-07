@@ -11,7 +11,9 @@ static var playerCrystals: int = 0
 static var maxCrystalStorage: int = 250
 
 # holds the prices of ingredients
-static var marketPrices = [100, 50, 150]
+static var marketPrices = [200, 100, 50, 150]
+
+static var priceHistory = []
 
 static var baseConsumption = [[2, 0, 2], [2, 0, 2], [1, 2, 1], [1, 0, 1]]
 static var totalConsumption = [0, 0, 0]
@@ -91,3 +93,13 @@ static func AddCrystals(amount):
 
 static func ModifierFromDifference(diff):
 	pass
+	
+	
+static func RecordPrices():
+	var newData = []
+	newData.append(crystalPrice)
+	newData.append(marketPrices[0])
+	newData.append(marketPrices[1])
+	newData.append(marketPrices[2])
+	
+	priceHistory.append(newData)

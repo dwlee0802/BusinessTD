@@ -30,6 +30,7 @@ offset_bottom = 40.0
 script = ExtResource("9_iptbq")
 
 [node name="BuildMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+self_modulate = Color(1, 0.501961, 0.427451, 1)
 layout_mode = 0
 offset_left = 2.0
 offset_top = 857.0
@@ -175,6 +176,7 @@ theme_override_font_sizes/font_size = 14
 text = "Upkeep: 1 St, 2 Oi, 1 Se"
 
 [node name="FinanceMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+self_modulate = Color(0, 0.956863, 0, 1)
 layout_mode = 0
 offset_left = 234.0
 offset_top = 857.0
@@ -204,6 +206,7 @@ offset_bottom = 34.0
 text = "Finance"
 
 [node name="UpgradesMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+self_modulate = Color(0, 0.898039, 0.980392, 1)
 layout_mode = 0
 offset_left = 465.0
 offset_top = 857.0
@@ -347,6 +350,7 @@ offset_bottom = 36.0
 text = "Reroll: 0000"
 
 [node name="MarketMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+self_modulate = Color(0.929412, 0.929412, 0, 1)
 layout_mode = 0
 offset_left = 705.0
 offset_top = 857.0
@@ -382,7 +386,7 @@ offset_left = 9.0
 offset_top = 52.0
 offset_right = 63.0
 offset_bottom = 78.0
-text = "Crystal Market"
+text = "For:"
 
 [node name="CrystalPriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
 anchors_preset = 0
@@ -462,7 +466,7 @@ offset_left = 9.0
 offset_top = 52.0
 offset_right = 63.0
 offset_bottom = 78.0
-text = "Steel Market"
+text = "For:"
 
 [node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
 anchors_preset = 0
@@ -509,7 +513,7 @@ offset_left = 9.0
 offset_top = 52.0
 offset_right = 63.0
 offset_bottom = 78.0
-text = "Oil Market"
+text = "For:"
 
 [node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
 anchors_preset = 0
@@ -556,7 +560,7 @@ offset_left = 9.0
 offset_top = 52.0
 offset_right = 63.0
 offset_bottom = 78.0
-text = "Semiconductor Market"
+text = "For:"
 
 [node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
 anchors_preset = 0
@@ -599,10 +603,10 @@ text = "Cost:"
 
 [node name="OptionButton" type="OptionButton" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 49.0
-offset_right = 336.0
-offset_bottom = 80.0
+offset_left = 50.0
+offset_top = 48.0
+offset_right = 210.0
+offset_bottom = 79.0
 item_count = 4
 selected = 0
 popup/item_0/text = "Crystal"
@@ -615,6 +619,7 @@ popup/item_3/text = "Semiconductor"
 popup/item_3/id = 3
 
 [node name="CompetitionMenu" type="Button" parent="Camera/User Interface/MenuBar"]
+self_modulate = Color(0.521569, 0.988235, 0.741176, 1)
 layout_mode = 0
 offset_left = 948.0
 offset_top = 857.0
@@ -673,6 +678,7 @@ offset_bottom = 34.0
 text = "Settings"
 
 [node name="ButtonBackgroundPanel" type="Panel" parent="Camera/User Interface/MenuBar"]
+self_modulate = Color(0, 0, 0, 1)
 z_index = -1
 layout_mode = 0
 offset_left = -24.0
@@ -1170,17 +1176,16 @@ mouse_filter = 2
 [connection signal="pressed" from="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/RerollButton" to="Camera/User Interface/MenuBar/UpgradesMenu" method="_on_reroll_button_pressed"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_exited_ui"]
-[connection signal="button_down" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_increase_pressed" binds= [false]]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Increase" to="." method="_on_increase_pressed" binds= [false]]
-[connection signal="button_down" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_increase_pressed" binds= [true]]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/Decrease" to="." method="_on_increase_pressed" binds= [true]]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI/SellButton" to="." method="_on_sell_crystals_button_pressed"]
+[connection signal="item_selected" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="Camera/User Interface/MenuBar/MarketMenu" method="_on_option_button_item_selected"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/CompetitionMenu" to="." method="_on_mouse_entered_ui"]

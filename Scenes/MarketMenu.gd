@@ -54,7 +54,7 @@ func _on_option_button_item_selected(index):
 	steelMarketTab.visible = false
 	oilMarketTab.visible = false
 	semiconductorMarketTab.visible = false
-	
+	selectedType = index
 	if index == 0:
 		crystalMarketTab.visible = true
 	if index == 1:
@@ -80,6 +80,8 @@ func UpdateUI():
 	if selectedType == 0:
 		target = crystalMarketTab
 		target.get_node("CurrentPrice").text = "Current Price: " + str(Market.crystalPrice)
+		target.get_node("SoldAmount").text = "Sold at this price: " + str(Market.lastSoldCrystals)
+		target.get_node("Revenue").text = "Revenue: " + str(Market.crystalPrice * Market.lastSoldCrystals)
 		return
 	if selectedType == 1:
 		target = steelMarketTab

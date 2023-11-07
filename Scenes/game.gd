@@ -101,6 +101,7 @@ func _process(delta):
 	if gameStarted == true:
 		if Market.autoSell == true and Market.crystalPrice >= Market.minSellPrice:
 			Market.SellCrystals()
+			marketPanel.get_parent().UpdateUI()
 			
 		marketUpdateTimeHolder -= delta
 		if marketUpdateTimeHolder <= 0:

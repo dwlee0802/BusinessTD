@@ -4,7 +4,7 @@ class_name Market
 
 # price of one crystal
 static var crystalPrice = 200
-static var lastSoldCrystals
+static var lastSoldCrystals: int = 0
 
 # player's crystals
 static var playerCrystals: int = 0
@@ -43,13 +43,14 @@ static func UpdatePrices():
 	marketPrices[0] = randi_range(75, 125)
 	marketPrices[1] = randi_range(25, 75)
 	marketPrices[2] = randi_range(100, 200)
+	lastSoldCrystals = 0
 	
 	
 # called when player presses sell stored crystals button. Sells all in storage by current price.
 static func SellCrystals():
 	game.operationFunds += playerCrystals * crystalPrice
+	lastSoldCrystals += playerCrystals
 	playerCrystals = 0
-	
 
 # calculates the supply amount for each ingredient type for the next cycle.
 static func SupplyGrowth():

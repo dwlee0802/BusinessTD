@@ -398,6 +398,21 @@ offset_right = 45.0
 offset_bottom = 216.0
 text = "Current Price: "
 
+[node name="SoldAmount" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 212.0
+offset_right = 46.0
+offset_bottom = 238.0
+text = "Sold at this price: 0"
+
+[node name="Revenue" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
+offset_left = 6.0
+offset_top = 231.0
+offset_right = 57.0
+offset_bottom = 257.0
+text = "Revenue: 0"
+
 [node name="AutosellUI" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
 layout_mode = 0
 offset_left = 38.0
@@ -769,7 +784,7 @@ offset_top = 42.0
 offset_right = 109.0
 offset_bottom = 68.0
 theme_override_font_sizes/font_size = 12
-text = "Gas: 000"
+text = "Oil: 000"
 
 [node name="SemiconductorConsumed" type="Label" parent="Camera/User Interface/MarketUI/ConsumptionUI"]
 modulate = Color(0.305882, 1, 0.596078, 1)

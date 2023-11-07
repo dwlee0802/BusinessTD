@@ -210,6 +210,7 @@ text = "Upgrades"
 script = ExtResource("3_sf8ga")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/UpgradesMenu"]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -350,7 +351,6 @@ offset_bottom = 900.0
 text = "Market"
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu"]
-visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -887,6 +887,7 @@ layout_mode = 0
 offset_left = -3.0
 offset_right = 135.0
 offset_bottom = 34.0
+mouse_filter = 2
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
@@ -968,3 +969,6 @@ offset_bottom = 34.0
 [connection signal="mouse_exited" from="Camera/User Interface/EnemyCountLabel/Background" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/OperationFundsUI/Background" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/OperationFundsUI/Background" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/SpeedUpUI" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/SpeedUpUI" to="." method="_on_mouse_exited_ui"]
+[connection signal="toggled" from="Camera/User Interface/SpeedUpUI" to="." method="_on_speed_up_ui_toggled"]

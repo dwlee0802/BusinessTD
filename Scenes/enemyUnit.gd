@@ -64,7 +64,7 @@ func _physics_process(delta):
 		return
 		
 	if len(path) - 1 > pathCount:
-		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 2:
+		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 2 * Engine.time_scale:
 			pathCount += 1
 	else:
 		# no path!

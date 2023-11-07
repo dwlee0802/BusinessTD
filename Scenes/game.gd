@@ -501,3 +501,10 @@ func _on_increase_pressed(extra_arg_0):
 	UpdateMarketUI()		
 		
 		
+
+
+func _on_speed_up_ui_toggled(button_pressed):
+	if button_pressed:
+		Engine.time_scale = 1.5
+	else:
+		Engine.time_scale = 1

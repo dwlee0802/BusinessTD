@@ -30,7 +30,7 @@ offset_bottom = 40.0
 script = ExtResource("9_iptbq")
 
 [node name="BuildMenu" type="Button" parent="Camera/User Interface/MenuBar"]
-self_modulate = Color(1, 0.501961, 0.427451, 1)
+self_modulate = Color(1, 0.32549, 0.247059, 1)
 layout_mode = 0
 offset_left = 2.0
 offset_top = 857.0

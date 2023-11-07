@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=12 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="4_al38i"]
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
 [ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
+[ext_resource type="Script" path="res://Scenes/MarketMenu.gd" id="7_wjjcr"]
+[ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
 [ext_resource type="Script" path="res://Scenes/MenuBar.gd" id="9_iptbq"]
 
 [node name="Game" type="Node2D"]
@@ -55,6 +57,7 @@ offset_left = 9.0
 offset_top = 8.0
 offset_right = 49.0
 offset_bottom = 34.0
+theme_override_font_sizes/font_size = 20
 text = "Build"
 
 [node name="HQButton" type="Button" parent="Camera/User Interface/MenuBar/BuildMenu/MenuPanel"]
@@ -228,6 +231,7 @@ offset_left = 9.0
 offset_top = 8.0
 offset_right = 49.0
 offset_bottom = 34.0
+theme_override_font_sizes/font_size = 20
 text = "Upgrades"
 
 [node name="Option1" type="Button" parent="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/Title"]
@@ -349,6 +353,7 @@ offset_top = 857.0
 offset_right = 910.0
 offset_bottom = 900.0
 text = "Market"
+script = ExtResource("7_wjjcr")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu"]
 z_index = -1
@@ -368,7 +373,191 @@ offset_left = 9.0
 offset_top = 8.0
 offset_right = 49.0
 offset_bottom = 34.0
+theme_override_font_sizes/font_size = 20
 text = "Market"
+
+[node name="CrystalMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "Crystal Market"
+
+[node name="CrystalPriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 177.0
+script = ExtResource("8_fjhd7")
+y_max = 200.0
+
+[node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 193.0
+offset_right = 45.0
+offset_bottom = 216.0
+text = "Current Price: "
+
+[node name="SteelMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+visible = false
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "Steel Market"
+
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 177.0
+script = ExtResource("8_fjhd7")
+y_max = 200.0
+
+[node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 193.0
+offset_right = 45.0
+offset_bottom = 216.0
+text = "Current Price: "
+
+[node name="TotalConsumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+offset_left = 5.0
+offset_top = 212.0
+offset_right = 157.0
+offset_bottom = 238.0
+text = "Total Consumption:"
+
+[node name="Consumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 250.0
+offset_right = 154.0
+offset_bottom = 276.0
+text = "Your Consumption:"
+
+[node name="Cost" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SteelMarket"]
+offset_left = 4.0
+offset_top = 269.0
+offset_right = 153.0
+offset_bottom = 295.0
+text = "Cost:"
+
+[node name="OilMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+visible = false
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "Oil Market"
+
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 177.0
+script = ExtResource("8_fjhd7")
+y_max = 100.0
+
+[node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 193.0
+offset_right = 45.0
+offset_bottom = 216.0
+text = "Current Price: "
+
+[node name="TotalConsumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+offset_left = 5.0
+offset_top = 212.0
+offset_right = 157.0
+offset_bottom = 238.0
+text = "Total Consumption:"
+
+[node name="Consumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 250.0
+offset_right = 154.0
+offset_bottom = 276.0
+text = "Your Consumption:"
+
+[node name="Cost" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OilMarket"]
+offset_left = 4.0
+offset_top = 269.0
+offset_right = 153.0
+offset_bottom = 295.0
+text = "Cost:"
+
+[node name="SemiconductorMarket" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+visible = false
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 78.0
+text = "Semiconductor Market"
+
+[node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 177.0
+script = ExtResource("8_fjhd7")
+y_max = 300.0
+
+[node name="CurrentPrice" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 193.0
+offset_right = 45.0
+offset_bottom = 216.0
+text = "Current Price: "
+
+[node name="TotalConsumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+offset_left = 5.0
+offset_top = 212.0
+offset_right = 157.0
+offset_bottom = 238.0
+text = "Total Consumption:"
+
+[node name="Consumption" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 250.0
+offset_right = 154.0
+offset_bottom = 276.0
+text = "Your Consumption:"
+
+[node name="Cost" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/SemiconductorMarket"]
+offset_left = 4.0
+offset_top = 269.0
+offset_right = 153.0
+offset_bottom = 295.0
+text = "Cost:"
+
+[node name="OptionButton" type="OptionButton" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 49.0
+offset_right = 336.0
+offset_bottom = 80.0
+item_count = 4
+selected = 0
+popup/item_0/text = "Crystal"
+popup/item_0/id = 0
+popup/item_1/text = "Steel"
+popup/item_1/id = 1
+popup/item_2/text = "Oil"
+popup/item_2/id = 2
+popup/item_3/text = "Semiconductor"
+popup/item_3/id = 3
 
 [node name="CompetitionMenu" type="Button" parent="Camera/User Interface/MenuBar"]
 layout_mode = 0
@@ -926,6 +1115,8 @@ mouse_filter = 2
 [connection signal="pressed" from="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/RerollButton" to="Camera/User Interface/MenuBar/UpgradesMenu" method="_on_reroll_button_pressed"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/OptionButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/CompetitionMenu" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/CompetitionMenu" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/SettingsMenu" to="." method="_on_mouse_entered_ui"]

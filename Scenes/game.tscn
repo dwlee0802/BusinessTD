@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=13 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/UpgradesMenu.gd" id="3_sf8ga"]
 [ext_resource type="Texture2D" uid="uid://bqyshusuhavsd" path="res://Art/single_white_pixel.png" id="4_al38i"]
 [ext_resource type="Script" path="res://Scenes/AbortButton.gd" id="4_r0jn5"]
+[ext_resource type="Script" path="res://Scenes/FinanceMenu.gd" id="5_8hfgs"]
 [ext_resource type="Script" path="res://Scenes/UnitMenu.gd" id="5_tkslb"]
 [ext_resource type="Script" path="res://Scenes/MarketMenu.gd" id="7_wjjcr"]
 [ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
@@ -183,6 +184,7 @@ offset_top = 857.0
 offset_right = 439.0
 offset_bottom = 900.0
 text = "Finance"
+script = ExtResource("5_8hfgs")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/FinanceMenu"]
 z_index = -1
@@ -204,7 +206,58 @@ offset_right = 49.0
 offset_bottom = 34.0
 text = "Finance"
 
+[node name="GraphSelectButton" type="OptionButton" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 34.0
+offset_right = 252.0
+offset_bottom = 65.0
+item_count = 3
+selected = 0
+popup/item_0/text = "Profit"
+popup/item_0/id = 0
+popup/item_1/text = "Total Value"
+popup/item_1/id = 1
+popup/item_2/text = "Income & Cost"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/GraphSelectButton"]
+layout_mode = 0
+offset_left = -86.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 30.0
+text = "Graph for: "
+
 [node name="ProfitGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 67.0
+offset_right = 333.0
+offset_bottom = 189.0
+script = ExtResource("8_fjhd7")
+x_max = 60.0
+show_x_numbers = false
+y_min = -100000.0
+y_max = 100000.0
+show_y_numbers = false
+
+[node name="TotalValueGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 67.0
+offset_right = 333.0
+offset_bottom = 189.0
+script = ExtResource("8_fjhd7")
+x_max = 60.0
+show_x_numbers = false
+y_min = -100000.0
+y_max = 100000.0
+show_y_numbers = false
+
+[node name="IncomeGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 10.0
 offset_top = 67.0
@@ -225,108 +278,124 @@ offset_right = 119.0
 offset_bottom = 221.0
 text = "Consumption"
 
-[node name="SteelConsumed" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SteelConsumed" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
 layout_mode = 0
-offset_left = 16.0
-offset_top = 217.0
-offset_right = 120.0
-offset_bottom = 243.0
+offset_left = 1.0
+offset_top = 22.0
+offset_right = 105.0
+offset_bottom = 48.0
 theme_override_font_sizes/font_size = 12
 text = "Steel: 000"
 
-[node name="GasConsumed" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="GasConsumed" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(1, 0.00392157, 0, 1)
 layout_mode = 0
-offset_left = 16.0
-offset_top = 237.0
-offset_right = 120.0
-offset_bottom = 263.0
+offset_left = 1.0
+offset_top = 42.0
+offset_right = 105.0
+offset_bottom = 68.0
 theme_override_font_sizes/font_size = 12
 text = "Oil: 000"
 
-[node name="SemiconductorConsumed" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SemiconductorConsumed" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 modulate = Color(0.305882, 1, 0.596078, 1)
 layout_mode = 0
-offset_left = 16.0
-offset_top = 257.0
-offset_right = 169.0
-offset_bottom = 283.0
+offset_left = 1.0
+offset_top = 62.0
+offset_right = 154.0
+offset_bottom = 88.0
 theme_override_font_sizes/font_size = 12
 text = "Semiconductor: 000"
 
-[node name="SteelCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SteelCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
-offset_left = 238.0
-offset_top = 217.0
-offset_right = 342.0
-offset_bottom = 243.0
+offset_left = 223.0
+offset_top = 22.0
+offset_right = 327.0
+offset_bottom = 48.0
 theme_override_font_sizes/font_size = 12
 text = "Cost"
 
-[node name="GasCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="GasCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(1, 0.00392157, 0, 1)
-offset_left = 238.0
-offset_top = 237.0
-offset_right = 342.0
-offset_bottom = 263.0
+offset_left = 223.0
+offset_top = 42.0
+offset_right = 327.0
+offset_bottom = 68.0
 theme_override_font_sizes/font_size = 12
 text = "Cost"
 
-[node name="SemiconductorCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SemiconductorCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 modulate = Color(0.305882, 1, 0.596078, 1)
-offset_left = 238.0
-offset_top = 257.0
-offset_right = 391.0
-offset_bottom = 283.0
+offset_left = 223.0
+offset_top = 62.0
+offset_right = 376.0
+offset_bottom = 88.0
 theme_override_font_sizes/font_size = 12
 text = "Cost"
 
-[node name="SteelPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SteelPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
-offset_left = 169.0
-offset_top = 217.0
-offset_right = 273.0
-offset_bottom = 243.0
+offset_left = 154.0
+offset_top = 22.0
+offset_right = 258.0
+offset_bottom = 48.0
 theme_override_font_sizes/font_size = 12
 text = "000
 "
 
-[node name="GasPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="GasPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(1, 0.00392157, 0, 1)
-offset_left = 169.0
-offset_top = 237.0
-offset_right = 273.0
-offset_bottom = 263.0
+offset_left = 154.0
+offset_top = 42.0
+offset_right = 258.0
+offset_bottom = 68.0
 theme_override_font_sizes/font_size = 12
 text = "000
 "
 
-[node name="SemiconductorPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SemiconductorPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 modulate = Color(0.305882, 1, 0.596078, 1)
-offset_left = 169.0
-offset_top = 257.0
-offset_right = 322.0
-offset_bottom = 283.0
+offset_left = 154.0
+offset_top = 62.0
+offset_right = 307.0
+offset_bottom = 88.0
 theme_override_font_sizes/font_size = 12
 text = "000
 "
 
-[node name="TotalCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
-offset_left = 239.0
-offset_top = 277.0
-offset_right = 392.0
-offset_bottom = 303.0
+[node name="TotalCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+offset_left = 224.0
+offset_top = 82.0
+offset_right = 377.0
+offset_bottom = 108.0
 theme_override_font_sizes/font_size = 12
 text = "Cost"
 
-[node name="SemiconductorConsumed2" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
-offset_left = 16.0
-offset_top = 277.0
-offset_right = 169.0
-offset_bottom = 303.0
+[node name="TotalCostLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+offset_left = 1.0
+offset_top = 82.0
+offset_right = 154.0
+offset_bottom = 108.0
 theme_override_font_sizes/font_size = 12
 text = "Total:"
+
+[node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+offset_left = 223.0
+offset_top = 5.0
+offset_right = 327.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 12
+text = "Cost"
+
+[node name="PriceLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+offset_left = 154.0
+offset_top = 5.0
+offset_right = 258.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 12
+text = "Price"
 
 [node name="ProfitTitle" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
 offset_left = 15.0
@@ -335,82 +404,64 @@ offset_right = 119.0
 offset_bottom = 330.0
 text = "Income"
 
-[node name="SoldCrystals" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="SoldCrystals" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
 self_modulate = Color(1, 0.396078, 1, 1)
-offset_left = 15.0
-offset_top = 330.0
-offset_right = 119.0
-offset_bottom = 356.0
+offset_top = 26.0
+offset_right = 104.0
+offset_bottom = 52.0
 theme_override_font_sizes/font_size = 12
 text = "Crystal: 000"
 
-[node name="TotalIncome" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="TotalIncome" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
 self_modulate = Color(1, 0.396078, 1, 1)
-offset_left = 239.0
-offset_top = 330.0
-offset_right = 343.0
-offset_bottom = 356.0
+offset_left = 224.0
+offset_top = 26.0
+offset_right = 328.0
+offset_bottom = 52.0
 theme_override_font_sizes/font_size = 12
 text = "000"
 
-[node name="AverageSellPriceTitle" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
-offset_left = 139.0
-offset_top = 307.0
-offset_right = 243.0
-offset_bottom = 333.0
+[node name="AverageSellPriceTitle" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
+offset_left = 124.0
+offset_top = 3.0
+offset_right = 228.0
+offset_bottom = 29.0
 theme_override_font_sizes/font_size = 12
 text = "Avg. Sell Price
 "
 
-[node name="AverageSellPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="AverageSellPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
 self_modulate = Color(1, 0.396078, 1, 1)
-offset_left = 169.0
-offset_top = 330.0
-offset_right = 273.0
-offset_bottom = 356.0
+offset_left = 154.0
+offset_top = 26.0
+offset_right = 258.0
+offset_bottom = 52.0
 theme_override_font_sizes/font_size = 12
 text = "000
 "
 
-[node name="TotalIncomeLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
-offset_left = 238.0
-offset_top = 307.0
-offset_right = 342.0
-offset_bottom = 333.0
+[node name="TotalIncomeLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
+offset_left = 223.0
+offset_top = 3.0
+offset_right = 327.0
+offset_bottom = 29.0
 theme_override_font_sizes/font_size = 12
 text = "Income"
 
-[node name="Net" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="NetProfit" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
 offset_left = 15.0
 offset_top = 362.0
 offset_right = 119.0
 offset_bottom = 388.0
-text = "Net Profit"
+text = "Net Profit: "
 
-[node name="GraphSelectButton" type="OptionButton" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+[node name="Label" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/NetProfit"]
 layout_mode = 0
-offset_left = 97.0
-offset_top = 34.0
-offset_right = 244.0
-offset_bottom = 65.0
-item_count = 4
-selected = 0
-popup/item_0/text = "Profit"
-popup/item_0/id = 0
-popup/item_1/text = "Total Value"
-popup/item_1/id = 1
-popup/item_2/text = "Income"
-popup/item_2/id = 2
-popup/item_3/text = "Consumption"
-popup/item_3/id = 3
-
-[node name="Label" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/GraphSelectButton"]
-layout_mode = 0
-offset_left = -86.0
-offset_top = 4.0
-offset_right = -2.0
-offset_bottom = 30.0
-text = "Graph for: "
+offset_left = 224.0
+offset_top = -1.0
+offset_right = 264.0
+offset_bottom = 25.0
+text = "000"
 
 [node name="UpgradesMenu" type="Button" parent="Camera/User Interface/MenuBar"]
 self_modulate = Color(0, 0.898039, 0.980392, 1)
@@ -1416,6 +1467,9 @@ text = "Quit"
 [connection signal="pressed" from="Camera/User Interface/MenuBar/BuildMenu/MenuPanel/DrillButton" to="." method="_on_build_turret_option_pressed" binds= [2]]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/FinanceMenu" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/FinanceMenu" to="." method="_on_mouse_exited_ui"]
+[connection signal="item_selected" from="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/GraphSelectButton" to="Camera/User Interface/MenuBar/FinanceMenu" method="_on_graph_select_button_item_selected"]
+[connection signal="mouse_entered" from="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/GraphSelectButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/GraphSelectButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar/UpgradesMenu" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar/UpgradesMenu" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/MenuBar/UpgradesMenu" to="Camera/User Interface/MenuBar/UpgradesMenu" method="_on_pressed"]

@@ -25,6 +25,7 @@ func _ready():
 	game.market_cycle.connect(RecordPrices)
 	game.market_cycle.connect(UpdateUI)
 	menuPanel = $MenuPanel
+	
 	crystalMarketTab = menuPanel.get_node("CrystalMarket")
 	steelMarketTab = menuPanel.get_node("SteelMarket")
 	oilMarketTab = menuPanel.get_node("OilMarket")
@@ -65,6 +66,7 @@ func _on_option_button_item_selected(index):
 		semiconductorMarketTab.visible = true
 	
 	UpdateUI()
+	game.mouseInUI = false
 
 
 func RecordPrices():

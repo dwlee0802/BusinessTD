@@ -29,9 +29,6 @@ func _process(delta):
 
 		
 func ShowUnit(unit = game.selectedUnit):
-	if not unit.is_instance_valid():
-		return
-		
 	visible = true
 	
 	var selectedUnit = unit
@@ -58,8 +55,8 @@ func ShowUnit(unit = game.selectedUnit):
 		buttons.append(get_node("AttackSpeedMenu/Base"))
 		buttons.append(get_node("AttackSpeedMenu/High"))
 		
-		for i in range(3):
-			if game.selectedUnit.fireRateMode == i:
+		for i in range(2):
+			if game.selectedUnit.fireRateMode == i + 1:
 				buttons[i].disabled = true
 			else:
 				buttons[i].disabled = false

@@ -238,11 +238,12 @@ offset_bottom = 189.0
 script = ExtResource("8_fjhd7")
 x_max = 60.0
 show_x_numbers = false
-y_min = -100000.0
-y_max = 100000.0
+y_min = -10000.0
+y_max = 10000.0
 show_y_numbers = false
 
 [node name="TotalValueGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 10.0
@@ -257,6 +258,7 @@ y_max = 100000.0
 show_y_numbers = false
 
 [node name="IncomeGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 10.0
@@ -310,6 +312,7 @@ text = "Semiconductor: 000"
 
 [node name="SteelCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+layout_mode = 0
 offset_left = 223.0
 offset_top = 22.0
 offset_right = 327.0
@@ -319,6 +322,7 @@ text = "Cost"
 
 [node name="GasCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(1, 0.00392157, 0, 1)
+layout_mode = 0
 offset_left = 223.0
 offset_top = 42.0
 offset_right = 327.0
@@ -328,6 +332,7 @@ text = "Cost"
 
 [node name="SemiconductorCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 modulate = Color(0.305882, 1, 0.596078, 1)
+layout_mode = 0
 offset_left = 223.0
 offset_top = 62.0
 offset_right = 376.0
@@ -337,6 +342,7 @@ text = "Cost"
 
 [node name="SteelPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(0.235294, 0.545098, 0.835294, 1)
+layout_mode = 0
 offset_left = 154.0
 offset_top = 22.0
 offset_right = 258.0
@@ -347,6 +353,7 @@ text = "000
 
 [node name="GasPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 self_modulate = Color(1, 0.00392157, 0, 1)
+layout_mode = 0
 offset_left = 154.0
 offset_top = 42.0
 offset_right = 258.0
@@ -357,6 +364,7 @@ text = "000
 
 [node name="SemiconductorPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
 modulate = Color(0.305882, 1, 0.596078, 1)
+layout_mode = 0
 offset_left = 154.0
 offset_top = 62.0
 offset_right = 307.0
@@ -366,6 +374,7 @@ text = "000
 "
 
 [node name="TotalCost" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 82.0
 offset_right = 377.0
@@ -374,6 +383,7 @@ theme_override_font_sizes/font_size = 12
 text = "Cost"
 
 [node name="TotalCostLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 82.0
 offset_right = 154.0
@@ -382,6 +392,7 @@ theme_override_font_sizes/font_size = 12
 text = "Total:"
 
 [node name="CostLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+layout_mode = 0
 offset_left = 223.0
 offset_top = 5.0
 offset_right = 327.0
@@ -390,6 +401,7 @@ theme_override_font_sizes/font_size = 12
 text = "Cost"
 
 [node name="PriceLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ConsumptionTitle"]
+layout_mode = 0
 offset_left = 154.0
 offset_top = 5.0
 offset_right = 258.0
@@ -398,6 +410,7 @@ theme_override_font_sizes/font_size = 12
 text = "Price"
 
 [node name="ProfitTitle" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 304.0
 offset_right = 119.0
@@ -406,6 +419,7 @@ text = "Income"
 
 [node name="SoldCrystals" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
 self_modulate = Color(1, 0.396078, 1, 1)
+layout_mode = 0
 offset_top = 26.0
 offset_right = 104.0
 offset_bottom = 52.0
@@ -414,6 +428,7 @@ text = "Crystal: 000"
 
 [node name="TotalIncome" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
 self_modulate = Color(1, 0.396078, 1, 1)
+layout_mode = 0
 offset_left = 224.0
 offset_top = 26.0
 offset_right = 328.0
@@ -422,16 +437,18 @@ theme_override_font_sizes/font_size = 12
 text = "000"
 
 [node name="AverageSellPriceTitle" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
+layout_mode = 0
 offset_left = 124.0
 offset_top = 3.0
 offset_right = 228.0
 offset_bottom = 29.0
 theme_override_font_sizes/font_size = 12
-text = "Avg. Sell Price
+text = "Sell Price
 "
 
 [node name="AverageSellPrice" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
 self_modulate = Color(1, 0.396078, 1, 1)
+layout_mode = 0
 offset_left = 154.0
 offset_top = 26.0
 offset_right = 258.0
@@ -441,6 +458,7 @@ text = "000
 "
 
 [node name="TotalIncomeLabel" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitTitle"]
+layout_mode = 0
 offset_left = 223.0
 offset_top = 3.0
 offset_right = 327.0
@@ -449,6 +467,7 @@ theme_override_font_sizes/font_size = 12
 text = "Income"
 
 [node name="NetProfit" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 362.0
 offset_right = 119.0
@@ -620,7 +639,6 @@ text = "Market"
 script = ExtResource("7_wjjcr")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu"]
-visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -718,6 +736,7 @@ offset_left = 67.0
 offset_top = -1.0
 offset_right = 152.0
 offset_bottom = 36.0
+button_pressed = true
 text = "Hold"
 expand_icon = true
 
@@ -1044,7 +1063,7 @@ offset_top = 42.0
 offset_right = 109.0
 offset_bottom = 68.0
 theme_override_font_sizes/font_size = 12
-text = "Oil: 000"
+text = "Gas: 000"
 
 [node name="SemiconductorConsumed" type="Label" parent="Camera/User Interface/MarketUI/ConsumptionUI"]
 modulate = Color(0.305882, 1, 0.596078, 1)
@@ -1448,6 +1467,35 @@ offset_bottom = 121.0
 text = "Quit"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
+
+[node name="TutorialPage" type="Panel" parent="."]
+offset_left = 508.0
+offset_top = 183.0
+offset_right = 1110.0
+offset_bottom = 712.0
+
+[node name="Label" type="Label" parent="TutorialPage"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 70.0
+offset_right = 543.0
+offset_bottom = 434.0
+text = "Tutorial
+
+Build HQ to start game.
+Goal: Maximize profit by mining and selling crystals
+
+Place mining drills on purple tiles to mine crystals
+Place turrets to protect your buildings from incoming enemies
+
+All buildings must be inside supply areas to operate.
+Supply areas are shown as a blue circle
+
+Supply networks are generated by network towers.
+Network towers must be connected to the logistics network.
+The logistics network is shown as a green circle.
+
+Click on this to dismiss."
 
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_exited_ui"]

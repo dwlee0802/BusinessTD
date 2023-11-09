@@ -31,6 +31,9 @@ enum INGREDIENTS { Steel, Gas, Semiconductors }
 static var autoSell: bool = false
 static var minSellPrice: int = 100
 
+static var income: int = 0
+static var cost: int = 0
+
 
 static var game
 
@@ -44,13 +47,17 @@ static func UpdatePrices():
 	marketPrices[1] = randi_range(25, 75)
 	marketPrices[2] = randi_range(100, 200)
 	lastSoldCrystals = 0
-	
+	income = 0
+	cost = 0
 	
 # called when player presses sell stored crystals button. Sells all in storage by current price.
 static func SellCrystals():
-	game.operationFunds += playerCrystals * crystalPrice
+	var amount = playerCrystals * crystalPrice
+	game.operationFunds += amount
+	income += amount
 	lastSoldCrystals += playerCrystals
 	playerCrystals = 0
+
 
 # calculates the supply amount for each ingredient type for the next cycle.
 static func SupplyGrowth():
@@ -77,7 +84,9 @@ static func UpdateConsumption():
 
 static func Consumption():
 	for i in range(3):
-		game.operationFunds -= totalConsumption[i] * marketPrices[i]
+		var amount = totalConsumption[i] * marketPrices[i]
+		game.operationFunds -= amount
+		cost += amount
 	
 	
 static func AddCrystals(amount):

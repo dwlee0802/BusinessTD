@@ -13,6 +13,9 @@ var consumptionUI
 var profitUI
 var netProfitUI
 
+var marketCycles: int = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menuBar = get_parent()
@@ -26,6 +29,7 @@ func _ready():
 	
 	game.market_cycle.connect(RecordData)
 	game.market_cycle.connect(UpdateUI)
+	game.consumption_changed.connect(UpdateUI)
 	
 	consumptionUI = $MenuPanel/ConsumptionTitle
 	profitUI = $MenuPanel/ProfitTitle
@@ -46,16 +50,38 @@ func _pressed():
 
 
 func RecordData():
-	pass
+	profitGraph.add_point(Vector2(marketCycles, Market.income - Market.cost))
+	totalValueGraph.add_point(Vector2(marketCycles, game.totalValue))
+	incomeGraph.add_point(Vector2(marketCycles, Market.income))
+	costGraph.add_point(Vector2(marketCycles, Market.cost))
+	
+	marketCycles += 1
 
 
 func UpdateUI():
-	consumptionUI.get_node("SteelConsumed").text = "Steel: "
-	consumptionUI.get_node("GasConsumed").text = "Oil: "
-	consumptionUI.get_node("SemiconductorConsumed").text = "Semiconductor: "
+	consumptionUI.get_node("SteelConsumed").text = "Steel: " + str(Market.totalConsumption[Market.INGREDIENTS.Steel])
+	consumptionUI.get_node("GasConsumed").text = "Gas: " + str(Market.totalConsumption[Market.INGREDIENTS.Gas])
+	consumptionUI.get_node("SemiconductorConsumed").text = "Semiconductor: " + str(Market.totalConsumption[Market.INGREDIENTS.Semiconductors])
 	
-	consumptionUI.get_node("SteelCost").text = "Semiconductor: "
+	var steelCost = Market.marketPrices[Market.INGREDIENTS.Steel] * Market.totalConsumption[Market.INGREDIENTS.Steel]
+	var gasCost = Market.marketPrices[Market.INGREDIENTS.Gas] * Market.totalConsumption[Market.INGREDIENTS.Gas]
+	var semiCost = Market.marketPrices[Market.INGREDIENTS.Semiconductors] * Market.totalConsumption[Market.INGREDIENTS.Semiconductors]
+	consumptionUI.get_node("SteelCost").text = str(Market.marketPrices[Market.INGREDIENTS.Steel] * Market.totalConsumption[Market.INGREDIENTS.Steel])
+	consumptionUI.get_node("GasCost").text = str(Market.marketPrices[Market.INGREDIENTS.Gas] * Market.totalConsumption[Market.INGREDIENTS.Gas])
+	consumptionUI.get_node("SemiconductorCost").text = str(Market.marketPrices[Market.INGREDIENTS.Semiconductors] * Market.totalConsumption[Market.INGREDIENTS.Semiconductors])
 	
+	consumptionUI.get_node("SteelPrice").text = str(Market.marketPrices[Market.INGREDIENTS.Steel])
+	consumptionUI.get_node("GasPrice").text = str(Market.marketPrices[Market.INGREDIENTS.Gas])
+	consumptionUI.get_node("SemiconductorPrice").text = str(Market.marketPrices[Market.INGREDIENTS.Semiconductors])
+	
+	consumptionUI.get_node("TotalCost").text = str(steelCost + gasCost + semiCost)
+	
+	profitUI.get_node("SoldCrystals").text = "Crystal: " + str(Market.lastSoldCrystals)
+	profitUI.get_node("TotalIncome").text = str(Market.crystalPrice * Market.lastSoldCrystals)
+	profitUI.get_node("AverageSellPrice").text = str(Market.crystalPrice)
+	
+	netProfitUI.text = str(Market.crystalPrice * Market.lastSoldCrystals - steelCost - gasCost - semiCost)
+
 
 
 func _on_graph_select_button_item_selected(index):

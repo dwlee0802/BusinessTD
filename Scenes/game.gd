@@ -74,7 +74,10 @@ var marketUpdateTimeHolder: float = 0
 var marketUI
 var marketPanel
 
+var financePanel
+
 signal market_cycle
+signal consumption_changed
 
 
 # Called when the node enters the scene tree for the first time.
@@ -88,6 +91,7 @@ func _ready():
 	unitMenu = get_node("Camera/User Interface/UnitMenu")
 	marketUI = get_node("Camera/User Interface/MarketUI")
 	marketPanel = get_node("Camera/User Interface/MenuBar/MarketMenu/MenuPanel")
+	financePanel = get_node("Camera/User Interface/MenuBar/FinanceMenu/MenuPanel")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -102,6 +106,7 @@ func _process(delta):
 		if Market.autoSell == true and Market.crystalPrice >= Market.minSellPrice:
 			Market.SellCrystals()
 			marketPanel.get_parent().UpdateUI()
+			financePanel.get_parent().UpdateUI()
 			
 		marketUpdateTimeHolder -= delta
 		if marketUpdateTimeHolder <= 0:
@@ -474,12 +479,14 @@ func _on_mouse_exited_ui():
 func _on_attack_speed_button_pressed(extra_arg_0):
 	selectedUnit.ChangeFireRate(extra_arg_0)
 	get_node("Camera/User Interface/UnitMenu").ShowUnit(selectedUnit)
+	emit_signal("consumption_changed")
 
 
 func _on_option_button_item_selected(index):
 	selectedUnit.ChangeAmmoType(get_node("Camera/User Interface/UnitMenu/AmmoChoiceMenu/OptionButton").get_item_id(index))
 	get_node("Camera/User Interface/UnitMenu").ShowUnit(selectedUnit)
 	mouseInUI = false
+	emit_signal("consumption_changed")
 
 
 func _on_sell_button_pressed():
@@ -487,11 +494,6 @@ func _on_sell_button_pressed():
 	selectedUnit.hitPoints = 0
 	selectedUnit = null
 	mouseInUI = false
-
-
-func _on_network_connection_button_pressed():
-	waitingForTowerConnectionTarget = true
-	print("Waiting for another tower to connect to!\n")
 
 
 func _on_sell_crystals_button_pressed():

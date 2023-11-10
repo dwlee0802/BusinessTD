@@ -51,7 +51,6 @@ func ShowUnit(unit = game.selectedUnit):
 		
 		unitName = "Turret at " + str(game.selectedUnit.placedTile.row) + ", " + str(game.selectedUnit.placedTile.col)
 		var buttons = []
-		buttons.append(get_node("AttackSpeedMenu/Low"))
 		buttons.append(get_node("AttackSpeedMenu/Base"))
 		buttons.append(get_node("AttackSpeedMenu/High"))
 		

@@ -54,6 +54,8 @@ var	buildTimeLabel
 
 var muzzleFlashSprite
 
+var debug_undying: bool = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,7 +83,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if hitPoints <= 0:
+	if hitPoints <= 0 and debug_undying != true:
 		if isHQ:
 			print("Game Over!")
 			game.GameOver()

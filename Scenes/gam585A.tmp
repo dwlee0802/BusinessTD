@@ -1467,7 +1467,9 @@ offset_right = 290.0
 offset_bottom = 121.0
 text = "Quit"
 
-[node name="TutorialPage" type="Button" parent="Camera/User Interface"]
+[node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
+
+[node name="TutorialPage" type="Button" parent="."]
 offset_left = 404.0
 offset_top = 96.0
 offset_right = 1228.0
@@ -1490,8 +1492,6 @@ The logistics network is shown as a green circle.
 
 Click on this to dismiss."
 script = ExtResource("13_klywt")
-
-[node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_exited_ui"]
@@ -1593,6 +1593,4 @@ script = ExtResource("13_klywt")
 [connection signal="mouse_exited" from="Camera/User Interface/GameOverLabel/RestartButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/GameOverLabel/QuitButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/GameOverLabel/QuitButton" to="." method="_on_mouse_exited_ui"]
-[connection signal="mouse_entered" from="Camera/User Interface/TutorialPage" to="." method="_on_mouse_entered_ui"]
-[connection signal="mouse_exited" from="Camera/User Interface/TutorialPage" to="." method="_on_mouse_exited_ui"]
-[connection signal="pressed" from="Camera/User Interface/TutorialPage" to="Camera/User Interface/TutorialPage" method="_on_pressed"]
+[connection signal="pressed" from="TutorialPage" to="TutorialPage" method="_on_pressed"]

@@ -28,6 +28,8 @@ var explosionAnimation
 
 var dead: bool = false
 
+var waiting: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	healthBar = get_node("Healthbar")
@@ -43,7 +45,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if dead:
+	if waiting:
 		return
 		
 	if hitPoints <= 0:
@@ -60,15 +62,15 @@ func _process(delta):
 var tempHolder: float = 0
 	
 func _physics_process(delta):
-	if dead:
-		return
-		
 	if len(path) - 1 > pathCount:
 		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 2 * Engine.time_scale:
 			pathCount += 1
 	else:
 		# no path!
 		hitPoints = 0
+		return
+		
+	if waiting:
 		return
 		
 	velocity = Vector2(speed * speedModifier,0).rotated(position.angle_to_point(pathfinding.get_point_position(path[pathCount])))

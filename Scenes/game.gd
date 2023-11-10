@@ -138,6 +138,10 @@ func _process(delta):
 		spawnRateHolder += delta
 		
 		if spawnRateHolder > spawnRate:
+			homeBlock.SpawnWave(200)
+			spawnRateHolder = 0
+		
+		if false:
 			# randomly spawn enemies at the edge of the map
 			
 			if enemyCurrentCount <= spawnCount + 10:

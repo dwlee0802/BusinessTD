@@ -16,6 +16,10 @@ var TILESIZE = 32
 var tileScene
 
 var blockTiles = []
+var edgeTiles = []
+
+var enemyScene = preload("res://Scenes/enemyUnit.tscn")
+var enemyDifficultyIncrease: int = 1
 
 var camera
 
@@ -31,6 +35,13 @@ var noise3 = FastNoiseLite.new()
 var pathfinding = AStar2D.new()
 
 var game
+
+signal wave_ready
+var waveCount: int = 0
+var spawned: int = 0
+var waveEnemies = []
+
+const SPAWN_PER_FRAME: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -112,10 +123,34 @@ func _ready():
 		if blockTiles[i][-1].passable == true:
 			game.edgeTiles.append(blockTiles[i][-1])
 	
+	edgeTiles = game.edgeTiles
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if spawned < waveCount:
+		for i in range(SPAWN_PER_FRAME):
+			if spawned == waveCount:
+				break
+				
+			var target = game.playerStructures.pick_random()
+			while target == null:
+				target = game.playerStructures.pick_random()
+				
+			var unit = SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 10)
+			waveEnemies.append(unit)
+			game.enemyCurrentCount += 1
+			spawned += 1
+	else:
+		for item in waveEnemies:
+			if item != null:
+				item.waiting = false
+
+
+func SpawnWave(count):
+	waveEnemies = []
+	spawned = 0
+	waveCount = count
 
 # makes gameboard based on the parameters for board width and height
 func GenerateGameboard():
@@ -168,6 +203,19 @@ func ConnectDiagonals():
 			if i < boardHeight - 1 and j > 0:
 				blockTiles[i][j].lowerLeftTile = blockTiles[i+1][j-1]
 			
+	
+func SpawnEnemy(where, attackWhat, addHealth):
+	var newUnit = enemyScene.instantiate()
+	newUnit.position = where.position
+	newUnit.attackTarget = attackWhat
+	newUnit.maxHitPoints = 100 + addHealth
+	newUnit.hitPoints = newUnit.maxHitPoints
+	newUnit.startingTile = where
+	newUnit.targetTile = attackWhat
+	game.add_child(newUnit)
+	
+	return newUnit
+
 
 func PixelCoordToTileIndex(position):
 	return [position.y / TILESIZE as int, position.x / TILESIZE as int]

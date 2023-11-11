@@ -36,7 +36,6 @@ scale = Vector2(2.4, 2.4)
 texture = ExtResource("2_d7vnd")
 
 [node name="MuzzleFlash" type="Sprite2D" parent="TurretBarrelSprite"]
-visible = false
 self_modulate = Color(1, 1, 0, 1)
 position = Vector2(20.625, 5.96046e-08)
 scale = Vector2(0.0472005, 0.0260417)

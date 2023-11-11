@@ -38,7 +38,7 @@ var buildingCosts = [3000, 0, 6000, 1500]
 var spawnRate: float = 20
 var spawnRateHolder: float = 0
 # how many enemies spawn for each wave
-var spawnCount: float = 10
+var spawnCount: float = 100
 # determines the rate in which enemy count increases
 var difficultyScale: float = 1.1
 var difficultyScale_linear: int = 15
@@ -53,14 +53,14 @@ var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 15000
-var highestValuePoint: float = 15000
+var operationFunds: float = 150000
+var highestValuePoint: float = 150000
 
 var operationTime: float = 0
 var operationTimeUI
 
 # takes into account the cash in value of buildings
-var totalValue: float = 15000
+var totalValue: float = 150000
 var totalValueGraph
 
 var selectedUpgrades = []
@@ -552,3 +552,11 @@ func _on_speed_up_ui_toggled(button_pressed):
 
 func _on_reroll_map_button_pressed():
 	homeBlock.Randomize()
+
+
+func _on_quit_button_pressed():
+	get_tree().quit()
+
+
+func _on_restart_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")

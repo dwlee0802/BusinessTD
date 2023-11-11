@@ -35,7 +35,6 @@ shape = SubResource("RectangleShape2D_e8nbd")
 debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
 [node name="Healthbar" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(0.698039, 0, 0, 1)
 z_index = 100
 position = Vector2(-99, 109)

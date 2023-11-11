@@ -49,81 +49,7 @@ func _ready():
 	tileScene = load("res://Scenes/tile.tscn")
 	GenerateGameboard()
 	
-	randomize()
-	noise.seed = randi()
-	noise2.seed = randi()
-	noise2.seed = randi()
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise2.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise3.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise.fractal_octaves = 3
-	noise2.fractal_octaves = 3
-	noise3.fractal_octaves = 5
-	noise.fractal_gain = 2
-	noise2.fractal_gain = 2
-	noise3.fractal_gain = 5
-
-	for x in range(0, boardWidth):
-		for y in range(0, boardHeight):
-			var noise_level = (noise.get_noise_2d(x, y) + 1) / 2
-			var noise_level2 = (noise2.get_noise_2d(x, y) + 1) / 2
-			var noise_level3 = (noise3.get_noise_2d(x, y) + 1) / 2
-			blockTiles[y][x].noise = noise_level
-			blockTiles[y][x].noise2 = noise_level2
-			blockTiles[y][x].noise3 = noise_level3
-			
-			var sprite = blockTiles[y][x].get_node("Sprite2D")
-			
-			if noise_level2 < 0.38:
-				blockTiles[y][x].isSlowDown = true
-				sprite.modulate = Color.WEB_GRAY
-			if noise_level > 0.535:
-				blockTiles[y][x].occupied = true
-				blockTiles[y][x].passable = false
-				sprite.modulate = Color.BLACK
-			if noise_level > 0.8:
-				blockTiles[y][x].isDeposit = true
-				sprite.modulate = Color.PURPLE
-			if noise_level3 > 0.79:
-				blockTiles[y][x].isDeposit = true
-				sprite.modulate = Color.PURPLE
-				
-	
-	for items in blockTiles:
-		for item in items:
-			if item.passable == false:
-				continue
-			
-			if item.leftTile != null and item.leftTile.passable != false:
-				pathfinding.connect_points(item.id, item.leftTile.id)
-			if item.rightTile != null and item.rightTile.passable != false:
-				pathfinding.connect_points(item.id, item.rightTile.id)
-			if item.upperTile != null and item.upperTile.passable != false:
-				pathfinding.connect_points(item.id, item.upperTile.id)
-			if item.lowerTile != null and item.lowerTile.passable != false:
-				pathfinding.connect_points(item.id, item.lowerTile.id)
-				
-			# connect diagonal towers
-			if item.lowerLeftTile != null and item.lowerLeftTile.passable != false and item.lowerTile.passable == true and  item.leftTile.passable == true:
-				pathfinding.connect_points(item.id, item.lowerLeftTile.id)
-			if item.lowerRightTile != null and item.lowerRightTile.passable != false and item.lowerTile.passable == true and  item.rightTile.passable == true:
-				pathfinding.connect_points(item.id, item.lowerRightTile.id)
-			if item.upperLeftTile != null and item.upperLeftTile.passable != false and item.upperTile.passable == true and  item.leftTile.passable == true:
-				pathfinding.connect_points(item.id, item.upperLeftTile.id)
-			if item.upperRightTile != null and item.upperRightTile.passable != false and item.upperTile.passable == true and  item.rightTile.passable == true:
-				pathfinding.connect_points(item.id, item.upperRightTile.id)
-	
-	for i in range(1, boardWidth):
-		if blockTiles[1][i].passable == true:
-			game.edgeTiles.append(blockTiles[1][i])
-		if blockTiles[-1][i].passable == true:
-			game.edgeTiles.append(blockTiles[-1][i])
-		if blockTiles[i][1].passable == true:
-			game.edgeTiles.append(blockTiles[i][1])
-		if blockTiles[i][-1].passable == true:
-			game.edgeTiles.append(blockTiles[i][-1])
-	
-	edgeTiles = game.edgeTiles
+	Randomize()
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -171,9 +97,6 @@ func GenerateGameboard():
 			newTile.id = j + i * boardWidth
 			pathfinding.add_point(newTile.id, newTile.position, 1)
 			
-			if randf() < slowdownSpawnRate:
-				newTile.isSlowDown = true
-				
 			add_child(newTile)
 			currentRow.append(newTile)
 			
@@ -219,11 +142,17 @@ func SpawnEnemy(where, attackWhat, addHealth):
 
 
 func Randomize():	
+	pathfinding = AStar2D.new()
+	for x in range(0, boardWidth):
+		for y in range(0, boardHeight):
+			var newTile = blockTiles[y][x]
+			pathfinding.add_point(newTile.id, newTile.position, 1)
+			
 	noise.seed = randi()
 	noise2.seed = randi()
-	noise2.seed = randi()
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise2.noise_type = FastNoiseLite.TYPE_PERLIN
+	noise3.seed = randi()
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	noise2.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
 	noise3.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.fractal_octaves = 3
 	noise2.fractal_octaves = 3
@@ -253,7 +182,7 @@ func Randomize():
 			if noise_level2 < 0.38:
 				blockTiles[y][x].isSlowDown = true
 				sprite.modulate = Color.WEB_GRAY
-			if noise_level > 0.535:
+			if noise_level > 0.56:
 				blockTiles[y][x].occupied = true
 				blockTiles[y][x].passable = false
 				sprite.modulate = Color.BLACK

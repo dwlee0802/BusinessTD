@@ -48,6 +48,7 @@ text = "Build"
 script = ExtResource("3_fhnyi")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/BuildMenu"]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -193,6 +194,7 @@ text = "Finance"
 script = ExtResource("5_8hfgs")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/FinanceMenu"]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -658,7 +660,6 @@ text = "Market"
 script = ExtResource("7_wjjcr")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu"]
-visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -767,6 +768,15 @@ offset_top = 7.0
 offset_right = 125.0
 offset_bottom = 33.0
 text = "Sell"
+
+[node name="Label2" type="Label" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket/AutosellUI"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 49.0
+offset_right = 277.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 9
+text = "Press Shift to change by 5"
 
 [node name="PriceGraph" type="Control" parent="Camera/User Interface/MenuBar/MarketMenu/MenuPanel/CrystalMarket"]
 anchors_preset = 0

@@ -35,8 +35,8 @@ var buildingSizeN = [3, 7, 5, 3]
 var buildingCosts = [3000, 0, 6000, 1500]
 
 # the time between each enemy wave
-var spawnRate: float = 30
-var spawnRateHolder: float = 30
+var spawnRate: float = 20
+var spawnRateHolder: float = 0
 # how many enemies spawn for each wave
 var spawnCount: float = 10
 # determines the rate in which enemy count increases
@@ -520,11 +520,18 @@ func _on_sell_crystals_button_pressed():
 
 func _on_increase_pressed(extra_arg_0):
 	if extra_arg_0 == true:
-		Market.minSellPrice += 1
+		if Input.is_key_pressed(KEY_SHIFT):
+			Market.minSellPrice += 5
+		else:
+			Market.minSellPrice += 1
 	else:
-		Market.minSellPrice -= 1
-		if Market.minSellPrice < 0:
-			Market.minSellPrice = 0
+		if Input.is_key_pressed(KEY_SHIFT):
+			Market.minSellPrice -= 5
+		else:
+			Market.minSellPrice -= 1
+			
+	if Market.minSellPrice < 0:
+		Market.minSellPrice = 0
 
 	UpdateMarketUI()		
 		

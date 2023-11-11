@@ -84,6 +84,8 @@ signal consumption_changed
 
 var linear_increase: bool = true
 
+var waitingForLocationLabel
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Market.game = self
@@ -96,6 +98,7 @@ func _ready():
 	marketUI = get_node("Camera/User Interface/MarketUI")
 	marketPanel = get_node("Camera/User Interface/MenuBar/MarketMenu/MenuPanel")
 	financePanel = get_node("Camera/User Interface/MenuBar/FinanceMenu/MenuPanel")
+	waitingForLocationLabel = get_node("Camera/User Interface/ChooseLocationLabel")
 	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
@@ -105,6 +108,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	enemyCurrentCountUI.text = "Enemy count: " + str(enemyCurrentCount)
+	
+	if waitingForBuildLocation:
+		waitingForLocationLabel.visible = true
+	else:
+		waitingForLocationLabel.visible = false
 	
 	if gameStarted == true:
 		if Market.autoSell == true and Market.crystalPrice >= Market.minSellPrice:
@@ -324,7 +332,8 @@ func _input(event):
 					else:
 						waitingForBuildLocation = false
 						print("ERROR! Wrong building type!")
-				
+	
+		
 				
 # returns a list of tiles in a N x N square centered at center tile
 # if not possible, returns null
@@ -560,3 +569,8 @@ func _on_quit_button_pressed():
 
 func _on_restart_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+
+
+func _on_cancel_button_pressed():
+	waitingForBuildLocation = false
+	waitingForLocationLabel.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=18 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -19,6 +19,12 @@ keycode = 4194306
 
 [sub_resource type="Shortcut" id="Shortcut_k1qm6"]
 events = [SubResource("InputEventKey_1a36s")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_g3o25"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ontxj"]
+events = [SubResource("InputEventKey_g3o25")]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -1529,6 +1535,24 @@ offset_right = 217.0
 offset_bottom = 341.0
 text = "Reroll Map"
 
+[node name="ChooseLocationLabel" type="Label" parent="Camera/User Interface"]
+self_modulate = Color(1, 0.32549, 0.247059, 1)
+offset_left = 679.0
+offset_top = 692.0
+offset_right = 943.0
+offset_bottom = 726.0
+theme_override_font_sizes/font_size = 22
+text = "Choose Location to Build"
+
+[node name="CancelButton" type="Button" parent="Camera/User Interface/ChooseLocationLabel"]
+self_modulate = Color(1, 0.337255, 0.270588, 1)
+offset_left = 64.0
+offset_top = 58.0
+offset_right = 205.0
+offset_bottom = 111.0
+shortcut = SubResource("Shortcut_ontxj")
+text = "Cancel"
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
@@ -1639,3 +1663,6 @@ text = "Reroll Map"
 [connection signal="mouse_entered" from="Camera/User Interface/RerollMapButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/RerollMapButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/RerollMapButton" to="." method="_on_reroll_map_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/ChooseLocationLabel/CancelButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/ChooseLocationLabel/CancelButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/ChooseLocationLabel/CancelButton" to="." method="_on_cancel_button_pressed"]

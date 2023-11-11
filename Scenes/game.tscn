@@ -271,6 +271,12 @@ y_min = -100000.0
 y_max = 100000.0
 show_y_numbers = false
 
+[node name="Sprite2D" type="Sprite2D" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/TotalValueGraph"]
+self_modulate = Color(1, 0, 0.239216, 1)
+position = Vector2(168, 61)
+scale = Vector2(246.5, 1)
+texture = ExtResource("4_al38i")
+
 [node name="IncomeGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
 visible = false
 layout_mode = 3
@@ -1506,6 +1512,13 @@ The logistics network is shown as a green circle.
 Click on this to dismiss."
 script = ExtResource("13_klywt")
 
+[node name="RerollMapButton" type="Button" parent="Camera/User Interface"]
+offset_left = 10.0
+offset_top = 260.0
+offset_right = 217.0
+offset_bottom = 341.0
+text = "Reroll Map"
+
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
@@ -1611,3 +1624,6 @@ script = ExtResource("13_klywt")
 [connection signal="mouse_entered" from="Camera/User Interface/TutorialPage" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/TutorialPage" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/TutorialPage" to="Camera/User Interface/TutorialPage" method="_on_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/RerollMapButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/RerollMapButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/RerollMapButton" to="." method="_on_reroll_map_button_pressed"]

@@ -8,6 +8,8 @@ var damagePopupScene = preload("res://Scenes/damage_popup.tscn")
 var miningDrillScene = preload("res://Scenes/mining_drill.tscn")
 var networkTowerScene = preload("res://Scenes/network_tower.tscn")
 
+var mapBlockScene = preload("res://Scenes/map_block.tscn")
+
 var waitingForBuildLocation: bool = false
 var waitingForTowerConnectionTarget: bool = false
 var buildType
@@ -265,6 +267,7 @@ func _input(event):
 						waitingForBuildLocation = false
 						
 						get_node("Camera/User Interface/MenuBar/BuildMenu").MadeHQ()
+						get_node("Camera/User Interface/RerollMapButton").visible = false
 						
 						operationFunds -= buildingCosts[buildType]
 						playerStructures.append(newHQ)
@@ -533,3 +536,7 @@ func _on_speed_up_ui_toggled(button_pressed):
 		Engine.time_scale = 1.5
 	else:
 		Engine.time_scale = 1
+
+
+func _on_reroll_map_button_pressed():
+	homeBlock.Randomize()

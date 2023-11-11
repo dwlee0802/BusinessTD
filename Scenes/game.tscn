@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=23 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -13,6 +13,11 @@
 [ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
 [ext_resource type="Script" path="res://Scenes/MenuBar.gd" id="9_iptbq"]
 [ext_resource type="Script" path="res://Scenes/TutorialPage.gd" id="13_klywt"]
+[ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="14_0gfix"]
+[ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="15_7wjma"]
+[ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="16_77ri7"]
+[ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="17_wp3mb"]
+[ext_resource type="Texture2D" uid="uid://05jc8uyl7as7" path="res://Art/mining_drill.png" id="18_dqraf"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1a36s"]
 keycode = 4194306
@@ -1536,6 +1541,7 @@ offset_bottom = 341.0
 text = "Reroll Map"
 
 [node name="ChooseLocationLabel" type="Label" parent="Camera/User Interface"]
+visible = false
 self_modulate = Color(1, 0.32549, 0.247059, 1)
 offset_left = 679.0
 offset_top = 692.0
@@ -1546,6 +1552,7 @@ text = "Choose Location to Build"
 
 [node name="CancelButton" type="Button" parent="Camera/User Interface/ChooseLocationLabel"]
 self_modulate = Color(1, 0.337255, 0.270588, 1)
+layout_mode = 0
 offset_left = 64.0
 offset_top = 58.0
 offset_right = 205.0
@@ -1554,6 +1561,56 @@ shortcut = SubResource("Shortcut_ontxj")
 text = "Cancel"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
+
+[node name="HQGhost" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.243137)
+
+[node name="TurretBodySprite" type="Sprite2D" parent="HQGhost"]
+z_index = 10
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("14_0gfix")
+
+[node name="TurretBarrelSprite" type="Sprite2D" parent="HQGhost"]
+z_index = 11
+texture_filter = 1
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("15_7wjma")
+
+[node name="TurretGhost" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.243137)
+
+[node name="TurretBodySprite" type="Sprite2D" parent="TurretGhost"]
+texture_filter = 1
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("16_77ri7")
+
+[node name="TurretBarrelSprite" type="Sprite2D" parent="TurretGhost"]
+texture_filter = 1
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("15_7wjma")
+
+[node name="TowerGhost" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.243137)
+
+[node name="Sprite2D" type="Sprite2D" parent="TowerGhost"]
+z_index = 10
+texture_filter = 1
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("17_wp3mb")
+
+[node name="DrillGhost" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.243137)
+
+[node name="Sprite2D" type="Sprite2D" parent="DrillGhost"]
+z_index = 10
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("18_dqraf")
 
 [connection signal="mouse_entered" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/MenuBar" to="." method="_on_mouse_exited_ui"]

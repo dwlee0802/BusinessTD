@@ -10,6 +10,11 @@ var networkTowerScene = preload("res://Scenes/network_tower.tscn")
 
 var mapBlockScene = preload("res://Scenes/map_block.tscn")
 
+var hqGhost
+var turretGhost
+var drillGhost
+var towerGhost
+
 var waitingForBuildLocation: bool = false
 var waitingForTowerConnectionTarget: bool = false
 var buildType
@@ -100,10 +105,50 @@ func _ready():
 	financePanel = get_node("Camera/User Interface/MenuBar/FinanceMenu/MenuPanel")
 	waitingForLocationLabel = get_node("Camera/User Interface/ChooseLocationLabel")
 	
+	hqGhost = $HQGhost
+	turretGhost = $TurretGhost
+	towerGhost = $TowerGhost
+	drillGhost = $DrillGhost
+	
 	# initialize upgrades array
 	for i in range(UPGRADE_COUNT):
 		selectedUpgrades.append(0)
 		
+
+func _physics_process(delta):
+	if waitingForBuildLocation:
+		var space = get_viewport().world_2d.direct_space_state
+		var param = PhysicsPointQueryParameters2D.new()
+		param.position = get_global_mouse_position()
+		param.collision_mask = 5
+		var result = space.intersect_point(param)
+		
+		if len(result) == 1:
+			mouseOnTile = result[0].collider
+			print(selectedTile)
+			
+			# turret
+			var what
+			if buildType == 0:
+				what = turretGhost
+				turretGhost.visible = true
+			elif buildType == 1:
+				hqGhost.visible = true
+				what = hqGhost
+			elif buildType == 2:
+				drillGhost.visible = true
+				what = drillGhost
+			else:
+				what = towerGhost
+				towerGhost.visible = true
+			
+			what.position = mouseOnTile.position
+	else:
+		hqGhost.visible = false
+		turretGhost.visible = false
+		towerGhost.visible = false
+		drillGhost.visible = false
+			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -229,7 +274,7 @@ func _input(event):
 					print("No space to put turret there!\n")
 					waitingForBuildLocation = false
 				else:
-					# check if any of the tiles are located
+					# check if any of the tiles are occupied
 					for row in tiles:
 						for tile in row:
 							if tile.occupied == true:

@@ -349,12 +349,13 @@ func _input(event):
 							
 							playerStructures.append(newDrill)
 							operationFunds -= buildingCosts[buildType]
-							return
 						else:
 							print("Not a mineral deposit!\n")
 						
 						waitingForBuildLocation = false
 						UpdateSupply()
+						
+						return
 						
 					elif buildType == 3:
 						var newTower = networkTowerScene.instantiate()

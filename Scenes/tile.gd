@@ -35,6 +35,7 @@ var noise2: float = 0
 var noise3: float = 0
 
 var pathToHQ
+var blocked: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

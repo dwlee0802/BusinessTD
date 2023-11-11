@@ -67,6 +67,7 @@ func _physics_process(delta):
 			pathCount += 1
 	else:
 		# no path!
+		startingTile.blocked = true
 		hitPoints = 0
 		return
 		

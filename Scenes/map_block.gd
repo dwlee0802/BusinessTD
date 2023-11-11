@@ -62,8 +62,11 @@ func _process(delta):
 			var target = game.playerStructures.pick_random()
 			while target == null:
 				target = game.playerStructures.pick_random()
+			var start = edgeTiles.pick_random()
+			while start.blocked == true:
+				start = edgeTiles.pick_random()
 				
-			var unit = SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 10)
+			var unit = SpawnEnemy(start, target.placedTile, enemyDifficultyIncrease * 10)
 			waveEnemies.append(unit)
 			game.enemyCurrentCount += 1
 			spawned += 1
@@ -74,6 +77,7 @@ func _process(delta):
 
 
 func SpawnWave(count, healthIncrease = 0):
+	print("Spawining wave of ", count, "\n")
 	waveEnemies = []
 	spawned = 0
 	waveCount = count

@@ -40,7 +40,7 @@ var spawnRateHolder: float = 0
 # how many enemies spawn for each wave
 var spawnCount: float = 10
 # determines the rate in which enemy count increases
-var difficultyScale: float = 1.30
+var difficultyScale: float = 1.1
 var difficultyScale_linear: int = 15
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 0
@@ -82,6 +82,7 @@ var financePanel
 signal market_cycle
 signal consumption_changed
 
+var linear_increase: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -142,8 +143,12 @@ func _process(delta):
 		
 		if spawnRateHolder > spawnRate:
 			homeBlock.SpawnWave(spawnCount, enemyDifficultyIncrease)
-#			spawnCount *= difficultyScale
-			spawnCount += difficultyScale_linear
+			
+			if linear_increase:
+				spawnCount += difficultyScale_linear
+			else:
+				spawnCount *= difficultyScale
+				
 			if spawnCount > enemyMaxCount:
 				spawnCount = enemyMaxCount
 				enemyDifficultyIncrease += 1

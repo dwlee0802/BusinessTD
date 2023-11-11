@@ -57,7 +57,6 @@ static func SellCrystals():
 	income += amount
 	lastSoldCrystals += playerCrystals
 	playerCrystals = 0
-	print(income)
 
 
 # calculates the supply amount for each ingredient type for the next cycle.

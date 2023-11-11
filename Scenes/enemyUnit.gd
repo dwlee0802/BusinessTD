@@ -5,7 +5,7 @@ var maxHitPoints: int = 100
 
 var attackTarget
 
-@export var speed: int = 200
+@export var speed: int = 300
 @export var speedModifier: float = 1
 
 var enemyDeathEffect = preload("res://Scenes/explosion_effect.tscn")
@@ -63,7 +63,7 @@ var tempHolder: float = 0
 	
 func _physics_process(delta):
 	if len(path) - 1 > pathCount:
-		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 2 * Engine.time_scale:
+		if position.distance_to(pathfinding.get_point_position(path[pathCount])) < 3 * Engine.time_scale:
 			pathCount += 1
 	else:
 		# no path!

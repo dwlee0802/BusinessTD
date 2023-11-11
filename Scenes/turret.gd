@@ -11,7 +11,7 @@ var type: int = 0
 var ammoType: int = 0
 static var ammoTypeFireRate = [1, 2, 2, 1, 1]
 static var ammoTypeCost = [15, 35, 1, 1, 1]
-static var ammoTypeDamageRange = [[25, 75], [10,30], [10, 30]]
+static var ammoTypeDamageRange = [[25, 75], [10,30], [15, 35]]
 static var criticalChance: float = 0.1
 
 var targets = []
@@ -54,7 +54,7 @@ var	buildTimeLabel
 
 var muzzleFlashSprite
 
-var debug_undying: bool = true
+var debug_undying: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -83,7 +83,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if hitPoints <= 0 and debug_undying != true:
+	if hitPoints <= 0:
 		if isHQ:
 			print("Game Over!")
 			game.GameOver()
@@ -221,6 +221,9 @@ func _physics_process(delta):
 
 
 func hit(damage):
+	if debug_undying == true:
+		return
+		
 	print("hit!")
 	hitPoints -= damage
 	game.MakeDamagePopup(position, damage, Color.WEB_PURPLE)

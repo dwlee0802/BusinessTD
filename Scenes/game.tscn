@@ -42,7 +42,6 @@ text = "Build"
 script = ExtResource("3_fhnyi")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/BuildMenu"]
-visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -188,6 +187,7 @@ text = "Finance"
 script = ExtResource("5_8hfgs")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/FinanceMenu"]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -640,6 +640,7 @@ text = "Market"
 script = ExtResource("7_wjjcr")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/MarketMenu"]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1

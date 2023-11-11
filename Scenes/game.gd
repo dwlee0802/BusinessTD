@@ -39,9 +39,10 @@ var spawnRateHolder: float = 30
 var spawnCount: float = 10
 # determines the rate in which enemy count increases
 var difficultyScale: float = 1.30
+var difficultyScale_linear: int = 10
 # determines the rate enemy health increases
-var enemyDifficultyIncrease: int = 1
-var enemyMaxCount: int = 1000
+var enemyDifficultyIncrease: int = 0
+var enemyMaxCount: int = 500
 var enemyCurrentCount: int = 0
 var enemyCurrentCountUI
 
@@ -50,14 +51,14 @@ var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 100000
-var highestValuePoint: float = 100000
+var operationFunds: float = 15000
+var highestValuePoint: float = 15000
 
 var operationTime: float = 0
 var operationTimeUI
 
 # takes into account the cash in value of buildings
-var totalValue: float = 5000
+var totalValue: float = 15000
 var totalValueGraph
 
 var selectedUpgrades = []
@@ -138,7 +139,13 @@ func _process(delta):
 		spawnRateHolder += delta
 		
 		if spawnRateHolder > spawnRate:
-			homeBlock.SpawnWave(200)
+			homeBlock.SpawnWave(spawnCount, enemyDifficultyIncrease)
+#			spawnCount *= difficultyScale
+			spawnCount += difficultyScale_linear
+			if spawnCount > enemyMaxCount:
+				spawnCount = enemyMaxCount
+				enemyDifficultyIncrease += 1
+				
 			spawnRateHolder = 0
 		
 		if false:

@@ -28,7 +28,7 @@ static var buyOrders = [0, 0, 0]
 
 enum INGREDIENTS { Steel, Gas, Semiconductors }
 
-static var autoSell: bool = false
+static var autoSell: bool = true
 static var minSellPrice: int = 100
 
 static var income: int = 0

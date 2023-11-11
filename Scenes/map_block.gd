@@ -19,7 +19,7 @@ var blockTiles = []
 var edgeTiles = []
 
 var enemyScene = preload("res://Scenes/enemyUnit.tscn")
-var enemyDifficultyIncrease: int = 1
+var enemyDifficultyIncrease: int = 0
 
 var camera
 
@@ -41,7 +41,7 @@ var waveCount: int = 0
 var spawned: int = 0
 var waveEnemies = []
 
-const SPAWN_PER_FRAME: int = 10
+const SPAWN_PER_FRAME: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -147,10 +147,11 @@ func _process(delta):
 				item.waiting = false
 
 
-func SpawnWave(count):
+func SpawnWave(count, healthIncrease = 0):
 	waveEnemies = []
 	spawned = 0
 	waveCount = count
+	enemyDifficultyIncrease = healthIncrease
 
 # makes gameboard based on the parameters for board width and height
 func GenerateGameboard():

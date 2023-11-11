@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=16 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -13,6 +13,12 @@
 [ext_resource type="Script" path="res://addons/graph_2d/graph_2d.gd" id="8_fjhd7"]
 [ext_resource type="Script" path="res://Scenes/MenuBar.gd" id="9_iptbq"]
 [ext_resource type="Script" path="res://Scenes/TutorialPage.gd" id="13_klywt"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1a36s"]
+keycode = 4194306
+
+[sub_resource type="Shortcut" id="Shortcut_k1qm6"]
+events = [SubResource("InputEventKey_1a36s")]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -187,7 +193,6 @@ text = "Finance"
 script = ExtResource("5_8hfgs")
 
 [node name="MenuPanel" type="Panel" parent="Camera/User Interface/MenuBar/FinanceMenu"]
-visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -242,6 +247,14 @@ show_x_numbers = false
 y_min = -10000.0
 y_max = 10000.0
 show_y_numbers = false
+grid_horizontal_visible = true
+grid_horizontal_color = Color(1, 1, 1, 0.301961)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel/ProfitGraph"]
+self_modulate = Color(1, 0, 0.239216, 1)
+position = Vector2(168, 61)
+scale = Vector2(246.5, 1)
+texture = ExtResource("4_al38i")
 
 [node name="TotalValueGraph" type="Control" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
 visible = false
@@ -269,8 +282,7 @@ offset_bottom = 189.0
 script = ExtResource("8_fjhd7")
 x_max = 60.0
 show_x_numbers = false
-y_min = -100000.0
-y_max = 100000.0
+y_max = 10000.0
 show_y_numbers = false
 
 [node name="ConsumptionTitle" type="Label" parent="Camera/User Interface/MenuBar/FinanceMenu/MenuPanel"]
@@ -1206,6 +1218,7 @@ offset_bottom = 57.0
 text = "Sell"
 
 [node name="Upkeep" type="Label" parent="Camera/User Interface/UnitMenu"]
+visible = false
 layout_mode = 0
 offset_top = 48.0
 offset_right = 168.0
@@ -1417,6 +1430,7 @@ offset_left = 1462.0
 offset_top = 100.0
 offset_right = 1593.0
 offset_bottom = 131.0
+shortcut = SubResource("Shortcut_k1qm6")
 text = "x1.5 Speed"
 
 [node name="Panel" type="Panel" parent="Camera/User Interface/SpeedUpUI"]

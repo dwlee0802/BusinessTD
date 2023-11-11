@@ -39,7 +39,7 @@ var spawnRateHolder: float = 30
 var spawnCount: float = 10
 # determines the rate in which enemy count increases
 var difficultyScale: float = 1.30
-var difficultyScale_linear: int = 10
+var difficultyScale_linear: int = 15
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 0
 var enemyMaxCount: int = 500
@@ -174,10 +174,11 @@ func MarketCycle():
 	Market.UpdateConsumption()
 	
 	Market.RecordPrices()
+	emit_signal("market_cycle")
+	
 	Market.UpdatePrices()
 	UpdateMarketUI()
 
-	emit_signal("market_cycle")
 	
 
 func _input(event):

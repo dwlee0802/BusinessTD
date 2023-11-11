@@ -50,10 +50,16 @@ func _pressed():
 
 
 func RecordData():
-	profitGraph.add_point(Vector2(marketCycles, Market.income - Market.cost))
+	var steelCost = Market.marketPrices[Market.INGREDIENTS.Steel] * Market.totalConsumption[Market.INGREDIENTS.Steel]
+	var gasCost = Market.marketPrices[Market.INGREDIENTS.Gas] * Market.totalConsumption[Market.INGREDIENTS.Gas]
+	var semiCost = Market.marketPrices[Market.INGREDIENTS.Semiconductors] * Market.totalConsumption[Market.INGREDIENTS.Semiconductors]
+	var income = Market.crystalPrice * Market.lastSoldCrystals
+	var cost = steelCost + gasCost + semiCost
+	
+	profitGraph.add_point(Vector2(marketCycles, income - cost))
 	totalValueGraph.add_point(Vector2(marketCycles, game.totalValue))
-	incomeGraph.add_point(Vector2(marketCycles, Market.income))
-	costGraph.add_point(Vector2(marketCycles, Market.cost))
+	incomeGraph.add_point(Vector2(marketCycles, income))
+	costGraph.add_point(Vector2(marketCycles, cost))
 	
 	marketCycles += 1
 
@@ -74,7 +80,7 @@ func UpdateUI():
 	consumptionUI.get_node("GasPrice").text = str(Market.marketPrices[Market.INGREDIENTS.Gas])
 	consumptionUI.get_node("SemiconductorPrice").text = str(Market.marketPrices[Market.INGREDIENTS.Semiconductors])
 	
-	consumptionUI.get_node("TotalCost").text = str(steelCost + gasCost + semiCost)
+	consumptionUI.get_node("TotalCost").text = "-" + str(steelCost + gasCost + semiCost)
 	
 	profitUI.get_node("SoldCrystals").text = "Crystal: " + str(Market.lastSoldCrystals)
 	profitUI.get_node("TotalIncome").text = str(Market.crystalPrice * Market.lastSoldCrystals)

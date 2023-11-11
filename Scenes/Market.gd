@@ -57,6 +57,7 @@ static func SellCrystals():
 	income += amount
 	lastSoldCrystals += playerCrystals
 	playerCrystals = 0
+	print(income)
 
 
 # calculates the supply amount for each ingredient type for the next cycle.
@@ -91,7 +92,6 @@ static func Consumption():
 	
 static func AddCrystals(amount):
 	playerCrystals += amount
-	print("Added ", amount, " crystals.")
 	
 	# if storage is full, sell the overflow amount at current price
 	if playerCrystals > maxCrystalStorage:

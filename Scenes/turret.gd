@@ -79,8 +79,7 @@ func _ready():
 	game = get_parent()
 	
 	if isHQ:
-		maxHitPoints = 1500
-		hitPoints = maxHitPoints
+		hitPoints = maxHQHitPoints
 		healthBarSize = 200
 	
 	game.game_ended.connect(GameEnded)
@@ -110,14 +109,26 @@ func _process(delta):
 	
 	repairHolder += delta
 	if repairHolder > 1:
-		if hitPoints < maxHitPoints:
-			hitPoints += 10
-			game.operationFunds -= repairCost * 10
-		else:
-			hitPoints = maxHitPoints
-		repairHolder = 0
+		if isHQ:
+			if hitPoints < maxHQHitPoints:
+				hitPoints += 10
+				game.operationFunds -= repairCost * 10
+			else:
+				hitPoints = maxHQHitPoints
+			
+			repairHolder = 0
 		
-	healthBar.scale.x = healthBarSize * hitPoints / maxHitPoints
+			healthBar.scale.x = healthBarSize * hitPoints / maxHQHitPoints
+		else:
+			if hitPoints < maxHitPoints:
+				hitPoints += 10
+				game.operationFunds -= repairCost * 10
+			else:
+				hitPoints = maxHitPoints
+			
+			repairHolder = 0
+		
+			healthBar.scale.x = healthBarSize * hitPoints / maxHitPoints
 	
 	if not isHQ:
 		print(healthBarSize, " ", hitPoints, " ", maxHitPoints)

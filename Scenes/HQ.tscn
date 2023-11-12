@@ -24,6 +24,8 @@ radius = 1200.0
 radius = 900.0
 
 [node name="HQ" type="CharacterBody2D"]
+top_level = true
+z_index = 1
 collision_layer = 273
 collision_mask = 273
 script = ExtResource("1_njw0n")
@@ -151,7 +153,9 @@ text = "00"
 vertical_alignment = 1
 
 [node name="AttackRangeSprite" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.396078, 0.372549, 0.196078)
+self_modulate = Color(1, 0.396078, 0.372549, 0.156863)
+show_behind_parent = true
+z_as_relative = false
 position = Vector2(-4.57764e-05, 2.49996)
 scale = Vector2(6.99219, 7.03516)
 texture = ExtResource("6_y7kus")

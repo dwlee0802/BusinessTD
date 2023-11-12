@@ -93,6 +93,7 @@ _data = {
 radius = 50.0
 
 [node name="EnemyUnit" type="CharacterBody2D"]
+z_index = 1
 disable_mode = 2
 collision_layer = 10
 motion_mode = 1

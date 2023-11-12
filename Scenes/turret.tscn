@@ -17,11 +17,13 @@ size = Vector2(580, 15)
 radius = 800.0
 
 [node name="Turret" type="CharacterBody2D"]
+top_level = true
+z_index = 1
 collision_mask = 0
 script = ExtResource("1_s5d8n")
 
 [node name="AttackRangeSprite" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.396078, 0.372549, 0.196078)
+self_modulate = Color(1, 0.396078, 0.372549, 0.156863)
 position = Vector2(0, -1.49996)
 scale = Vector2(6.26563, 6.20703)
 texture = ExtResource("4_86ps0")
@@ -32,11 +34,13 @@ shape = SubResource("RectangleShape2D_e8nbd")
 debug_color = Color(0.972549, 0, 0.447059, 0.419608)
 
 [node name="TurretBodySprite" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("1_o0ic3")
 
 [node name="TurretBarrelSprite" type="Sprite2D" parent="."]
+z_index = 2
 texture_filter = 1
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("2_d7vnd")
@@ -95,6 +99,8 @@ vertical_alignment = 1
 
 [node name="AttackArea" type="Area2D" parent="."]
 visible = false
+show_behind_parent = true
+z_as_relative = false
 collision_layer = 0
 collision_mask = 8
 

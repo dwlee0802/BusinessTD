@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co0iu8csjmd8h"]
+[gd_scene load_steps=11 format=3 uid="uid://co0iu8csjmd8h"]
 
 [ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="1_o0ic3"]
 [ext_resource type="Script" path="res://Scenes/turret.gd" id="1_s5d8n"]
@@ -15,6 +15,9 @@ size = Vector2(580, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddl11"]
 radius = 800.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8yup"]
+radius = 800.0
 
 [node name="Turret" type="CharacterBody2D"]
 collision_mask = 0
@@ -92,3 +95,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "00"
 vertical_alignment = 1
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_a8yup")
+debug_color = Color(0.843137, 0.364706, 0.294118, 0.419608)

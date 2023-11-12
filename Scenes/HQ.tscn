@@ -17,11 +17,11 @@ radius = 598.04
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7pca"]
 size = Vector2(200, 15)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hdfy1"]
-radius = 400.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nsj1"]
 radius = 1200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdfy1"]
+radius = 900.0
 
 [node name="HQ" type="CharacterBody2D"]
 collision_layer = 273
@@ -42,6 +42,7 @@ texture = ExtResource("5_lwoue")
 centered = false
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_4ujsn")
 target_position = Vector2(0, 0)
 margin = 13.33
@@ -108,19 +109,29 @@ scale = Vector2(207.449, 10.1809)
 skew = 0.00122333
 texture = ExtResource("5_lwoue")
 
+[node name="ConnectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConnectionArea"]
+shape = SubResource("CircleShape2D_5nsj1")
+debug_color = Color(0.411765, 0.6, 0.266667, 0.419608)
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_hdfy1")
+debug_color = Color(0.843137, 0.364706, 0.294118, 0.419608)
+
 [node name="SupplyArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SupplyArea"]
 shape = SubResource("CircleShape2D_hdfy1")
-
-[node name="ConnectionArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ConnectionArea"]
-shape = SubResource("CircleShape2D_5nsj1")
 
 [node name="BuildTime" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)

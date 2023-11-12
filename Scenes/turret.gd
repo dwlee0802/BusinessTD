@@ -4,6 +4,7 @@ class_name Turret
 
 var hitPoints: int = 500
 static var maxHitPoints: int = 500
+static var maxHQHitPoints: int = 1500
 
 # 0: turret, 1: HQ, 2: Drill
 var type: int = 0
@@ -49,6 +50,8 @@ var connectionArea
 var supplyRange
 var supplyArea
 
+var attackArea
+
 var buildTime: float = 7
 var	buildTimeLabel
 
@@ -62,6 +65,7 @@ func _ready():
 	bodySprite = get_node("TurretBarrelSprite")
 	buildTimeLabel = get_node("BuildTime")
 	muzzleFlashSprite = get_node("TurretBarrelSprite/MuzzleFlash")
+	attackArea = $AttackArea
 	
 	if isHQ:
 		buildTime = 3
@@ -115,6 +119,10 @@ func _process(delta):
 		
 	healthBar.scale.x = healthBarSize * hitPoints / maxHitPoints
 	
+	if not isHQ:
+		print(healthBarSize, " ", hitPoints, " ", maxHitPoints)
+		print(healthBar.scale.x)
+	
 	if buildTime > 0:
 		buildTime -= delta
 		bodySprite.modulate = Color.DIM_GRAY
@@ -158,7 +166,7 @@ func _physics_process(delta):
 	fireRateHolder += delta
 	if fireRateHolder > fireRate * fireRateModifier * ammoTypeFireRate[ammoType]:
 		# choose the closest target
-		targets = get_node("ShapeCast2D").GetColliders()
+		targets = attackArea.get_overlapping_bodies()
 		
 		if len(targets) == 0:
 			return
@@ -171,6 +179,9 @@ func _physics_process(delta):
 				break
 			if targets[i] == null:
 				continue
+			if targets[i] == self:
+				continue
+				
 			var thisDist
 			thisDist = global_position.distance_to(targets[i].global_position)
 			if thisDist < currentDist:

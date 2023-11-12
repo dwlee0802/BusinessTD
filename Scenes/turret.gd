@@ -130,10 +130,6 @@ func _process(delta):
 		
 			healthBar.scale.x = healthBarSize * hitPoints / maxHitPoints
 	
-	if not isHQ:
-		print(healthBarSize, " ", hitPoints, " ", maxHitPoints)
-		print(healthBar.scale.x)
-	
 	if buildTime > 0:
 		buildTime -= delta
 		bodySprite.modulate = Color.DIM_GRAY

@@ -33,7 +33,7 @@ var edgeTiles = []
 var playerStructures = []
 
 # how many tiles a building of type index takes up
-# 0: turret, 1: HQ, 2: Mining Drill
+# 0: turret, 1: HQ, 2: Mining Drill 3: Network Tower
 var buildingSizeN = [3, 7, 5, 3]
 
 # upfront cost of buildings
@@ -58,8 +58,8 @@ var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 10000
-var highestValuePoint: float = 10000
+var operationFunds: float = 1000000
+var highestValuePoint: float = 1000000
 
 var operationTime: float = 0
 var operationTimeUI
@@ -116,6 +116,7 @@ func _ready():
 		
 
 func _physics_process(delta):
+	# Show ghost image while waiting for location.
 	if waitingForBuildLocation:
 		var space = get_viewport().world_2d.direct_space_state
 		var param = PhysicsPointQueryParameters2D.new()
@@ -143,6 +144,25 @@ func _physics_process(delta):
 				towerGhost.visible = true
 			
 			what.position = mouseOnTile.position
+			
+			# check if current location is valid for building
+			var tiles = GetSquare(mouseOnTile, buildingSizeN[buildType])
+			var valid = true
+			for item in tiles:
+				for one in item:
+					if one.occupied == true or one.passable == false:
+						# also check if tile is deposit if building drill
+						valid = false
+					if buildType == 2:
+						if mouseOnTile.isDeposit == false:
+							valid = false
+			
+			if not valid:
+				what.modulate = Color(Color.RED, 0.24)
+			else:
+				what.modulate = Color(Color.WHITE, 0.24)
+				
+				
 	else:
 		hqGhost.visible = false
 		turretGhost.visible = false
@@ -291,8 +311,8 @@ func _input(event):
 						newTurret.type = 0
 						
 						# modify turret range based on selectedUpgrades
-						var shapenode = newTurret.get_node("ShapeCast2D").shape
-						shapenode.set_radius(shapenode.get_radius() + 100 * selectedUpgrades[6])
+						var shapenode = newTurret.get_node("AttackArea/CollisionShape2D").shape
+						shapenode.set_radius(shapenode.get_radius() + 50 * selectedUpgrades[6])
 						
 						for row in tiles:
 							for tile in row:
@@ -446,14 +466,17 @@ func ReceiveUpgrades(upgradeID):
 		# increase range of existing turrets
 		for item in playerStructures:
 			if is_instance_valid(item) and item.type == 0 or item.type == 1:
-				var shapenode = item.get_node("ShapeCast2D").shape
-				item.get_node("ShapeCast2D").shape.set_radius(shapenode.get_radius() + 100)
+				var shape = item.get_node("AttackArea/CollisionShape2D")
+				var newrad = shape.shape.get_radius() + 50 * selectedUpgrades[upgradeID]
+				shape.shape.set_radius(newrad)
+				item.get_node("AttackRangeSprite").scale = Vector2(6.2 * newrad/ 800, 6.2 * newrad/ 800)
 		
 		# newly made turrets will have their range modified by selectedUpgrades
 	if upgradeID == 7:
 		Turret.criticalChance += 0.1
 	if upgradeID == 8:
 		Turret.maxHitPoints = Turret.maxHitPoints * 1.5
+		Turret.maxHQHitPoints = Turret.maxHQHitPoints * 1.5
 	if upgradeID == 9:
 		pass
 	if upgradeID == 10:

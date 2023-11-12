@@ -5,7 +5,7 @@ var maxHitPoints: int = 100
 
 var attackTarget
 
-@export var speed: int = 300
+@export var speed: int = 200
 @export var speedModifier: float = 1
 
 var enemyDeathEffect = preload("res://Scenes/explosion_effect.tscn")

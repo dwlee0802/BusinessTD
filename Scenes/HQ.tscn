@@ -119,6 +119,7 @@ shape = SubResource("CircleShape2D_5nsj1")
 debug_color = Color(0.411765, 0.6, 0.266667, 0.419608)
 
 [node name="AttackArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -148,3 +149,9 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "00"
 vertical_alignment = 1
+
+[node name="AttackRangeSprite" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.396078, 0.372549, 0.196078)
+position = Vector2(-4.57764e-05, 2.49996)
+scale = Vector2(6.99219, 7.03516)
+texture = ExtResource("6_y7kus")

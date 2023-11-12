@@ -32,6 +32,8 @@ var visited: bool = false
 var buildTime: float = 3
 var	buildTimeLabel
 
+var isReady: bool = false
+
 func _ready():
 	game = get_parent()
 	connectionRange = get_node("ConnectionRange")
@@ -77,6 +79,7 @@ func _process(delta):
 		return
 	else:
 		buildTimeLabel.visible = false
+		isReady = true
 		
 		
 	if game.waitingForBuildLocation == true and game.buildType == type:
@@ -112,7 +115,7 @@ func UpdateConnection():
 
 	
 func UpdateSupply():
-	if isConnected == false:
+	if isConnected == false or not isReady:
 		return
 		
 	var results = supplyArea.get_overlapping_bodies()

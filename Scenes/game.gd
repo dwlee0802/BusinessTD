@@ -58,14 +58,14 @@ var gamePaused: bool = true
 
 signal game_ended
 
-var operationFunds: float = 1000000
-var highestValuePoint: float = 1000000
+var operationFunds: float = 24000
+var highestValuePoint: float = 0
 
 var operationTime: float = 0
 var operationTimeUI
 
 # takes into account the cash in value of buildings
-var totalValue: float = 150000
+var totalValue: float = 0
 var totalValueGraph
 
 var selectedUpgrades = []

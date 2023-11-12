@@ -44,7 +44,7 @@ static var game
 # called every updateTime seconds
 static func UpdatePrices():
 	# temporary completely random function
-	crystalPrice = randi_range(50, 150)
+	crystalPrice = randi_range(crystalMinPrice, crystalMaxPrice)
 	marketPrices[0] = randi_range(75, 125)
 	marketPrices[1] = randi_range(25, 75)
 	marketPrices[2] = randi_range(100, 200)

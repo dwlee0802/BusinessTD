@@ -48,17 +48,14 @@ func parse_json(text):
 
 	
 func GenerateUpgradeOptions(amount = 3):
-	while amount > 0:
-		amount -= 1
-		
-		options[0] = randi_range(0, UPGRADE_COUNT - 1)
+	options[0] = randi_range(0, UPGRADE_COUNT - 1)
+	options[1] = randi_range(0, UPGRADE_COUNT - 1)
+	while options[0] == options[1]:
 		options[1] = randi_range(0, UPGRADE_COUNT - 1)
-		while options[0] == options[1]:
-			options[1] = randi_range(0, UPGRADE_COUNT - 1)
-		
+	
+	options[2] = randi_range(0, UPGRADE_COUNT - 1)
+	while options[2] == options[0] or options[2] == options[1]:
 		options[2] = randi_range(0, UPGRADE_COUNT - 1)
-		while options[0] == options[1] and options[0] == options[2] and options[1] == options[2]:
-			options[2] = randi_range(0, UPGRADE_COUNT - 1)
 	
 	
 func UpdateUI():

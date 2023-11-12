@@ -1059,6 +1059,7 @@ offset_bottom = 24.0
 text = "Competitor 1"
 
 [node name="OperationValue" type="Label" parent="Camera/User Interface/MenuBar/CompetitionMenu/MenuPanel/Competitor1"]
+layout_mode = 0
 offset_left = 116.0
 offset_top = 24.0
 offset_right = 218.0
@@ -1067,6 +1068,7 @@ theme_override_font_sizes/font_size = 11
 text = "Operation Value: 000000 (+0000)"
 
 [node name="CampaignValue" type="Label" parent="Camera/User Interface/MenuBar/CompetitionMenu/MenuPanel/Competitor1"]
+layout_mode = 0
 offset_left = 116.0
 offset_top = 45.0
 offset_right = 310.0
@@ -1075,6 +1077,7 @@ theme_override_font_sizes/font_size = 11
 text = "Campaign Value: 0000000 (+00000)"
 
 [node name="Competitor2" type="Button" parent="Camera/User Interface/MenuBar/CompetitionMenu/MenuPanel"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 250.0
 offset_right = 142.0
@@ -1090,6 +1093,7 @@ offset_bottom = 24.0
 text = "Competitor 2"
 
 [node name="OperationValue" type="Label" parent="Camera/User Interface/MenuBar/CompetitionMenu/MenuPanel/Competitor2"]
+layout_mode = 0
 offset_left = 116.0
 offset_top = 24.0
 offset_right = 218.0
@@ -1098,6 +1102,7 @@ theme_override_font_sizes/font_size = 11
 text = "Operation Value: 00000 (+0000)"
 
 [node name="CampaignValue" type="Label" parent="Camera/User Interface/MenuBar/CompetitionMenu/MenuPanel/Competitor2"]
+layout_mode = 0
 offset_left = 116.0
 offset_top = 45.0
 offset_right = 310.0

@@ -3,7 +3,9 @@ extends Control
 class_name Market
 
 # price of one crystal
-static var crystalPrice = 200
+static var crystalPrice = 100
+static var crystalMinPrice = 50
+static var crystalMaxPrice = 150
 static var lastSoldCrystals: int = 0
 
 # player's crystals
@@ -15,7 +17,7 @@ static var marketPrices = [200, 100, 50, 150]
 
 static var priceHistory = []
 
-static var baseConsumption = [[2, 0, 2], [2, 0, 2], [1, 2, 1], [1, 0, 1]]
+static var baseConsumption = [[2, 0, 2], [2, 0, 2], [2, 1, 1], [1, 0, 1]]
 static var totalConsumption = [0, 0, 0]
 
 # holds the amount of ingredients supplied to the market
@@ -42,7 +44,7 @@ static var game
 # called every updateTime seconds
 static func UpdatePrices():
 	# temporary completely random function
-	crystalPrice = randi_range(100, 200)
+	crystalPrice = randi_range(50, 150)
 	marketPrices[0] = randi_range(75, 125)
 	marketPrices[1] = randi_range(25, 75)
 	marketPrices[2] = randi_range(100, 200)

@@ -2,8 +2,8 @@ extends Node2D
 
 class_name MapBlock
 
-@export var boardWidth = 200
-@export var boardHeight = 200
+@export var boardWidth = 250
+@export var boardHeight = 250
 
 var depositSpawnRate: float = 0.002
 var slowdownSpawnRate: float = 0.015

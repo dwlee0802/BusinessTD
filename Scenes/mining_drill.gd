@@ -13,6 +13,9 @@ var profitHolder: float = 1
 
 var placedTile
 
+var minCrystals: int = 10
+var maxCrystals: int = 20
+
 static var repairCost: int = 3
 var repairHolder: float = 1
 static var upkeep: int = 10
@@ -87,7 +90,7 @@ func _process(delta):
 		if profitHolder <= 0:
 #			revenueAmount = randi_range(50, 150)
 #			game.operationFunds += revenueAmount
-			var mined = randi_range(2, 6)
+			var mined = randi_range(minCrystals, maxCrystals)
 			Market.AddCrystals(mined)
 			profitHolder = profitGenerationPeriod
 			game.MakeDamagePopup(position, mined, Color.PURPLE)

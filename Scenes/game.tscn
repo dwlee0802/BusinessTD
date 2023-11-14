@@ -2147,6 +2147,7 @@ toggle_mode = true
 text = "Pause"
 
 [node name="NormalButton" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+layout_mode = 0
 offset_left = 60.0
 offset_right = 115.0
 offset_bottom = 31.0
@@ -2154,6 +2155,7 @@ toggle_mode = true
 text = "x1"
 
 [node name="Speed2Button" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+layout_mode = 0
 offset_left = 120.0
 offset_right = 175.0
 offset_bottom = 31.0
@@ -2161,6 +2163,7 @@ toggle_mode = true
 text = "x1.5"
 
 [node name="Speed3Button" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+layout_mode = 0
 offset_left = 181.0
 offset_right = 236.0
 offset_bottom = 31.0
@@ -2189,26 +2192,36 @@ offset_right = 207.0
 offset_bottom = 60.0
 text = "Spawn Enemy"
 
+[node name="SpawnWave" type="Button" parent="Camera/User Interface/DebugMenu"]
+offset_left = 4.0
+offset_top = 63.0
+offset_right = 207.0
+offset_bottom = 94.0
+text = "Spawn Next Wave"
+
 [node name="Invulnerable" type="CheckButton" parent="Camera/User Interface/DebugMenu"]
+layout_mode = 0
 offset_left = 1.0
-offset_top = 61.0
+offset_top = 89.0
 offset_right = 211.0
-offset_bottom = 92.0
+offset_bottom = 120.0
 text = "Invulnerable"
 alignment = 1
 
 [node name="InfiniteMoneyHack" type="Button" parent="Camera/User Interface/DebugMenu"]
+layout_mode = 0
 offset_left = 4.0
-offset_top = 89.0
+offset_top = 117.0
 offset_right = 207.0
-offset_bottom = 120.0
+offset_bottom = 148.0
 text = "Add 10000"
 
 [node name="KillAllEnemies" type="Button" parent="Camera/User Interface/DebugMenu"]
+layout_mode = 0
 offset_left = 4.0
-offset_top = 124.0
+offset_top = 152.0
 offset_right = 207.0
-offset_bottom = 155.0
+offset_bottom = 183.0
 text = "Kill All Enemies"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
@@ -2396,6 +2409,8 @@ texture = ExtResource("18_dqraf")
 [connection signal="toggled" from="Camera/User Interface/DebugMenu/SpawnWavesToggle" to="." method="_on_spawn_waves_toggle_toggled"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/SpawnEnemyButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/SpawnEnemyButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/SpawnWave" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/SpawnWave" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/Invulnerable" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/Invulnerable" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/InfiniteMoneyHack" to="." method="_on_mouse_entered_ui"]

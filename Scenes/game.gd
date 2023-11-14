@@ -91,6 +91,8 @@ var linear_increase: bool = true
 
 var waitingForLocationLabel
 
+var debug_spawn_wave
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Market.game = self
@@ -210,7 +212,7 @@ func _process(delta):
 	
 	
 	# spawn enemy wave
-	if not playerStructures.is_empty() and gameStarted == true:
+	if not playerStructures.is_empty() and gameStarted == true and debug_spawn_wave == true:
 		gameStarted = true
 		spawnRateHolder += delta
 		
@@ -227,24 +229,6 @@ func _process(delta):
 				enemyDifficultyIncrease += 1
 				
 			spawnRateHolder = 0
-		
-		if false:
-			# randomly spawn enemies at the edge of the map
-			
-			if enemyCurrentCount <= spawnCount + 10:
-				var target = playerStructures.pick_random()
-				if target != null and target.hitPoints > 0:
-					# spawn more
-					SpawnEnemy(edgeTiles.pick_random(), target.placedTile, enemyDifficultyIncrease * 10)
-				else:
-					target = playerStructures.pick_random()
-			else:
-				spawnCount *= difficultyScale
-				if spawnCount > enemyMaxCount:
-					spawnCount = enemyMaxCount
-					enemyDifficultyIncrease += 1
-					
-				spawnRateHolder = 0
 
 
 func MarketCycle():
@@ -647,3 +631,7 @@ func _on_cancel_button_pressed():
 
 func _on_game_speed_pressed(button_pressed, extra_arg_0):
 	Engine.time_scale = extra_arg_0
+
+
+func _on_spawn_waves_toggle_toggled(button_pressed):
+	debug_spawn_wave = button_pressed

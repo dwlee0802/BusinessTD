@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=32 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/MenuBar.gd" id="9_iptbq"]
 [ext_resource type="Script" path="res://Scenes/TutorialPage.gd" id="13_klywt"]
 [ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="14_0gfix"]
+[ext_resource type="Script" path="res://Scenes/GameSpeedUI.gd" id="14_hkg3h"]
 [ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="15_7wjma"]
 [ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="16_77ri7"]
 [ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="17_wp3mb"]
@@ -56,12 +57,6 @@ unicode = 53
 
 [sub_resource type="Shortcut" id="Shortcut_v1rjd"]
 events = [SubResource("InputEventKey_1mrr3")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_1a36s"]
-keycode = 4194306
-
-[sub_resource type="Shortcut" id="Shortcut_k1qm6"]
-events = [SubResource("InputEventKey_1a36s")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_g3o25"]
 keycode = 4194305
@@ -702,6 +697,7 @@ offset_bottom = 36.0
 text = "Reroll: 0000"
 
 [node name="UpgradeUI" type="Panel" parent="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel"]
+layout_mode = 0
 offset_left = 70.0
 offset_top = 378.0
 offset_right = 309.0
@@ -816,6 +812,7 @@ text = "1"
 
 [node name="UpgradeUI2" type="Panel" parent="Camera/User Interface/MenuBar/UpgradesMenu/MenuPanel/UpgradeUI"]
 visible = false
+layout_mode = 0
 offset_top = 59.0
 offset_right = 239.0
 offset_bottom = 94.0
@@ -1774,22 +1771,6 @@ offset_right = 47.0
 offset_bottom = 37.0
 scale = Vector2(7.60074, 3.08)
 
-[node name="SpeedUpUI" type="CheckButton" parent="Camera/User Interface"]
-offset_left = 1462.0
-offset_top = 100.0
-offset_right = 1593.0
-offset_bottom = 131.0
-shortcut = SubResource("Shortcut_k1qm6")
-text = "x1.5 Speed"
-
-[node name="Panel" type="Panel" parent="Camera/User Interface/SpeedUpUI"]
-z_index = -1
-layout_mode = 0
-offset_left = -3.0
-offset_right = 135.0
-offset_bottom = 34.0
-mouse_filter = 2
-
 [node name="GameOverLabel" type="Label" parent="Camera/User Interface"]
 visible = false
 self_modulate = Color(1, 0, 0, 1)
@@ -2053,6 +2034,7 @@ text = "1"
 
 [node name="UpgradeUI2" type="Panel" parent="Camera/User Interface/UpgradeUI"]
 visible = false
+layout_mode = 0
 offset_top = 59.0
 offset_right = 239.0
 offset_bottom = 94.0
@@ -2147,6 +2129,43 @@ offset_right = 47.0
 offset_bottom = 3.0
 theme_override_font_sizes/font_size = 14
 text = "1"
+
+[node name="GameSpeedUI" type="Control" parent="Camera/User Interface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1357.0
+offset_top = 99.0
+offset_right = 1397.0
+offset_bottom = 139.0
+script = ExtResource("14_hkg3h")
+
+[node name="PauseButton" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "Pause"
+
+[node name="NormalButton" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+offset_left = 60.0
+offset_right = 115.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "x1"
+
+[node name="Speed2Button" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+offset_left = 120.0
+offset_right = 175.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "x1.5"
+
+[node name="Speed3Button" type="Button" parent="Camera/User Interface/GameSpeedUI"]
+offset_left = 181.0
+offset_right = 236.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "x2"
 
 [node name="MapBlock" parent="." instance=ExtResource("2_d8xa2")]
 
@@ -2293,9 +2312,6 @@ texture = ExtResource("18_dqraf")
 [connection signal="mouse_exited" from="Camera/User Interface/EnemyCountLabel/Background" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/OperationFundsUI/Background" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/OperationFundsUI/Background" to="." method="_on_mouse_exited_ui"]
-[connection signal="mouse_entered" from="Camera/User Interface/SpeedUpUI" to="." method="_on_mouse_entered_ui"]
-[connection signal="mouse_exited" from="Camera/User Interface/SpeedUpUI" to="." method="_on_mouse_exited_ui"]
-[connection signal="toggled" from="Camera/User Interface/SpeedUpUI" to="." method="_on_speed_up_ui_toggled"]
 [connection signal="mouse_entered" from="Camera/User Interface/GameOverLabel/RestartButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/GameOverLabel/RestartButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]
@@ -2319,3 +2335,15 @@ texture = ExtResource("18_dqraf")
 [connection signal="mouse_entered" from="Camera/User Interface/TempTutorialPage/DismissButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/TempTutorialPage/DismissButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/TempTutorialPage/DismissButton" to="Camera/User Interface/TempTutorialPage" method="_on_dismiss_button_pressed"]
+[connection signal="mouse_entered" from="Camera/User Interface/GameSpeedUI/PauseButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/GameSpeedUI/PauseButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/GameSpeedUI/PauseButton" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [0]]
+[connection signal="mouse_entered" from="Camera/User Interface/GameSpeedUI/NormalButton" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/GameSpeedUI/NormalButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/GameSpeedUI/NormalButton" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [1]]
+[connection signal="mouse_entered" from="Camera/User Interface/GameSpeedUI/Speed2Button" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/GameSpeedUI/Speed2Button" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/GameSpeedUI/Speed2Button" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [2]]
+[connection signal="mouse_entered" from="Camera/User Interface/GameSpeedUI/Speed3Button" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/GameSpeedUI/Speed3Button" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/GameSpeedUI/Speed3Button" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [3]]

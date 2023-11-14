@@ -43,13 +43,17 @@ var waveEnemies = []
 
 const SPAWN_PER_FRAME: int = 5
 
+@export var testing: bool = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game = get_parent()
 	tileScene = load("res://Scenes/tile.tscn")
 	GenerateGameboard()
 	
-	Randomize()
+	if not testing:
+		Randomize()
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

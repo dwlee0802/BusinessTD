@@ -643,3 +643,7 @@ func _on_restart_button_pressed():
 func _on_cancel_button_pressed():
 	waitingForBuildLocation = false
 	waitingForLocationLabel.visible = false
+
+
+func _on_game_speed_pressed(button_pressed, extra_arg_0):
+	Engine.time_scale = extra_arg_0

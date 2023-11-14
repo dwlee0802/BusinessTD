@@ -517,7 +517,7 @@ func GameOver():
 	emit_signal("game_ended")
 	get_node("Camera/User Interface/MenuBar").visible = false
 	get_node("Camera/User Interface/MarketUI").visible = false
-	get_node("Camera/User Interface/SpeedUpUI").visible = false
+	get_node("Camera/User Interface/GameSpeedUI").visible = false
 	
 	
 # when the current operation can't be profitable anymore, the player can abort mission

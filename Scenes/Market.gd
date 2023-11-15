@@ -13,7 +13,7 @@ static var playerCrystals: int = 0
 static var maxCrystalStorage: int = 250
 
 # holds the prices of ingredients
-static var marketPrices = [200, 100, 50, 150]
+static var marketPrices = [100, 50, 150]
 
 static var priceHistory = []
 

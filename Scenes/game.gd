@@ -1,5 +1,6 @@
 extends Node2D
 
+class_name Game
 
 var turretScene = preload("res://Scenes/turret.tscn")
 var hqScene = preload("res://Scenes/HQ.tscn")
@@ -25,7 +26,7 @@ var selectedTile
 
 var selectedUnit
 
-var mouseInUI: bool = false
+static var mouseInUI: bool = false
 
 var homeBlock
 var edgeTiles = []
@@ -91,7 +92,7 @@ var linear_increase: bool = true
 
 var waitingForLocationLabel
 
-var debug_spawn_wave
+var debug_spawn_wave: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

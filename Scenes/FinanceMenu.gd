@@ -102,4 +102,4 @@ func _on_graph_select_button_item_selected(index):
 	if index == 2:
 		menuPanel.get_node("IncomeGraph").visible = true
 	
-	game.mouseInUI = false
+	Game.mouseInUI = false

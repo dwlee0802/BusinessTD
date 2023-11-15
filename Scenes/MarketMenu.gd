@@ -66,7 +66,7 @@ func _on_option_button_item_selected(index):
 		semiconductorMarketTab.visible = true
 	
 	UpdateUI()
-	game.mouseInUI = false
+	Game.mouseInUI = false
 
 
 func RecordPrices():

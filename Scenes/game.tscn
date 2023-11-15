@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dt8yek5dlrdl7"]
+[gd_scene load_steps=41 format=3 uid="uid://dt8yek5dlrdl7"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_771gj"]
 [ext_resource type="Script" path="res://Scenes/camera.gd" id="2_3q2bq"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bg8y7lrspb277" path="res://Art/temp_HQ.png" id="14_0gfix"]
 [ext_resource type="Script" path="res://Scenes/GameSpeedUI.gd" id="14_hkg3h"]
 [ext_resource type="Texture2D" uid="uid://eyhoq0erlceq" path="res://Art/turret_barrel.png" id="15_7wjma"]
+[ext_resource type="Script" path="res://Scenes/DebugMenu.gd" id="15_xh0fj"]
 [ext_resource type="Texture2D" uid="uid://32wyhra1lphd" path="res://Art/turret_body.png" id="16_77ri7"]
 [ext_resource type="Texture2D" uid="uid://dd5afxx4cb41u" path="res://Art/network_tower.png" id="17_wp3mb"]
 [ext_resource type="Texture2D" uid="uid://05jc8uyl7as7" path="res://Art/mining_drill.png" id="18_dqraf"]
@@ -63,6 +64,34 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_ontxj"]
 events = [SubResource("InputEventKey_g3o25")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nidl2"]
+device = -1
+keycode = 4194332
+
+[sub_resource type="Shortcut" id="Shortcut_0jfri"]
+events = [SubResource("InputEventKey_nidl2")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hhvy5"]
+device = -1
+keycode = 4194333
+
+[sub_resource type="Shortcut" id="Shortcut_ng35x"]
+events = [SubResource("InputEventKey_hhvy5")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_0q2bf"]
+device = -1
+keycode = 4194334
+
+[sub_resource type="Shortcut" id="Shortcut_ho837"]
+events = [SubResource("InputEventKey_0q2bf")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_wu2fj"]
+device = -1
+keycode = 4194335
+
+[sub_resource type="Shortcut" id="Shortcut_stpvy"]
+events = [SubResource("InputEventKey_wu2fj")]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_771gj")
@@ -2144,6 +2173,7 @@ layout_mode = 0
 offset_right = 55.0
 offset_bottom = 31.0
 toggle_mode = true
+shortcut = SubResource("Shortcut_0jfri")
 text = "Pause"
 
 [node name="NormalButton" type="Button" parent="Camera/User Interface/GameSpeedUI"]
@@ -2152,6 +2182,7 @@ offset_left = 60.0
 offset_right = 115.0
 offset_bottom = 31.0
 toggle_mode = true
+shortcut = SubResource("Shortcut_ng35x")
 text = "x1"
 
 [node name="Speed2Button" type="Button" parent="Camera/User Interface/GameSpeedUI"]
@@ -2160,6 +2191,7 @@ offset_left = 120.0
 offset_right = 175.0
 offset_bottom = 31.0
 toggle_mode = true
+shortcut = SubResource("Shortcut_ho837")
 text = "x1.5"
 
 [node name="Speed3Button" type="Button" parent="Camera/User Interface/GameSpeedUI"]
@@ -2168,13 +2200,15 @@ offset_left = 181.0
 offset_right = 236.0
 offset_bottom = 31.0
 toggle_mode = true
+shortcut = SubResource("Shortcut_stpvy")
 text = "x2"
 
 [node name="DebugMenu" type="Panel" parent="Camera/User Interface"]
-offset_left = 1378.0
-offset_top = 227.0
-offset_right = 1589.0
-offset_bottom = 457.0
+offset_left = 1384.0
+offset_top = 219.0
+offset_right = 1595.0
+offset_bottom = 449.0
+script = ExtResource("15_xh0fj")
 
 [node name="SpawnWavesToggle" type="CheckButton" parent="Camera/User Interface/DebugMenu"]
 layout_mode = 0
@@ -2184,15 +2218,16 @@ button_pressed = true
 text = "Spawn Waves"
 alignment = 1
 
-[node name="SpawnEnemyButton" type="Button" parent="Camera/User Interface/DebugMenu"]
+[node name="SpawnEnemy" type="CheckButton" parent="Camera/User Interface/DebugMenu"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 29.0
-offset_right = 207.0
-offset_bottom = 60.0
+offset_top = 31.0
+offset_right = 210.0
+offset_bottom = 62.0
 text = "Spawn Enemy"
+alignment = 1
 
 [node name="SpawnWave" type="Button" parent="Camera/User Interface/DebugMenu"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 63.0
 offset_right = 207.0
@@ -2394,7 +2429,7 @@ texture = ExtResource("18_dqraf")
 [connection signal="pressed" from="Camera/User Interface/TempTutorialPage/DismissButton" to="Camera/User Interface/TempTutorialPage" method="_on_dismiss_button_pressed"]
 [connection signal="mouse_entered" from="Camera/User Interface/GameSpeedUI/PauseButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/GameSpeedUI/PauseButton" to="." method="_on_mouse_exited_ui"]
-[connection signal="pressed" from="Camera/User Interface/GameSpeedUI/PauseButton" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [0]]
+[connection signal="pressed" from="Camera/User Interface/GameSpeedUI/PauseButton" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [0.0]]
 [connection signal="mouse_entered" from="Camera/User Interface/GameSpeedUI/NormalButton" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/GameSpeedUI/NormalButton" to="." method="_on_mouse_exited_ui"]
 [connection signal="pressed" from="Camera/User Interface/GameSpeedUI/NormalButton" to="Camera/User Interface/GameSpeedUI" method="_on_game_speed_button_pressed" binds= [1]]
@@ -2407,13 +2442,15 @@ texture = ExtResource("18_dqraf")
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/SpawnWavesToggle" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/SpawnWavesToggle" to="." method="_on_mouse_exited_ui"]
 [connection signal="toggled" from="Camera/User Interface/DebugMenu/SpawnWavesToggle" to="." method="_on_spawn_waves_toggle_toggled"]
-[connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/SpawnEnemyButton" to="." method="_on_mouse_entered_ui"]
-[connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/SpawnEnemyButton" to="." method="_on_mouse_exited_ui"]
+[connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/SpawnEnemy" to="." method="_on_mouse_entered_ui"]
+[connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/SpawnEnemy" to="." method="_on_mouse_exited_ui"]
+[connection signal="toggled" from="Camera/User Interface/DebugMenu/SpawnEnemy" to="Camera/User Interface/DebugMenu" method="_on_spawn_enemy_toggled"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/SpawnWave" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/SpawnWave" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/Invulnerable" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/Invulnerable" to="." method="_on_mouse_exited_ui"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/InfiniteMoneyHack" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/InfiniteMoneyHack" to="." method="_on_mouse_exited_ui"]
+[connection signal="pressed" from="Camera/User Interface/DebugMenu/InfiniteMoneyHack" to="Camera/User Interface/DebugMenu" method="_on_infinite_money_hack_pressed"]
 [connection signal="mouse_entered" from="Camera/User Interface/DebugMenu/KillAllEnemies" to="." method="_on_mouse_entered_ui"]
 [connection signal="mouse_exited" from="Camera/User Interface/DebugMenu/KillAllEnemies" to="." method="_on_mouse_exited_ui"]

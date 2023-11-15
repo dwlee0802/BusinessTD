@@ -13,7 +13,7 @@ var ammoType: int = 0
 static var ammoTypeFireRate = [1, 2, 2, 1, 1]
 static var ammoTypeCost = [15, 35, 1, 1, 1]
 static var ammoTypeDamageRange = [[25, 75], [10,30], [15, 35]]
-static var criticalChance: float = 0.1
+static var criticalChance: float = 0
 
 var targets = []
 

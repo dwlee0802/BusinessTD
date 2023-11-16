@@ -452,11 +452,12 @@ func ReceiveUpgrades(upgradeID):
 	if upgradeID == 6:
 		# increase range of existing turrets
 		for item in playerStructures:
-			if is_instance_valid(item) and item.type == 0 or item.type == 1:
-				var shape = item.get_node("AttackArea/CollisionShape2D")
-				var newrad = shape.shape.get_radius() + 50 * selectedUpgrades[upgradeID]
-				shape.shape.set_radius(newrad)
-				item.get_node("AttackRangeSprite").scale = Vector2(6.2 * newrad/ 800, 6.2 * newrad/ 800)
+			if is_instance_valid(item):
+				if item.type == 0 or item.type == 1:
+					var shape = item.get_node("AttackArea/CollisionShape2D")
+					var newrad = shape.shape.get_radius() + 50 * selectedUpgrades[upgradeID]
+					shape.shape.set_radius(newrad)
+					item.get_node("AttackRangeSprite").scale = Vector2(6.2 * newrad/ 800, 6.2 * newrad/ 800)
 		
 		# newly made turrets will have their range modified by selectedUpgrades
 	if upgradeID == 7:

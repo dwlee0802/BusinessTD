@@ -13,8 +13,8 @@ var profitHolder: float = 1
 
 var placedTile
 
-var minCrystals: int = 10
-var maxCrystals: int = 20
+var minCrystals: int = 1
+var maxCrystals: int = 5
 
 static var repairCost: int = 3
 var repairHolder: float = 1

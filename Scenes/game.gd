@@ -41,13 +41,15 @@ var buildingSizeN = [3, 7, 5, 3]
 var buildingCosts = [6000, 0, 12000, 3000]
 
 # the time between each enemy wave
-var spawnRate: float = 20
-var spawnRateHolder: float = 15
+var spawnRate: float = 4
+var spawnRateHolder: float = 0
 # how many enemies spawn for each wave
-var spawnCount: float = 5
+var spawnCount: float = 6
 # determines the rate in which enemy count increases
 var difficultyScale: float = 1.1
-var difficultyScale_linear: int = 10
+var difficultyScale_linear: int = 2
+var difficultyHolder: float = 0
+var difficultyIncreaseRate: float = 60
 # determines the rate enemy health increases
 var enemyDifficultyIncrease: int = 0
 var enemyMaxCount: int = 150
@@ -216,20 +218,20 @@ func _process(delta):
 	if not playerStructures.is_empty() and gameStarted == true and debug_spawn_wave == true:
 		gameStarted = true
 		spawnRateHolder += delta
+		difficultyHolder += delta
 		
 		if spawnRateHolder > spawnRate:
 			homeBlock.SpawnWave(spawnCount, enemyDifficultyIncrease)
-			
-			if linear_increase:
-				spawnCount += difficultyScale_linear
-			else:
-				spawnCount *= difficultyScale
 				
 			if spawnCount > enemyMaxCount:
 				spawnCount = enemyMaxCount
 				enemyDifficultyIncrease += 1
 				
 			spawnRateHolder = 0
+		
+		if difficultyHolder > difficultyIncreaseRate:
+			spawnCount += difficultyScale_linear
+			difficultyHolder = 0
 
 
 func MarketCycle():
